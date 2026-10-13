@@ -7,19 +7,8 @@
 *.fdb_latexmk
 *.bbl
 *.blg
-<<<<<<< HEAD
-*.synctex
-*.synctex.gz
-*.synctex(busy)
-
-# On ignore aussi le PDF local pour laisser GitHub générer le PDF propre
-# Ignorer TOUS les PDF locaux
 *.pdf
 **/*.pdf
-=======
-=======
-
 *.synctex
 *.synctex.gz
 *.synctex(busy)
->>>>>>> 7463219e39b4954f721c547ca51904fa09cef3e3
