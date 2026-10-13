@@ -1,0 +1,26 @@
+name: Build LaTeX PDFs
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build_latex_l3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code du dépôt
+        uses: actions/checkout@v4
+
+      - name: Compiler les cours du dossier L3
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: "*.tex"
+          working_directory: L3
+          work_in_root_file_dir: true
+
+      - name: Sauvegarder les PDF générés
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cours-L3-PDF
+          path: L3/*.pdf
