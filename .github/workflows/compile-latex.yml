@@ -16,9 +16,9 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: |
-            chapitres/*.tex
-            exercices/*.tex
-            devoirs/*.tex
+            L3/*.tex
+            M1/*.tex
+            M2/*.tex
 
       - name: Sauvegarder tous les PDF générés
         uses: actions/upload-artifact@v4
