@@ -3,11 +3,13 @@
 *.log
 *.toc
 *.out
-*.synctex.gz
 *.fls
 *.fdb_latexmk
 *.bbl
 *.blg
+*.synctex
+*.synctex.gz
+*.synctex(busy)
 
 # On ignore aussi le PDF local pour laisser GitHub générer le PDF propre
 *.pdf
