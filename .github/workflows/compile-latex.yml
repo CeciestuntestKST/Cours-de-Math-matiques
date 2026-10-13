@@ -22,8 +22,9 @@ jobs:
           working_directory: L3
           work_in_root_file_dir: true
 
-      - name: Commiter et pousser les PDF générés sur GitHub
+      - name: Commiter et pousser le PDF généré par GitHub
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Auto-build PDF [skip ci]"
-          file_pattern: "**/*.pdf"
+          file_pattern: "L3/*.pdf"
+          add_options: '-f'  # 👈 Le '-f' (force) permet à GitHub de commiter le PDF même s'il est dans .gitignore
