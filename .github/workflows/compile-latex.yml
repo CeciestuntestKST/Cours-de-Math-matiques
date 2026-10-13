@@ -1,4 +1,4 @@
-name: Build All LaTeX PDFs
+name: Build LaTeX PDFs
 
 on:
   push:
@@ -12,13 +12,16 @@ jobs:
       - name: Récupérer le code du dépôt
         uses: actions/checkout@v4
 
-      - name: Compiler tous les documents LaTeX
+      - name: Compiler les documents LaTeX des dossiers spécifiés
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: "*.tex" # Compile tous les fichiers .tex trouvés à la racine
+          root_file: |
+            chapitres/*.tex
+            exercices/*.tex
+            devoirs/*.tex
 
       - name: Sauvegarder tous les PDF générés
         uses: actions/upload-artifact@v4
         with:
           name: Tous-les-Cours-PDF
-          path: "*.pdf"   # Sauvegarde tous les fichiers PDF produits
+          path: "**/*.pdf"
