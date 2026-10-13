@@ -1,0 +1,13 @@
+# Fichiers temporaires de compilation LaTeX
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+
+# On ignore aussi le PDF local pour laisser GitHub générer le PDF propre
+*.pdf
