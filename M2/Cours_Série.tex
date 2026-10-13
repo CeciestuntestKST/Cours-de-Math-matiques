@@ -1,0 +1,454 @@
+\documentclass[]{report}
+
+\usepackage{import}
+
+\import{../}{settings.tex}
+
+\title{Cours sur les séries pour l'agrégation}
+
+\author{Cours de Stephane VASSOULT, transcrit par SADR TAHOURI Luca}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Séries Numériques}
+
+\section{Généralités}
+
+\begin{df}{Série numérique, somme partielle, reste d'une série}{}
+    On appelle série numérique une suite dans $\K$ ($=\R$ ou $\C$) de la forme
+    \[\fundf{\N}{\K}{n}{S_n=\sum_{k=0}^{n}u_k}\]
+    Où $u$ est une autre suite numérique. On l'appelle série de terme général $u_n$ et $S_n$ la somme partielle de la série. Si la série converge vers $S$, on appelle somme de la série la limite. Dans ce cas, on désigne par
+    \[R_n=S-S_n=\sum_{k=n+1}^{+\infty}u_k\]
+    le reste de la série (C'est une suite qui tend vers $0$).
+\end{df}
+
+\begin{re}{}{}
+    \begin{itemize}
+        \item Les séries sont des suites particulières
+        \item Toute suite peut s'écrire comme une série.
+    \end{itemize}
+    Ce qui diffère: Les moyens d'études
+\end{re}
+
+\begin{prop}{Conditions de convergence des séries numériques}{}
+    Une série numérique (Dans $\R$ ou $\C$) est convergente si la suite des sommes partielles $(S_n)_\nN$ est une suite de Cauchy.
+\end{prop}
+
+\begin{cor}{}{}
+    Première conséquence: si la série converge, alors son terme général tend vers $0$
+\end{cor}
+
+\begin{df}{Série qui diverge grossièrement}{}
+    Si le terme général de la série ne tend pas vers $0$, on dit que la série diverge grossièrement.
+\end{df}
+
+\section{Séries à termes positifs}
+
+\begin{df}{Série à termes positifs}{}
+    Une série à termes positifs est une série $\sum u_n$ avec $u_n \ge 0$. Sa suite $(S_n)_\nN$ est croissante donc
+    \begin{itemize}
+        \item Si $(S_n)_\nN$ est majorée, elle converge
+        \item Sinon $S_n\toninfty +\infty$
+    \end{itemize}
+\end{df}
+
+\begin{prop}{Critère de comparaison des séries numériques}{}
+    Soient $\sum u_n$ et $\sum v_n$ deux séries à termes positifs. Si $u_n\le v_n$ à partir d'un certain rang, alors
+    \begin{itemize}
+        \item Si $\sum u_n$ diverge, $\sum v_n$ diverge
+        \item Si $\sum v_n$ converge, alors $\sum u_n$ converge
+    \end{itemize}
+    Séries avec lesquelles conparer:
+    \begin{itemize}
+        \item Séries Géométriques: $a\ge 0$
+              \[\sum a^n \cho{\text{ converge si }a<1\\ \text{ diverge si }a \ge 1}\]
+        \item Séries de Riemann:
+              \[\sum \frac{1}{n^{\alpha}}\cho{\text{ converge si }\alpha>1\\ \text{ diverge si }\alpha < 1}\]
+        \item Séries de Bertrand
+              \[\sum \frac{1}{n^\alpha (\ln (n))^\beta}\cho{\text{converge si }\alpha>1 \text{ ou }(\alpha=1 \text{ et } \beta >1)\\ \text{diverge si $a<1$, $a=1$ et $\beta \le 1$}}\]
+    \end{itemize}
+\end{prop}
+
+\begin{cor}{Déclinaison des critères de comparaison}{}
+    \begin{itemize}
+        \item Si $u_n \sim v_n$, alors $\sum u_n$ et $\sum v_n$ sont de même nature.
+        \item Si $u_n= o(v_n)$ ou $u_n=O(v_n)$ et $\sum v_n$ converge, alors $\sum u_n$ converge.
+        \item Critère de Cauchy (ou régle de Cauchy):
+              \[\sqrt[n]{u_n}\to l\implies \cho{\text{Si $l>1$, alors $\sum u_n$ diverge}\\ \text{Si $l<1$ alors $\sum u_n$ converge} \\ \text{Si $l=1$, pas de conclusion}}\]
+        \item Critère de d'Alembert (ou règle de d'Alembert): Si $u_n \neq 0$ APCR
+              \[\frac{u_{n+1}}{u_n}\toninfty l\implies \cho{\text{Si $l>1$, alors $\sum u_n$ diverge}\\ \text{Si $l<1$ alors $\sum u_n$ converge} \\ \text{Si $l=1$, pas de conclusion}}\]
+    \end{itemize}
+\end{cor}
+
+\section{Séries à terme de signe quelconque}
+
+A priori, $(u_n)_\nN$ est une suite réelle ou complexe quelconque.
+
+\begin{prop}{Absolue convergence}{}
+    $\sum |u_n|$ converge alors $\sum u_n $ converge
+\end{prop}
+
+Si on ne peut pas conclure, on peut utiliser d'autres outils:
+\begin{itemize}
+    \item Séries alternées
+    \item Transformation d'Abel
+    \item Développement asymptotique
+\end{itemize}
+
+\begin{dfprop}{Série alternée}{}
+    $\sum u_n$ est une série alternée si
+    \begin{itemize}
+        \item $\exists (a_n)_\nN$ une suite positive décroissante qui tend vers $0$ tq $u_n=(-1)^n a_n$. Dans ce cas la série de terme général $u_n$ est convergente.
+    \end{itemize}
+\end{dfprop}
+
+\begin{dfprop}{Transformation d'Abel}{}
+    $(u_n)_\nN$ et $(v_n)_\nN$ deux suites. On note $U_n=\sum_{k=0}^{n}$ et $V_n=\sum_{k=0}^{n} v_k$ alors pour tout $p,q$ entiers, $p\ge q$,
+    \[\sum_{n=q+1}^{p} u_n v_n=\sum_{n=q+1}^{p-1}(u_n-v_{n+1}) V_n +u_p V_p -u_{q+1} V_q\]
+    Application: Si $(V_n)$ est bornée et si $(u_n)_\nN$ est une suite positive décroissante, qui tend vers $0$, alors $\sum u_nv_n$ converge.
+\end{dfprop}
+
+\begin{dfprop}{Développement asymptotique}{}
+    Si $u_n=v_n+o (w_n)$ avec $\sum w_n$ une série absolument convergente, alors $\sum u_n$ et $\sum v_n$ sont de même nature.
+\end{dfprop}
+
+\subsection*{Sommes partielles, restes}
+
+Pour les séries à termes positifs:\\
+On suppose que $u_n\ge 0$ et $\sum u_n$ diverge\\
+\[u_n\sim v_n\implies  \sum_{k=0}^{n} v_k \sim \sum_{k=0}^{n} u_k\]
+\[u_n=o(v_n)\implies \sum_{k=0}^{n} u_k = o\left( \sum_{k=0}^{n} v_k\right)\]
+On suppose que $v_n\ge 0$ et $\sum v_n$ converge, alors\\
+\[u_n \sim v_n\implies \sum_{k=n+1}^{+\infty}\sim \sum_{k=n+1}^{+\infty} v_k\]
+\[u_n=o(v_n) \implies \sum_{k=n+1}^{+\infty}= o \left(\sum_{k=n+1}^{+\infty} v_k\right)\]
+Pour les séries alternées:
+\[R_n=\sum_{k=n+1}^{+\infty}(-1)^{k} a_k,\qquad a_k\ge 0\]
+On a $\left|R_n\right|\le a_{n+1}$
+Pour les séries qui vérifient les hypothèses du théorème d'Abel,
+\[\left|\sum_{k=n+1}^{+\infty} u_k v_k\right|\le 2 M u_{n+1}\quad \text{avec $M$ un majorant de }\left(\sum_{k=0}^{n} v_k\right)_{\nN}\]
+
+\subsection*{Résultats sur les séries de Riemann et Bertrand}
+
+Si $\funto{f}{]0,+\infty[}{\R}$ est une fonction positive décroissante et localement integrable.
+\[f(k)\ge \int_{k}^{k+1} f(t)\, dt \ge f(k+1)\]
+\[\sum_{k=2}^{n}\int_{k-1}^{k} f(t)\, dt \ge \sum_{k=1}^{n} f(k) \ge \sum_{k=1}^{n} \int_{k}^{k+1} \int_{k}^{k+1} f(t)\, dt\]
+Donc la série $\sum f(k)$ et l'intégrale généralisée $\int_{1}^{+\infty}f$ sont de même nature. Ces inégalités fournissent aussi des équivalents
+
+\subsection*{Produit de Cauchy de deux séries numériques}
+
+\begin{df}{Produit de Cauchy de deux séries numériques}{}
+    Si $\sum u_n,\sum v_n$ sont deux séries numériques, on appelle produit de Cauchy des deux séries la séries $\sum w_n$ de terme géénral
+    \[w_n =\sum_{k=0}^{n} u_k v_{n-k}\]
+\end{df}
+
+\begin{tm}{Théorème de Mertens}{}
+    Si $\sum u_n$ converge et $\sum v_n$ sont absolument convergentes, alors $\sum w_n$ est convergente et
+    \[\sum_{n=0}^{+\infty} w_n=\left(\sum_{n=0}^{+\infty} u_n\right)\left(\sum_{n=0}^{+\infty} v_n\right)\]
+    En général, la convergence simple de $\sum u_n$ et $\sum v_n$ ne suffit pas à assurer la convergence de $\sum w_n$.\\
+    Conséquence: Le produit de Cauchy de deux séries absoluement convergente est une série absoluement convergente
+\end{tm}
+
+\begin{proof}{Théorème de Mertens}{}
+    On pose $U_n=\sum_{k=0}^{n} u_k \to U$ et $V_n=\sum_{k=0}^{n} v_k\to V$ et
+    \[W_n =\sum_{k=0}^{n} =\sum_{k=0}^{n} \sum_{i+j=k}U_i V_j\]
+    \begin{align*}
+        \sum_{i+j\le n} U_i V_j   & = \sum_{i+j\ge n} u_i \left( V_j- V_{j-1}\right)          \\
+                                  & =\sum_{i+j=n} u_i V_j                                     \\
+        \left| W_n - U_n V\right| & =\left|\sum_{i+j=n} u_i V_j - \sum_{i=0}^n u_i V\right|   \\
+                                  & =\left| \sum_{i=0}^{n} u_i \left( V_{i-1}-V\right)\right|
+    \end{align*}
+\end{proof}
+
+\begin{prop}{Raabe-Duhamel}{}
+    Si $(\sum u_n)_\nN$ est une série à termes positifs (strictement), alors
+    \begin{enumerate}
+        \item Si $\frac{u_{n+1}}{u_n}-1\sim -\frac{\alpha}{n}$ avec $\alpha \in \R$, alors
+        \[\cho{\alpha >1\implies \sum u_n \text{cv}\\ \alpha <1\implies \sum u_n \text{dv}}\]
+        \item Si $\frac{u_{n+1}}{u_n}=1-\frac{\alpha}{n}+ o(v_n)$, avec $\sum v_n$ absoluement convergent, alors $\exists c,u_n\sim -\frac{c}{n^\alpha}$
+        \item Si $\frac{u_{n+1}}{u_n}=1-\frac{\alpha}{n}+w_n+o(w_n^2)$ avec $\sum w_n$ convergent et $\sum w_n^2$ convergent alors si $\alpha=1,\sum u_n$ convergent.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}{Raabe-Duhamel}{}
+    \begin{enumerate}
+        \item Si on pose $a_n(\alpha)=\frac{1}{n^\alpha}$,
+        \[\frac{a_{n+1}(\alpha)}{a_n(\alpha)}=\frac{n^\alpha}{(n+1)^\alpha}=\frac{1}{\left(1+\frac{1}{n}\right)^\alpha}=1-\frac{\alpha}{n}+o\left(\frac{1}{n}\right)\]
+        On suppose que $\alpha>1$, on choisit $\beta$ tq $\alpha>\beta>1$. On compare $\frac{u_{n+1}}{u_n}$ et $\frac{a_{n+1}(\beta)}{a_n(\beta)}$.
+        \[\frac{u_{n+1}}{u_n}-\frac{a_{n+1}(\beta)}{a_n(\beta)}\sim \frac{\beta-\alpha}{n}\]
+        $\beta-\alpha<0$ donc à partir d'un certain rang $N$,
+        \[\frac{u_{n+1}}{u_n}-\frac{a_{n+1}(\beta)}{a_n(\beta)}\le 0\implies \frac{u_{n+1}}{u_n}\le \frac{a_{n+1}(\beta)}{a_n(\beta)}\]
+        Si $n\ge N$,
+        \begin{align*}
+            u_n=\frac{u_n}{u_{n-1}}\times \frac{u_{n-1}}{u_{n-2}}\ldots \frac{u_{N+1}}{u_N}\times u_N\\
+            u_n\le u_N\times \frac{1}{n^\beta}\times N^\beta\implies u_n\le C\frac{1}{n^\beta}
+        \end{align*}
+        \item On pose $w_n=\ln \left(n^\alpha u_n\right)$.\\
+        \begin{align*}
+            w_{n+1}-w_n&=\ln \left(\frac{(n+1)^\alpha u_{n+1}}{n^\alpha u_n}\right)\\
+            \frac{(n+1)^\alpha}{n^\alpha}\frac{u_{n+1}}{u_n}&=\left(1+\frac{1}{n}\right)^\alpha \left(1-\frac{\alpha}{n}+o(v_n)\right)\\
+            &=\left(1+\frac{\alpha}{n}+o\left(\frac{1}{n^2}\right)\right)\left(1-\frac{\alpha}{n}+o\left(\frac{1}{n^2}\right)\right)\\
+            &=1-\frac{\alpha}{n}+\frac{\alpha}{n}-\frac{\alpha^2}{n^2}+o\left(\frac{1}{n^2}\right)+o(v_n)
+        \end{align*}
+        Donc $w_{n+1}-w_n=\ln\left(1+b_n\right)$ avec $b_n$ terme général d'une série absoluement convergente
+        $|\ln(1+b_n)|\sim (b_n)$ terme général d'une série absoluement convergente. Donc la série de terme général $\ln (1+b_n)$ est convergent, donc la suite $w_n$ converge vers une limite $l$ et donc $u_n\sim \frac{e^l}{n^\alpha}$
+    \end{enumerate}
+\end{proof}
+
+\chapter{Suites et séries de fonctions}
+
+\section{Suites de fonctions}
+
+\subsection{Généralité}
+
+\begin{df}{Suite de fonction}{}
+    On pose $\Fr=\{\funto{f}{\Omega}{\K}\}$, $\K=\R$ ou $\C$, $\Omega\subset \K$. On appelle suite de fonctions $(f_n)_\nN$, 
+    \[\fundf{\N}{\Fr(\Omega,\K)}{n}{f_n}\]
+\end{df}
+
+\begin{df}{Convergence simple d'une suite de fonctions}{}
+    On dit qu'une suite de fonctions $f_b$ converge simplement au point $x_0\in \Omega$ si la suite numériques, $\left(f_n(c_0)\right)_\nN$ est convergente. On dit qu'elle converge simplement sur $\Omega'\subset \Omega$ si
+    \[\forall x_0\in \Omega',f_n(x_0)\toninfty f(x_0)\]
+\end{df}
+
+\begin{re}{}{}
+    La convergence simple ne permet pas en général, de déduire sur $f$ des propriétés vraies sur les fonctions $f_n$, à part la croissance ou la positivité.
+\end{re}
+
+\begin{df}{Convergence uniforme d'une suite de fonctions}{}
+    Soit $\Omega'\subset \Omega$, on dit que la suite $(f_n)_\nN$ converge uniformément vers $f$ sur $\Omega'$ si
+    \[\sup_{x\in \Omega'}\left|f_n(x)-f(x)\right|\toninfty 0\]
+    La convergence uniforme est une propriété globale qui dépend de $\Omega$.
+\end{df}
+
+\begin{df}{Uniformément de Cauchy}{}
+    On dit que $(f_n)_\nN$ est uniformément de Cauchy sur $\Omega'$.
+    \[\forall \epsilon>0,\exists N\in \N,\forall p,q\ge N, \sup_{x\in \Omega'}\left|f_p(x)-f_q(x)\right|<\epsilon\]
+\end{df}
+
+\begin{prop}{Convergence uniforme et uniformément de Cauchy}{}
+    Pour $(f_n)_\nN$ suite de fonctions dans $\Omega'$, $(f_n)_\nN$ converge uniformément sur $\Omega'$ si et seulement si $(f_n)_\nN$ est uniformément de Cauchy sur $\Omega'$
+\end{prop}
+
+\begin{prop}{}{}
+    La convergence uniforme implique la convergence simple, la réciproque est fausse en général.
+\end{prop}
+
+\subsection{Propriétés de la limite uniforme d'une suite de fonctions}
+
+\begin{prop}{}{}
+    On suppose que $\funto{f_n}{\Omega}{\K}$ et que $f_n\cvu f$. Alors
+    Si la suite de fonctions $f_n$ est bornée (à partir d'un certain rang) sur $\Omega'$, alors $f$ est bornée sur $\Omega'$
+\end{prop}
+
+\begin{tm}{Théorème d'interversion de limites}{}
+    On suppose que $\funto{f_n}{\Omega}{\K}$ et que $f_n\cvu f$. Si on choisit $x_0\in \overline{\Omega'}$ et on suppose $\forall n\in \N, \lim_{x\to x_0}f_n(x)=a_n$. Alors cette suite $a_n$ converge et on a:
+    \begin{align*}
+        \lim_{x\to x_0}&=\lim_{x\to x_0} \left(\lim_{n\to +\infty} (f_n(x))\right)\\
+        &=\lim_{n\to +\infty} \left(\lim_{x\to x_0} f_n(x)\right)=\lim_{n\to +\infty} a_n
+    \end{align*}
+\end{tm}
+
+\begin{proof}{Théorème d'interversion de limites}{}
+    Soit $\epsilon>0,\exists N$ tq $\forall p,q\ge N,$
+    \[\norme{f_p-f_q}<\epsilon\]
+    Si on fixe $p,q\ge N,\exists V$ un voisinage de $x_0,\forall x\in V,$
+    \[\cho{\left|f_p(x)-a_p\right|<\frac{\epsilon}{3} \\ \left|f_q(x)-a_q\right|<\frac{\epsilon}{3}}\]
+    Donc si $p,q>N,x\in V_{p,q}\cap \Omega'$,
+    \begin{align*}
+        |a_p-a_q|&\le \left|a_p-f_p(x)\right|+\left|f_p(x)-f_q(x)\right|+\left| f_q(x)-a_q\right|\\
+    &\le \epsilon 
+    \end{align*}
+    La suite $a_n$ est de Cauchy dans $\K$ donc converge vers $a$.
+    \[\left|f(x)-a\right|<\left|a-a_p\right|+ \left|a_p-f_p(x)\right|+\left| f_p(x)-f(x)\right|\]
+    On choisit $p$ tel que $\left|a-a_p\right|<\frac{\epsilon}{3}$ et $\norme{f_p-f}_{\Omega',\infty}<\frac{\epsilon}{3}$.\\
+    $\exists V_p$ un voisinage de $x_0$ tq
+    \[\forall x\in V_p\cap \Omega',\left|a_p-f_p(t)\right|<\frac{\epsilon}{3}\]
+    Donc on a bien $\lim_{x\to x_0} f(x)=a$
+\end{proof}
+
+\begin{prop}{}{}
+    Si $\funto{f_n}{\Omega}{\K}$ est une suite de fonctions continues sur $\Omega$ et $f_n\cvu f$ alors $\funto{f}{\Omega'}{\K}$ est continue
+\end{prop}
+
+\subsection{Autres théorèmes d'intégration}
+
+\begin{tm}{Théorème de Convergence Monotone (TCM)}{}
+    Si $(f_n)_\nN$ est une suite croissante de fonctions positives mesurables qui tend simplement vers $f$, alors
+    \[\int f_n \toninfty \int f\]
+\end{tm}
+
+\begin{tm}{Théorème de Convergence Dominée (TCD)}{}
+    Si $(f_n)_\nN$ est une suite de fonctions mesurables tq $\exists g$ intégrable avec $|f_n|\le g$ et $f_n\cvs f$, alors 
+    \[\int f_n\toninfty f\]
+\end{tm}
+
+\begin{tm}{Théorème de dérivation}{}
+    Soit $(f_n)_\nN$ une suite définie sur un ouvert connexe $\Omega,\forall n\in \N$, $f_n$ est dérivable sur $\Omega$
+    \begin{itemize}
+        \item $(f_n')_\nN$ cvu sur $\Omega$ vers $g$
+        \item $(f_n)_\nN$ cvs sur $\Omega$ vers $f$
+    \end{itemize}
+    Alors $f$ est dérivable sur $\Omega$, de dérivée $g$ et $(f_n)$ cvu vers $f$ sur tout compact de $\Omega$.
+\end{tm}
+
+\begin{proof}{Théorème de dérivation}{}
+    VOIR PHOTO du 24/09
+\end{proof}
+
+\section{Séries de fonctions}
+
+\begin{df}{Série de fonctions}
+    Si les $\funto{f_n}{\Omega}{\K}$ sont des fonctions, on note $_sum f_n$ la série de terme général $f_n$. C'est la suite $(S_n)_\nN$ des sommes partielles
+    \[S_n(x)=\sum_{k=0}^{n}f_k(x)\]
+\end{df}
+
+\begin{df}{Convergence Normale}{}
+    Soit $(f_n)_\nN$ une suite de fonctions définies sur $\Omega$. On dit que $\sum f_n$ converge normalement sur $\Omega'\subset \Omega$ si
+    \[\sum \norme{f_n}_{\Omega',\infty} \text{converge}\]
+\end{df}
+
+\begin{prop}{Convergence absolu implique convergence uniforme}{}
+    $\sum f_n$ converge normalement $\implies \sum f_n$ converge uniformément
+\end{prop}
+
+\begin{proof}{Convergence absolu implique convergence uniforme}{}
+    \[\left|\sum_{k=p+1}^{q} f_k(x)\right|\le \sum_{k=p+1}^{q} \left|f_k(x)\right|\le \sum_{k=p+1}^{q}\norme{f_k}_{\Omega',\infty}\]
+\end{proof}
+
+\begin{re}{}{}
+    On peut avoir des séries de fonctions qui convergent uniformément sur $\Omega$ mais pas normalement, penser à la transformer d'Abel.
+\end{re}
+
+\begin{tm}{Théorème de Weierstrass}{}
+    Toute fonction continue sur $[a,b]$ est limite uniforme d'une suite de fonctions polynomiales
+\end{tm}
+
+\begin{tm}{Théorème de Stone-Weierstrass}{}
+    Si $X$ est un espace compact, $A\subset C(X,\K)$ tq
+    \begin{itemize}
+        \item $A$ est une sous-algèbre de $C(X,\K)$
+        \item $\forall x\in X,\exists f\in A,f(x)\neq 0$
+        \item $\forall (x,y)\in X^2,\exists f\in H, f(x)\neq f(y)$
+    \end{itemize}
+    Alors $H$ est dense dans $C(X,\K)$
+\end{tm}
+
+\section{Séries Entières}
+
+\subsection{Généralités}
+
+\begin{df}{Série entière}{}
+    $\sum a_n z^n$ avec $a_n\in \K=\R$ ou $\C$
+    \[\fundfto{f_n}{\K}{\K}{z}{a_n z^n}\]
+\end{df}
+
+\begin{lm}{Lemme d'Abel}{}
+    Soit $r_0>0$ tel que $(|a_n|r_0^n)_\nN$ est bornée, alors $\forall 0<r<r_0$, la série $\sum|a_n|r^n$ converge.
+\end{lm}
+
+Par comparaison de séries à termes positifs, on a le résultat suivant
+
+\begin{df}{Rayon de convergence}{}
+    On appelle rayon de convergence
+    \[R=\sup\{r\in \R_+,(|a_n|r^n)_{n\in \N}\text{ est bornée}\}\]
+\end{df}
+
+\begin{prop}{Propriété sur les rayons de convergence}{}
+    \begin{itemize}
+        \item La série entière est absoluement convergente sur le disque ouvert $D(0,R)$
+        \item La série $\sum a_n z^n$ diverge grossièrement lorsque $|z|>R$
+        \item En général, on ne peut rien dire si $z=R$
+    \end{itemize}
+\end{prop}
+
+\begin{prop}{Proriétés sur les sommes de séries entières}{}
+    Soit $\sum a_n z^n$ une série entière de rayon de convergence $R$. Alors
+    \begin{itemize}
+        \item $\forall r<R$, la série entière converge normalement sur $\overline{D(0,R)}$
+        \item La série entière dérivée $\sum a_n n z^{n-1}$ a même rayon de convergence que la série entière $\sum a_n z^n$ et $f(z)=\sum_{n=0}^{+\infty} a_n z^n$ est $C^\infty$ sur $D(0,R)$
+        \item La primitive de $f$ qui s'annule en $0$ est $\sum a_n \frac{z^{n+1}}{n+1}$ et a même rayon de convergence que $f$
+    \end{itemize}
+\end{prop}
+
+\begin{prop}{Somme et produit de série entière}{}
+    Soient $\sum a_n z^n$ et $ \sum b_n z^n$ deux séries entières de rayon de convergence $R_a$ et $R_b$. On pose $R_m=\min(R_a,R_b)$.
+    \begin{itemize}
+        \item Alors la série entière $\sum (a_n+b_n)z^n$ a un rayon de convergence $R\ge R_m$ et sur $D(0,R_m)$, on a:
+        \[\sum_{n=0}^{+\infty}(a_n+b_n)z^n=\sum_{n=0}^{+\infty} a_n z^n+\sum_{n=0}^{+\infty} b_n z^n\]
+        \item La série entière $\sum c_n z^n$ où  $c_n=\sum_{k=0}^{n} a_k b_{n-k}$ est de rayon de convergence $R\ge R_m$ et sur $D(0,R_m)$, on a:
+        \[\sum_{n=0}^{+\infty} c_n z^n=\left(\sum_{n=0}^{+\infty} a_n z^n\right)\left(\sum_{n=0}^{+\infty} b_n z^n\right)\]
+    \end{itemize}
+\end{prop}
+
+\begin{re}{Détermination du rayon de convergence}{}
+    En utilisant la définition: On étudie la convergence de la série numérique $\sum |a_n| r^n$ en fonction de $r$ (ou directement on essaye de comprendre pour quelles valeurs de $r$ la suite $|a_n|r^n$ est bornée).\\
+    On peut utiliser la formule suivante:
+    \[R=\frac{1}{\limsup\left( \sqrt[n]{|a_n|}\right)}\]
+\end{re}
+
+\subsection{Fonctions analytiques}
+
+\begin{df}{Fonction analytique}{}
+    Soit $\funto{f}{U}{\C}$ une fonction définie sur un ouvert $U$ de $\C$ (ou un ouvert de $\R$ si la fonction est réelle).\\
+    On dit que $f$ est analytique au point $z_0\in U$, s'il existe $r>0$ et une série entière $\sum a_n <^n$ de rayon de convergence $R>r$ tel que $\forall z\in D(z_0,r)$, on ait
+    \[f(z)=\sum_{n=0}^{+\infty} a_n (z-z_0)^n\]
+    On dit que $f$ est développable en série entière au point $z_0$.
+\end{df}
+
+\begin{tm}{Holomorphe équivalente à analytique}{}
+    Soit $f$ une fonction analytique sur $U$ un ouvert de $\C$.
+    \[f\text{ holomorphe}\iff f\text{ analytique}\]
+\end{tm}
+
+\begin{tm}{Théorème des zéros isolés}{}
+    Soit $\sum a_nz^n$ une série entière à coefficients non tous nuls, de rayon de convergence $R>0$ et de somme $f$. Alors si $f$ s'annule en $0$, il existe un disque ouvert centré en $0$ $D(0,r),r>0$ tel que si $z\in D(0,r)\wt \{0\},f(z)\neq 0$
+\end{tm}
+
+\begin{proof}{Théorème des zéros isolés}{}
+    On a supposé que les $(a_n)$ sont non tous nuls. Par hypothèse, $f(0)=a_0=0$. Donc $\exists m>0$ tq $a_m\neq 0$ et $m$ et le plus petit entier à satisfaire cela.
+    \[f(z)=z^m\underset{g(z)}{\left(a_m+\sum_{k=1}^{+\infty}a_{m+k}z^k\right)}, g(0)=a_m\neq 0\]
+    et $g $ est une série en série entière de même rayon de convergence que $f$ et donc elle est continue sur $D(0,R)$.\\
+    En partie, $\exists D(0,r),r>0$ tq si $z\in D(0,r),\left|g(z)-g(0)\right|<\frac{|a_m|}{2}$ donc $g(z)\ge \frac{|a_m|}{2}$ et non nul.\\
+    Finalement, $f(z)$ s'écrit $f(z)=z^{m}g(z)$. $z^m$ s'annule en $0$ et $g$ ne s'annule pas sur $D(0,r)$.
+\end{proof}
+
+\begin{tm}{Unicité du développement en série entière}{}
+    Si $\funto{f}{U}{\C}$ est une fonction définie sur un ouvert de $\C$ et développable en série entière au point $z_0\in U$. Alors le développement en série entière $f(z)=\sum_{n=0}^{+\infty} a_n (z-z_0)^n$ est unique.\\
+    On a aussi que
+    \[\forall n\ge 0, a_n=\frac{f^{(n)}(z_0)}{n!}\]
+\end{tm}
+
+\begin{proof}{Unicité du développement en série entière}{}
+    On suppose que
+    \[\sum_{n=0}^{+\infty}b_n(z-z_0)^n=\sum_{n=0}^{+\infty} a_n (z-z_0)^n\]
+    $z_0$ est un zéro non isolé de
+    \[\sum_{n=0}^{+\infty}(a_n-b_n)(z-z_0)^n\]
+    Donc tous les coefficients de cette série entière sont nuls
+\end{proof}
+
+\begin{tm}{Théorème du prolongement analytique}{}
+    Soient $f$ et $g$ deux fonctions analytiques sur un ouvert $U$ connexe de $\C$ telles que $f$ et $g$ coïncident sur un ensemble $X\subset U$ qui admet un point d'accumulation contenu dans $U$, alors on a $f=g$ sur $U$
+\end{tm}
+
+\begin{proof}{Théorème du prolongement analytique}{}
+    $z_0\in U$ qui est un point d'accumultation de $X$, alors $f-g$ est analytique et $(\exists z_n)\in X^\N$ tel que $(f-g)(z_n)=0$ et $z_n \to z_0$ donc $(f-g)(z_0)=0$ et $z_0$ n'est pas isolé.\\
+    $\exists D(z_0,r),r>0$ tq $f=g$ sur $D(z_0,r)$.
+    \[U'=\{z\in U,\exists r>0,f(\omega)=g(\omega),\omega\in D(z_0,r)\}\]
+    $U'$ est ouvert, non vide, $z_0\in U'$ et fermé par le même raisonnement que pour $z_0$
+\end{proof}
+
+\begin{tm}{Analycité de la somme d'une série entière}{}
+    Si $\sum a_n z^n$ est une série entière de rayon de convergence $R>0$, alors
+    \[f(z)=\sum_{n=0}^{+\infty} a_n z^n\]
+    est alanytique sur $D(0,R)$ et
+    \[\forall z_0\in D(0,R),f(z)=\sum_{n=0}^{+\infty} \frac{f^{(n)}(z_0)}{n!}(z-z_0)^n\]
+\end{tm}
+
+\subsection{Développement en série entière des fonctions usuelles}
+
+A Voir les développements en série entière des fonctions usuelles
+\end{document}

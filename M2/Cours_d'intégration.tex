@@ -1,0 +1,444 @@
+\documentclass[]{report}
+
+\usepackage{import}
+
+\import{../}{settings.tex}
+
+\title{Cours d'intégration pour l'agrégation}
+
+\author{Cours de David GERARD-VARET, transcrit par SADR TAHOURI Luca}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Intégrale de Lebesgue}
+
+\section{Fonctions mesurables}
+
+\begin{df}{Fonctions mesurables}{}
+    $(X,\Ar),(Y,\Br)$ espaces mesurables. $\funto{f}{X}{Y}$ est mesurable si
+    \[\forall B\in \Br,f^{-1}(B)\in \Ar\]
+\end{df}
+
+\begin{prop}{}{}
+    Si $\Kr\subset \Br$ est telle que $\sigma(K)=\Br$, alors $\funto{f}{X}{Y}$ est mesurable si
+    \[\forall K\in \Kr,f^{-1}(K)\in A\]
+\end{prop}
+
+\begin{prop}{}{}
+    Soient $(X,d)$ et $(Y,d')$ 2 espaces métriques, $\funto{f}{X}{Y}$ continue. Alors $f$ est mesurable comme application de $(X,\Br(X))$ dans $(Y,\Br(Y))$
+\end{prop}
+
+\begin{lm}{}{}
+    La composée de fonctions mesurables est mesurable.
+\end{lm}
+
+\begin{lm}{}{}
+    \begin{align*}
+        \funto{f_1}{(X,\Ar)}{(Y_1,\Br_1)} \\
+        \funto{f_2}{(X,\Ar)}{(Y_2,\Br_2)}
+    \end{align*}
+    Alors
+    \[\funto{(f_1,f_2)}{(X,\Ar)}{(Y_1\times Y_2,\Br_1\otimes \Br_2)}\]
+    est mesurable si et seulement si $f_1$ et $f_2$ le sont.
+\end{lm}
+
+\begin{cor}{}{}
+    Si $\funto{f,g}{(X,\Ar)}{(\R,\Br(\R))}$ sont mesurables, alors
+    \[f+g,f\circ g, \min (f,g), max (f,g),\left|f\right|\]
+    sont mesurables
+\end{cor}
+
+\begin{prop}{}{}
+    $\funto{f_n}{(X,\Ar)}{(\overline{\R},\Br(\overline{\R}))},n\in \N$ suite de fonctions mesurables. Alors,
+    \[\inf_n f_n, \sup_n f_n, \liminf f_n, \limsup f_n\]
+    sont mesurables. En particulier, si $(f_n)_\nN$ est une suite de fonctions mesurables qui converge simplement vers $f$, alors $f$ est mesurable.
+\end{prop}
+
+\begin{df}{Fonctions simples}{}
+    Une fonctin $\funto{f}{(X,\Ar)}{\R}$ est dite simple si elle s'écrit
+    \[f=\sum_{i=1}^{n}\alpha_i \1_{A_i},n\in \N,\alpha_1,\ldots,\alpha_n\in \R,A_1,\ldots,A_n\in \Br(\R)\]
+    On prendra $A_i=f^{-1}(\{\alpha_i\})$
+\end{df}
+
+\begin{tm}{}{}
+    Si $\funto{f}{(X,\Ar)}{\left([0,+\infty],\Br([0,+\infty])\right)}$ mesurable, alors il existe une suite croissante $(f_{n+1}\ge f_n)$ de fonctions simples $\ge 0$ qui converge simplement vers $f$
+\end{tm}
+
+\section{Intégrale d'une fonction positive}
+
+\begin{df}{Intégrale d'une fonction simple positive}{}
+    Soit $(X,\Ar,\mu)$ un espace mesuré, $\funto{f}{X}{\R}$ fonction simple et
+    \[f=\sum \alpha_i \1_{A_i} \text{ sa décomposition canonique}\]
+    On définit l'intégrale de $f$:
+    \[\int f \, d\mu=\sum_{i=1}^{n} \alpha_i \mu(A_i)\]
+    avec comme convention $0\times +\infty = 0$.\\
+    On remarque qu'on peut avoir $\int f\, d\mu=+\infty$. ($f=1$)
+\end{df}
+
+\begin{prop}{}{}
+    \begin{itemize}
+        \item Linéarité: $\forall a,b\ge 0, \forall f,g \text{ fonctions simples positives}$
+              \[\int (af+bg)\, d\mu=a\int f\, d\mu + b\int g \, d\mu\]
+        \item Monotonie:
+              \[f\le g\implies \int f\, d\mu \le \int g \, d\mu\]
+    \end{itemize}
+\end{prop}
+
+\begin{df}{Intégrale d'une fonction positive}{}
+    Soit $\funto{f}{(X,\Ar,\mu)}{[0,+\infty]}$ mesurable. Soit $S_+(X)$ l'ensemble des fonctions simples positives sur $X$. On pose
+    \[\int_X f\, d\mu=\sup_{\substack{s\in S_+(X)\\ s\le f}}  \int_X s\, d\mu\]
+\end{df}
+
+\begin{re}{}{}
+    \begin{itemize}
+        \item $\int_X f\, d\mu \in [0,+\infty]$
+        \item Si $f$ est une fonction simple, la définition coïncide avec la précédente
+    \end{itemize}
+\end{re}
+
+\begin{prop}{Monotonie}{}
+    $\funto{f,g}{X}{[0,+\infty]}$ mesurables,
+    \[f\le g \implies \int_X f\, d\mu \le \int_X g \, d\mu\]
+\end{prop}
+
+\begin{tm}{Théorème de Convergence Dominée (TCD)}{}
+    Soit $\funto{f_n}{(X,\Ar,\mu)}{\R}$ mesurable, $\forall n\in \N$. On suppose
+    \begin{enumerate}[label=\roman*]
+        \item $\exists \funto{f}{X}{\R}$ mesurable telle que $f_n \to f$ presque partout.
+        \item $\exists g\in L^1(X)$ telle que, $\forall n\in \N$,
+              \[f_n(x)\le g(x),\forall x\]
+    \end{enumerate}
+    Alors $f\in L^1(X)$ et
+    \[\int_X \left|f_n-f\right|\, d\mu \toninfty 0\]
+    ce qui implique $\int_X f_n \, d\mu\to \int_X f\, d\mu$
+\end{tm}
+
+\begin{proof}{Théorème de Convergence Dominée (TCD)}{}
+    Dans le cas où $f_n\to f$ partout (Pour le cas général, voir notes). Par ii), en faisant tendre $n$ vers l'infini, on trouve
+    \[\forall x, \left|f(x)\right|\le g(x)\implies f\in L^1(X)\]
+    On considère la fonction
+    \begin{align*}
+        h_n           & = 2g-\left|f-f_n\right| \\
+                      & \ge 2g-|f|-|f_n|\ge 0   \\
+        \forall x,h_n & \toninfty 2g(x)
+    \end{align*}
+    Par le lemme de Fatou,
+    \begin{align*}
+        \int \liminf h_n \, d\mu & \le \liminf \int h_n \, d\mu                                              \\
+        \iff \int 2g\, d\mu      & \liminf \left(\int_X 2g\, d\mu - \int_X \left| f-f_n\right|\, d\mu\right) \\
+                                 & =\int_X 2g\,d\mu -\limsup_{n\to +\infty} \int_X \left|f-f_n\right|\, d\mu
+    \end{align*}
+    Conclusion:
+    \[\limsup_{n\to +\infty} \int_X \left|f_n-f\right|\, d\mu\le 0\]
+    D'où
+    \[\limsup_{n\to +\infty} \int_X \left|f_n-f\right|\, d\mu=0\]
+\end{proof}
+
+\begin{re}{Remarques sur le TCD}{}
+    \begin{enumerate}
+        \item La convergence presque partout en pratique permet d'éviter de vérifier la convergence en quelques points.
+        \item Par la domination, en pratique, il suffit d'avoir un découpage $X=X_1\bigcup X_2$
+        \item Il suffit d'avoir la domination $\forall n\ge n_0$ (Pas nécessairement à partir de $n=0$)
+    \end{enumerate}
+\end{re}
+
+\section{Applications aux intégrales à paramètre}
+
+$(X,d)$ espace métrique, $(Y,\Br,\mu)$ espace mesuré. On s'intéresse aux fonctions de la forme
+\[F(x)=\int_Y f(x,y)\, d\mu(y)\]
+où $\funto{f}{X\times Y}{\R}$. Questions:
+\begin{itemize}
+    \item $F$ est bien définie ?
+    \item Régularité de $F$ en fonction de celle de l'intégrande $f$.
+\end{itemize}
+
+\begin{tm}{Continuité sous l'intégrale}{}
+    $(X,d)$ espace métrique, $(Y,\Br,\mu)$ espace mesuré. On s'intéresse aux fonctions de la forme
+    \[F(x)=\int_Y f(x,y)\, d\mu(y)\]
+    où $\funto{f}{X\times Y}{\R}$,
+    \begin{enumerate}[label=\roman*]
+        \item Pour tout $x$,
+              \[y\mapsto f(x,y)\in L^1(Y)\]
+        \item Pour presque tout $y$,
+              \[x\mapsto f(x,y)\text{ est continu}\]
+        \item $\exists g=g(y)\in L^1(Y)$ telle que $\forall x\in X, \left|f(x,y)\right|\le g(y)$ pour presque tout $y$
+    \end{enumerate}
+\end{tm}
+
+\begin{re}{}{}
+    En pratique, trouver une domination sur tout $X$ peut être difficile. Mais la continuité est une notion locale, il suffit d'avoir pour tout $x_0\in X$, une fonction $g_{x_0}=g_{x_0}(y)$ qui domine $f$ pour $x$ au voisinage de $x_0$.
+\end{re}
+
+\begin{proof}{Continuité sous l'intégrale}{}
+    Par i), $F$ est bien définie sur $X$. Pour montrer que $F$ est $C^0$, on va montrer que $F$ est séquentiellement $C^0$. Soit $(x_n)$ qui converge vers $x\in X$.
+    \begin{align*}
+        F(x_n) & =\int_Y \underset{f_n(y)}{f(x_n,y)}\, d\mu (y)
+    \end{align*}
+    Pour presque tout $y$, $f_n(y)\to f(x,y)$ par ii).\\
+    Par iii),
+    \begin{align*}
+        \left|f_n(y)\right| & \le \left| f(x_n,y)\right| \\
+                            & \le g(y)
+    \end{align*}
+    Les hypothèses du théorème de convergence dominée sont satifaites, donc on peut passer la limite dans l'intégrale.
+\end{proof}
+
+\begin{cor}{}{}
+    $I,I'$ intervalles de $\R$, $\funto{f}{I\times I'}{\R}$. Si $f \in C^0(I\times I')$, alors $\forall [a,b]\subset I',$
+    \[F(x)=\int_{a}^{b} f(x,y)\, dy\]
+    est continue sur $I$
+\end{cor}
+
+\begin{tm}{Théorème de dérivation sous le signe intégral}{}
+    $X=I$ intervalle de $\R$,
+    \[F(x)=\int_Y f(x,y)\, d\mu(y)\]
+    On suppose
+    \begin{enumerate}
+        \item $\forall x\in I,y\mapsto f(x,y)\in L^1(Y)$
+        \item Pour presque tout $y$, $x\mapsto f(x,y)$ est dérivable sur $I$
+        \item $\exists g\in L^1(Y)$ telle que pour presque tout $y$, pour tout $x$,
+              \[\left|\frac{\partial f}{\partial x} (x,y)\right|\le g(y)\]
+    \end{enumerate}
+    Alors $F$ est dérivable sur $I$ et
+    \[F'(x)=\int_Y \frac{\partial f}{\partial x}(x,y) \, d\mu(y)\]
+\end{tm}
+
+\begin{re}{Remarques sur la dérivabilité sous l'intégrale}{}
+    \begin{itemize}
+        \item La domination peut se faire pour tout $x_0\in I$, au voisinage de $x_0$.
+        \item On peut remplacer "dérivable" par $C^1$ dans l'énoncé.
+        \item Se généralise à la dérivée k-ième. Il suffit d'avoir la majoration sur la dernière dérivée.
+    \end{itemize}
+\end{re}
+
+\begin{cor}{}{}
+    $I,I'$ deux intervalles de $\R$, $\funto{f}{I\times I'}{\R}$. Si $\frac{\partial^j f}{\partial x^j}$ existe et est continue sur $I\times I'$,$\forall [a,b]\subset I',$
+    \[F(x)=\int_{a}^{b} f(x,y)\, dy\]
+    est de classe $C^k$ pour tout $k$
+\end{cor}
+
+\chapter{Théorèmes de Fubini}
+
+\section{Intégrales multiples}
+
+Objectif: $\funto{f}{\R^2}{\R}$, à quelles conditions a-t'on
+\[\int_{\R^2} f(x,y)\, dx\, dy=\int_{\R}\left(\int_{\R} f(x,y)\, d\lambda(y)\right)\, d\lambda(x)=\int_{\R}\left(\int_{\R} f(x,y)\, d\lambda(x)\right)\, d\lambda(y)\]
+
+\begin{lm}{}{}
+    $\funto{f}{\R^2}{\R}$ mesurable (pour les tribus boréliennes), alors:
+    \begin{itemize}
+        \item $\forall x\in \R$,
+              \[\fundfto{f_x}{\R}{\R}{y}{f(x,y)}\]
+              est mesurable
+        \item $\forall y\in \R$,
+              \[\fundfto{f^yy}{\R}{\R}{x}{f(x,y)}\]
+              est mesurable
+    \end{itemize}
+\end{lm}
+
+\begin{proof}{}{}
+    Soit $C$ borélien de $\R^2$. Pour tous $x,y\in \R$,
+    \begin{align*}
+        C_x & =\{y,(x,y)\in C\} \\
+        C^y & =\{x,(x,y)\in C\}
+    \end{align*}
+    On vérifie que pour tout borélien $B$ de $\R$,
+    \[f_x^{-1}(B)=\left(f^{-1}(B)\right)_x\]
+    et de même
+    \[(f^y)^{-1}(B)=\left(f^{-1}(B)\right)^y\]
+    Comme $f^{-1}(B)$ est borélien de $\R^2$, il suffit de montrer que pour tout $C$ borélien de $\R^2$, $C_x$ et $C^y$ sont des boréliens de $\R$. Faisons le pour $C_x$. On introduit
+    \[B'=\{C\in \Br(\R^2)\text{ tq $C_x$ est un borélien de $\R$}\} \]
+    On montre que
+    \begin{itemize}
+        \item $B'$ est une $\sigma$-algèbre
+        \item $B'$ contient les ensembles $A\times B$ avec $A\in \Br(\R),B\in \Br(\R)$ car
+              \begin{align*}
+                  (A\times B)_x & =\{y,(x,y)\in A\times B\}               \\
+                                & =\cho{B,x\in A \\ \emptyset, x\notin A}
+              \end{align*}
+    \end{itemize}
+    Donc $\Br(\R^2)\subset B'$
+\end{proof}
+
+\section{Théorèmes de Fubini}
+
+\begin{tm}{Fubini-Tonelli}{}
+    Soit $\funto{f}{\R^2}{[0,+\infty]}$ mesurable, alors
+    \begin{enumerate}[label=\roman*]
+        \item a
+              \begin{align*}
+                  \fun{x}{\int_{\R} f(x,y)\, dy} \\
+                  \fun{y}{\int_{\R} f(x,y)\, dx}
+              \end{align*}
+              sont mesurables
+        \item a
+              \begin{align*}
+                  \int_{\R^2}f(x,y)\, dx\, dy & = \int_{\R}\left(\int_{\R} f(x,y)\, dx\right)\, dy \\
+                                              & = \int_{\R}\left(\int_{\R} f(x,y)\, dy\right)\, dx
+              \end{align*}
+    \end{enumerate}
+\end{tm}
+
+\begin{proof}{Fubini-Tonelli}{}
+    On traite d'abord le cas $f=\1_C$, $C$ borélien de $\R$.\\
+    On doit montrer que
+    \[x\mapsto \int_\R \1_{C}(x,y)\, dy=\lambda (C_x)\]
+    est mesurable (symétriquement pour $y$).\\
+    Pour ça, on introduit
+    \[\Cr=\{C\in \Br(\R^2), x\mapsto \lambda (C_x)\text{ est mesurable}\}\]
+    $\Cr$ contient les rectangles $A\times B$ avec $A,B\in \Br(\R)$ car
+    \[\lambda\left( (A\times B)_x\right)=\1_A(x) \lambda(B)\]
+    est bien une fonction mesurable de $x$.\\
+    $\Cr$ contient la $\sigma$-algèbre engendrée par les rectangles, c'est à dire $\Br(\R)\otimes \Br(\R)=\Br(\R^2)$.\\
+    On montre ensuite que
+    \[\int_{\R^2}\1_C \, dx \,dy=\lambda(C)=\int_{\R}\lambda( C_x)\, dx\text{ (et symétriquement pour $y$)}\]
+    Pour cela, on définit pour tout $C$ borélien de $\R^2$
+    \[\mu(C)=\int_{\R}\lambda(C_x)\, dx\]
+    On montre que
+    \begin{enumerate}[label=\roman*]
+        \item $\mu$ est une mesure
+        \item $\mu$ coincide avec $\lambda$ sur les rectangles $A\times B$ car
+        \[\lambda_2(A\times B)=\lambda(A)\lambda(B)\]
+        et
+        \begin{align*}
+            \mu(A\times B)&=\int \lambda\left((A\times B)_x\right)\, dx\\
+            &=\int \1_{A}(x)\lambda(B)\, dx\\
+            &=\lambda(A)\lambda B
+        \end{align*}
+    \end{enumerate}
+    Cas pour un $f$ général. Par linéarité, on passe de $f=\1_C$ à $f$ étagée $\ge 0$, puis par théorème de convergence monotone pour $f\ge 0$ mesurable
+\end{proof}
+
+\begin{tm}{Fubini-Lebesgue}{}
+    Soit $f\in \Lr^1(\R^2)$, alors
+    \begin{enumerate}[label=\roman*]
+        \item Pour presque tout $x$
+              \[\funto{f_x}{y}{f(x,y)}\in \Lr^1(\R)\]
+              Pour presque tout $y$
+              \[\funto{f_y}{x}{f(x,y)}\in \Lr^1(\R)\]
+        \item Les applications
+              \[x \mapsto \int f(x,y)\, dy\text{ et } y\mapsto \int f(x,y)\, dx\]
+              sont dans $\Lr^1(\R)$
+        \item \begin{align*}
+                  \int_{\R^2} f(x,y)\, dx\, dy & = \int_\R \left(\int_{\R} f(x,y)\, dy\right)\, dx \\
+                  \int_\R \left(\int_{\R} f(x,y)\, dx\right)\, dy
+              \end{align*}
+    \end{enumerate}
+    On peut généraliser le résultat à $\funto{f}{X\times Y}{\R}$ avec $(X,\Ar,\mu)$ et $(Y,\Br,\nu)$ espace mesurés et $\mu$ et $\nu$ mesures $\sigma$-finies
+\end{tm}
+
+\section{Changement de variables}
+
+\begin{ra}{Changement de variable en 1 dimension}{}
+    Soit $\funto{\varphi}{I}{J}$ $C^1$-difféomorphisme, $I,J$ intervalles de $\R$ et $\funto{f}{J}{\R}$. Alors $f$ est intégrable sur $J$ \ssi $f\circ \varphi |\varphi'|$ est intégrable et dans ce cas,
+    \[\int_J f(t)\, du=\int_I f\circ \varphi(u)\left|\varphi'(u)\right|\, du\]
+\end{ra}
+
+\begin{prop}{Changement de variable sur $\R^d$}{}
+    Soit $\funto{\varphi}{U}{V}$ $C^1$-difféomorphisme, $U,V\subset \R^d$ et $\funto{f}{V}{\R}$.\\
+    Alors $f$ est intégrable sur $V$ \ssi $f\circ \varphi |J_{\varphi}|$ est intégrable sur $U$ où
+    \[\int_V f(y)\, dy=\int_U f\circ \varphi(x)\left|J_\varphi (x)\right|\, dx\]
+    Avec
+    \[J_\varphi(x)=\det \left(\frac{\partial \varphi_i}{\partial x_j}(x)\right)\]
+\end{prop}
+
+\section{Applications}
+
+\subsection{Calcul du volume de la boule unité}
+
+Soit $\lambda_d$ la mesure de Lebesgue sur $\R^d$. Soit $B_d$ la boule unité sur $\R^d$. On veut calculer $\gamma_d=\lambda_d\left(B_d\right)$.
+
+\begin{lm}{}{}
+    La mesure de Lebesgue $\lambda_d$ est finie sur les compacts et est invariante par translation.\\
+    Réciproquement, si $\mu$ est une mesure sur $\Br(\R^d)$ finie sur les compacts et invariante par translation alors
+    \[\exists c\in \R,\mu=c\lambda_d\]
+\end{lm}
+
+\begin{lm}{}{}
+    Soit $A$ borélien de $\R^d,\forall \alpha\ge 0$,
+    \[\lambda_d (\alpha A)=\alpha^d \lambda_d(A)\]
+\end{lm}
+
+\begin{proof}{}{}
+    On se sert du lemme précédent, et on pose
+    \[\mu(A)=\lambda_d(\alpha A)\]
+    On peut vérifier que $\mu$ est finie sur les compacts, et invariante par translation. Par le lemme, $\exists c\in \R$ tq $\mu=c\lambda_d$, c'est à dire que $\forall A\in \R^d,$
+    \[\lambda_d(\alpha A)=c\lambda_d (A)\]
+    En prennant $A=[0,1]^d$,
+    \begin{align*}
+        \lambda_d\left(\alpha[0,1]^d\right) & = c\lambda_d \left([0,1]^d\right) \\
+        \lambda_d\left([0,\alpha]^d\right)  & =c                                \\
+        \alpha^d                            & =c
+    \end{align*}
+\end{proof}
+
+On calcul maintenant $\gamma_d$.
+
+\begin{align*}
+    \gamma_d & =\lambda_d(B_d)            \\
+             & =\int \1_{B_d}(x_1,\ldots,x_d)\, dx_1\ldots d x_d\\
+             & = \1_{x_1^2+\ldots+x_d^2\le 1}(x_1,\ldots,x_d) \, dx_1,\ldots,dx_d\\
+             &=\int_{-1}^{1} \left(\int \1_{x_1^2+\ldots+x_{d-1}^2 \le 1-x_d^2} \, dx_1,\ldots,dx_{d-1}\right)\, dx_d\\
+             &=\int \lambda_{d-1}\left( \sqrt{1-x_d^2} B_{d-1}\right)\, dx_d\\
+             \text{(Par le lemme)}\\
+             &=\int_{-1}^{1}\left(\sqrt{1-x_d^2}\right)^{d-1}\, dx_d \gamma_{d-1}\\
+             &=I_{d-1}\times \gamma_{d-1}\qquad \text{avec }I_n=\int_{-1}^{1}(1-x^2)^{\frac{n}{2}}\, dx
+\end{align*}
+Par IPP, on trouve que $I_n=\frac{n}{n+1}I_{n-2}$. En partant de $I_0=2,I_1=\frac{\pi}{2}$, on peut montrer par récurrence
+\[I_{d-1}I_{d-2}=\frac{2\pi}{d}\]
+Donc
+\begin{align*}
+    \gamma_d&=I_{d-1}\gamma_{d-1}\\
+    &= I_{d-1} I_{d-2} \gamma_{d-2}\\
+    &=\frac{2\pi}{d}\gamma_{d-2}
+\end{align*}
+A partir des cas particuliers $\gamma_1=2,\gamma_2=\gamma,I_1=\pi$, on trouve
+\begin{align*}
+    \gamma_{2k}&=\frac{\pi^k}{k!}\\
+    \gamma_{2k+1}&=\frac{\pi^k}{\left(k+\frac{1}{2}\right)\left(k-\frac{1}{2}\right)\ldots \frac{3}{2}\frac{1}{2}}
+\end{align*}
+D'où $\gamma_d=\frac{\pi^{\frac{d}{2}}}{\Gamma\left(\frac{d}{2}+1\right)}$
+
+\subsection{Changements de variables en coordonnées polaires sphériques}
+
+On se place dans $d=2$, $U=]0,+\infty[\times ]-\pi,\pi[$ et $V=\R^2\wt\left\{(x,0),x\le 0\right\}$. Puis on pose
+\[\fundfto{\varphi}{U}{V}{(r,\theta)}{\left(r\cos(\theta),r\sin(\theta)\right)}\]
+\[J_{\varphi}(r,\theta)=\left|\begin{matrix}
+    \cos \theta &  -r\sin \theta\\
+    \sin \theta &  r\cos \theta
+\end{matrix}\right|=r\]
+Changement de variables en polaire:
+\[\int_V f(x,y)\, dx dy=\int_{-\pi}^{\pi}\int_{0}^{+\infty} f(r\cos \theta, r \sin \theta)\, r \, dr \, d\theta\]
+Comme $\R^2\wt V$ est de mesure nulle, on a
+\begin{align*}
+    \int_{\R^2}f(x,y)\, dx\, dy&=\int_{-\pi}^{\pi}\int_{0}^{+\infty} f(r\cos \theta, r \sin \theta)\, r \, dr \, d\theta\\
+    &=\int_{0}^{2\pi}\int_{0}^{+\infty} f(r\cos \theta, r \sin \theta)\, r \, dr \, d\theta
+\end{align*}
+
+\chapter{Espaces $L^P$}
+
+\section{Définition}
+
+On introduit d'abord $\Lr^p$, qui généralise l'espace $\Lr^1$ des fonctions intégrablees.
+
+\begin{df}{}{}
+    Soit $(X,\Ar,\mu)$ un espace mesuré.
+    \begin{itemize}
+        \item Pour $1\le p < +\infty$:
+        \[\Lr^p ( X)=\{\funto{f}{X}{\R},\int_X \left|f\right|^p\, d\mu < +\infty\}\]
+        \item Pour $p=+\infty$
+        \[\Lr^\infty=\{\funto{f}{X}{\R},\exists M\in \R,\left|f\right|\le M \text{ p.p.}\}\]
+    \end{itemize}
+\end{df}
+
+\begin{prop}{Quotient de $\Lr^p$, norme sur les $L^p(X)$}{}
+    On aimerait munir chaque $\Lr^p(X)$ d'une norme, pour $1\le p<+\infty$:
+    \[\norme{f}_{L^p}=\left(\int_X \left|f\right|^p\, d\mu\right)^{\frac{1}{p}}\]
+    On introduit donc la relation d'équivalence $\sim$ telle que $f\sim g\iff f=g$ p.p. et on pose $L^p=\Lr^p\wt\sim$ et la norme précédemment introduite est une norme sur $L^p$.\\
+    De plus, les $L^p$ et $\Lr^p$ sont des espaces vectoriels.
+\end{prop}
+\end{document}

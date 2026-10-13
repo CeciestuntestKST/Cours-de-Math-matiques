@@ -1,0 +1,477 @@
+\documentclass[]{report}
+
+\usepackage{import}
+
+\import{../}{settings.tex}
+
+\title{Cours d'intégration pour l'agrégation}
+
+\author{Cours de David GERARD-VARET, transcrit par SADR TAHOURI Luca}
+\date{}
+
+\begin{document}
+
+    \maketitle
+    \tableofcontents
+
+\chapter{Généralités sur les groupes}
+
+\section{Définitions,premières propriétés,exemples}
+
+\begin{df}{Groupe}{}
+    Soit $G$ un ensemble et $*$ une lois de composition interne.\\
+    $G$ est un groupe si:
+    \begin{enumerate}[label=\roman*]
+        \item $\exists e\in G,\forall x\in G,x\times e=e \times x=x$
+        \item $\forall x,y\in G, xy\in G$
+        \item $\forall x\in G\exists y\in G, xy=yx=e$
+    \end{enumerate}
+    
+\end{df}
+
+\begin{re}{}{}
+    Le neutre $e_G$ est unique ($e*e'=e=e'$).\\
+    On peut toujours "simplifier" par un élément dans un groupe
+\end{re}
+
+\begin{df}{Groupe commutatif}{}
+    Si la loi de $(G,*)$ est commutative, on dit que $G$ est abélien:
+    \[\forall x,y \in G,x*y=y*x\]
+    On réserve la notation "$+$" aux groupes abéliens.
+\end{df}
+
+\begin{df}{Ordre d'un groupe}{}
+    L'ordre d'un groupe est son cardinal
+\end{df}
+
+\begin{df}{Permutation}{}
+    Soit $X$ un ensemble. Une permutation de $X$ est une bijection de $X$ dans $X$.
+    \[\Sr_X=\{\text{permutations de $X$}\}\text{ est un groupe pour $\circ$}\]
+\end{df}
+
+\begin{df}{Sous-groupe}{}
+    Soit $G$ un groupe, une partie $H$ de $G$ est un sous-groupe de $G$ si et seulement si muni de la restriction de la loi sur $G$, $H$ a une structure de groupe
+\end{df}
+
+\begin{prop}{}{}
+    $G$ groupe, $H\subset G$. $H$ est un sous-groupe si:
+    \begin{itemize}
+        \item $H\neq \emptyset$
+        \item $\forall x,y \in H,x y^{-1}\in H$
+    \end{itemize}
+\end{prop}
+
+\begin{prop}{Intersection de sous-groupes}{}
+    L'intersection de 2 sous-groupes est un sous-groupe. Une intersection quelconque de sous-groupes est un sous-groupe.
+\end{prop}
+
+\begin{df}{Sous-groupe engendré}{}
+    Soit $G$ un groupe, $S\subset G$ une partie quelconque. Le sous groupe engendré par $S$, noté $<S>$ est l'intersection de tous les sous groupes de $G$ contenant $S$.\\
+    C'est le plus petit sous-groupe de $G$ contenant $S$
+\end{df}
+
+\begin{prop}{}{}
+    \[<S>=\{ s_1^{\alpha_1}\ldots s_n^{\alpha_n},n\in \N,\alpha_i \in \Z,s_i\in S\}\]
+\end{prop}
+
+\begin{ex}{Groupe diédral $D_n$}{}
+    $n\in \N,n\ge 2$. $D_n$ est le groupe des isométries du plan qui laissent invariant un polygone régulier à $n$ cotés.
+\end{ex}
+
+\begin{df}{Ordre d'un élément d'un groupe}{}
+    $G$ un groupe, $g\in G$, l'ordre de $g$ est le cardinal de $<g>$
+\end{df}
+
+\begin{prop}{}{}
+    Soit $G$ un groupe, $g\in G$. Alors, $\forall k\in \N, g^k=e\iff $ ordre de $g$ divise $k$.\\
+    Si $g$ est l'ordre de $g$, alors $g^k$ est d'ordre.
+    \[\frac{d}{\pgcd(d,k)}\]
+\end{prop}
+
+\section{Classes à gauche, à droite, théorème de Lagrange}
+
+\begin{prop}{}{}
+    $\forall g\in G$
+    \[\fundf{H}{gH}{x}{gx}\text{ est une bijection}\]
+\end{prop}
+
+\begin{cor}{}{}
+    Comme $G=\sqcup_{\overline{g}\in G/H} gH$, 
+    \[\left|G\right|=\sum_{\overline{g}\in G/H} \left|H\right|= \left|G/H\right||H|\]
+\end{cor}
+
+\begin{tm}{Théorème de Lagrange}{}
+    Si $G$ est fini, $H$ est un sous-groupe de $G$, alors $|H|$ divise $G$
+\end{tm}
+
+\begin{cor}{}{}
+    Si $|G|=n$, alors $\forall g\in G, g^n=e$
+\end{cor}
+
+\begin{df}{}{}
+    $[G:H]$ est l'indice de $H$ dans $G$, et est définit par $|G/H|=|H\wt G|$.\\
+    Si $G$ est fini, $[G:H]=\frac{|G|}{|H|}$
+\end{df}
+
+\begin{df}{}{}
+    Le produit direct de deux groupes $G,G'$ est le produit cartésien $G\times G'$ muni des produits composante par composante. $\forall (x,y,x',y')\in G^2\times G'^2$,
+    \[(x,x')*(y,y')=(x*y,x'*y')\]
+    On peut le faire avec un nombre fini quelconque de groupes
+\end{df}
+
+\section{Morphismes, isomorphismes}
+
+\begin{df}{Morphisme de groupes}{}
+    Soient $(G,\cdot),(G,\times)$ deux groupes. Soit $\funto{\varphi}{G}{G'}$ une application. $\varphi$ est un morphisme de groupes si
+    \[\forall x,y\in G, \varphi(x\cdot y)=\varphi(x)\times \varphi(y)\]
+    Naturellement, on obtient
+    \begin{itemize}
+        \item $\varphi(e_G)=e_{G'}$
+        \item $\forall x\in G, \varphi(x^{-1})=\left(\varphi(x)\right)^{-1}$
+    \end{itemize}
+\end{df}
+
+\begin{re}{}{}
+    $\funto{\varphi}{G}{G'}$ morphisme, alors $\varphi(e_G)=e_{G'}$
+\end{re}
+
+\begin{df}{Image directe, Image réciproque d'un sous-groupe, Isomorphisme, Endomorphisme, Automorphisme}{}
+    Soit $\funto{\varphi}{G}{G'}$ un morphisme. Soit $H'$ sous-groupes de $G'$. L'image directe de $\varphi$ est
+    \[\Im(\varphi)=\{\varphi(g),g\in G\}\]
+    L'image réciproque de $H'$ par $\varphi$ est
+    \[\varphi^{-1}(H')=\{x\in G, \varphi(x)\in H'\}\]
+    $\varphi^{-1}(H')$ est un groupe (à démontrer).\\
+    Si $\varphi$ est bijectif, alors $\varphi$ est appelé isomorphisme de groupes. \\
+    Si $G=G'$, $\varphi$ est un endomorphisme. \\
+    Si $\varphi$ est un endomorphisme et un isomorphisme, alors c'est un automorphisme
+\end{df}
+
+\begin{prop}{}{}
+    Aut$(G)$ l'ensemble des automorphismes, d'un groupe $G$ est un groupe pour $\circ$.
+\end{prop}
+
+\begin{df}{Noyau d'un morphisme de groupes}{}
+    Soit $\funto{\varphi}{G}{G'}$ un morphisme de groupes. On appelle noyau de $\varphi$ l'ensemble
+    \[\ker (\varphi)=\{x\in G, \varphi(x)= e_{G'}\}\]
+    $\ker (\varphi)$ est un sous-groupe de $G$ (à démontrer)
+\end{df}
+
+\begin{prop}{}{}
+    $\varphi$ est injective $\iff \ker \varphi=\{e\}$.
+\end{prop}
+
+\section{Sous-groupes distingués, groupe quotient}
+
+$G$ un groupe et $H$ un sous-groupe de $G$. On aimerait mettre sur $G/H$ (ou $H\wt G$) une structure de groupe par $g_1 H*g_2 H=g_1 g_2 H$ (*).\\
+C'est demander que la surjection canonique soit un morphisme de groupes et ce n'est pas toujours possible !\\
+Condition nécessaire, que (*) ne dépende pas du choix des représentants dans les classes:
+\[\forall g_1,g_2\in G,\forall h_1,h_2\in H, g_1 g_2=g_1 h_1 g_2 h_2 H\]
+c'est à dire
+\[g_2 H=h_1g_2 H\]
+En particulier, $h_1 g_2\in g_2 H$. C'est vrai $\forall h_1\in H$, donc $Hg_2\subset g_2 H$. Comme c'est vrai pour tout $g_2\in G$, et que les classes à gauche, à droite forment une partition de $G$, on a
+\[\forall g\in G ,gH=Hg\]
+On peut vérifier que cette condition est suffisante.
+
+\begin{df}{Groupe distingué}{}
+    Soit $G$ un groupe, $H$ un sous-groupe de $G$, on dit que $H$ est distingué (ou normal) dans $G$ noté $H\triangleleft G$ si $\forall g\in G, gHg^{-1}=H$.
+\end{df}
+
+\begin{prop}{}{}
+    $G$ un groupe, $H$ un sous-groupe de $G$.
+    \begin{enumerate}
+        \item Si $H\triangleleft G$, alors $G/H$ a une (unique) structure de groupe tel que la surjection canonique est un morphisme de groupes.
+        \item Réciproquement, si $G/H$ a une structure de groupes tq la surjection canonique est un morphisme, alors $H\triangleleft G$
+    \end{enumerate}
+\end{prop}
+
+\begin{re}{}{}
+    Dans un groupe abélien, tous les sous-groupes sont distingués.
+\end{re}
+
+\begin{ex}{}{}
+    $\Z/n\Z$ est un groupe
+\end{ex}
+
+\begin{prop}{}{}
+    $\funto{\varphi}{G}{G'}$ un morphisme de groupe, alors $\ker \varphi \triangleleft G$
+\end{prop}
+
+\begin{proof}
+    Soit $x\in \ker (\varphi)$, soit $g\in G$, alors
+    \begin{align*}
+        \varphi (g x g^{-1})&=\varphi(g)\varphi(x)\varphi(g)^{-1}\\
+        &=\varphi (g) e_{G'} \varphi(g)^{-1}\\
+        &=e_{G'}
+    \end{align*}
+\end{proof}
+
+\begin{prop}{}{}
+    Si $H\triangleleft G$, alors $H$ est le noyau d'un morphisme de $G$ vers un groupe.
+    \[H=\ker (\pi)\]
+    ou $\pi$ est la surjection canonique
+\end{prop}
+
+\section{Théorèmes d'isomorphismes et conséquences}
+
+\begin{prop}{}{}
+    Soit $\funto{\varphi}{G}{G'}$ un morphisme de groupes. Soit $H$ un sous-groupe distingué tel que $H\subset \ker \varphi$.\\
+    Alors $\varphi$ est constante sur les classes (à gauche, à droite) modulo $H$.\\
+    Il existe $\funto{\tilde{\varphi}}{G/H}{G'}$ telle que $\varphi=\tilde{\varphi}\circ \pi,\funto{\pi}{G}{G/H}$.\\
+    A VOIR pour le diagramme.\\
+    De plus, $Im(\tilde{\varphi})=Im(\varphi)$
+\end{prop}
+
+\begin{proof}{}{}
+    $\varphi$ est constante sur les classes. On peut définir
+    \[\tilde{\varphi}(gH)=\varphi(g)\qquad \tilde{\varphi}\circ=\varphi\]
+    $\tilde{\varphi}$ est un morphisme de groupes
+    \begin{align*}
+        \tilde{\varphi}(gHg'H)&=\tilde{\varphi}(gg'H)=\varphi(gg')\\
+        &=\varphi(g)\varphi(g')\\
+        &=\tilde{\varphi}(gH)\tilde{\varphi}(g'H)
+    \end{align*}
+    Unicité: On doit avoir $\tilde{\varphi}(gH)=\varphi(g)$. $\Im(\tilde{\varphi})\subset\Im (\varphi)$ et soit $g'\in \Im\varphi$, il existe $g\in G$ tq $g'=\varphi(g)=\tilde{\varphi}(gH)$ donc $g'\in \Im (\tilde{\varphi})$.
+    \begin{align*}
+        \ker (\tilde{\varphi})&=\{gH\in G/H,\tilde{\varphi}(gH)=e\}\\
+        &=\{gH\in G/H,\varphi(g)=e\}\\
+        &=\{gH,g\in \ker (\varphi)\}
+        &=\ker \varphi/H
+    \end{align*}
+\end{proof}
+
+\begin{cor}{Premier théorème d'isomorphisme}{}
+    Soit $\funto{\varphi}{G}{G'}$ morphisme de groupes. Alors il existe un unique $\funto{\tilde{\varphi}}{G/\ker\varphi}{\Im(\varphi)}$ isomorphisme de groupes telle que $\tilde{\varphi}\circ \pi=\varphi$.\\
+    En particulier,
+    \[\left|G/\ker \varphi\right|=\left|\Im \varphi\right|\]
+    Si $|G|$ est fini,
+    \[\frac{|G|}{\left|\ker \varphi\right|}=\left|\Im \varphi\right|\]
+\end{cor}
+
+\begin{df}{Groupe Monogène, Cyclique}{}
+    Un groupe $G$ est dit monogène s'il existe $g\in G$, $G=\sca{g}$.\\
+    Un groupe est cyclique si $G$ est monogène et fini
+\end{df}
+
+\begin{tm}{Deuxième théorème d'isomorphisme}{}
+    $G$ un groupe, $H$ un sous-groupe de $G$, $N\triangleleft G$. Alors
+    \begin{enumerate}[label=\roman*]
+        \item $H\cap N\triangleleft H$
+        \item $NH/N\sim H/H\cap N$
+    \end{enumerate}
+\end{tm}
+
+\begin{proof}{Deuxième théorème d'isomorphisme}{}
+    $N\triangleleft G$ donc $NH$ est un sous groupe de $G$ (Voir exo 12 TD1).\\
+    Considérons $\varphi \to NH \to NH/N$ c'est un morphisme de groupes.\\
+    Montrons que $\varphi$ est surjectif. Soit $nh\in NH$,
+    \begin{align*}
+        nhN&=hN=\varphi(h)\\
+        \ker \varphi&=\{h\in H, hN=N\}\\
+        &=\{h\in H,h\in N\}= H\cap N
+    \end{align*}
+    Donc $H\cap N\triangleleft H$.\\
+    Par le premier théorème d'isomorphisme,
+    \[H/H\cap N\sim NH/N\]
+\end{proof}
+
+\begin{tm}{troisième théorème d'isomorphisme}{}
+    $G$ un groupe, $H\triangleleft G,K\triangleleft G,K\subset H$, alors
+    \begin{enumerate}[label=\roman*]
+        \item $H/K\triangleleft G/K$
+        \item $(G/K)/(H/K)\sim G/H$
+    \end{enumerate}
+\end{tm}
+
+\begin{proof}{troisième théorème d'isomorphisme}{}
+    \[\fundfto{\varphi}{G/K}{G/H}{gK}{gH}\]
+    $\varphi$ est bien définie, si $gK=g'K$, $gg'^{-1}\in K \subset H$ donc $gH=g'H$. $\varphi$ est surjectif.
+    \begin{align*}
+        \ker \varphi&= \{gK,g\in G, gH=H\}\\
+        &=\{gK,g\in H\}\\
+        &=H/K
+    \end{align*}
+    donc $H/K\triangleleft G/K$ et par le premier théorème d'isomorphisme, on obtient le ii)
+\end{proof}
+
+\section{Groupes cycliques}
+
+On a déjà vu que si $G$ est cyclique d'ordre $n$, $G\sim \Z/n\Z$. On va travailler dans $\Z/n\Z$
+
+\begin{prop}{}{}
+    Soit $n\in \N^*$, pour tout divisant $n$, $\Z/n\Z$ a un unique sous-groupe d'ordre $d$, c'est $\sca{\frac{\overline{n}}{d}}=\frac{n}{d}\Z/n\Z$ (qui est cyclique)
+\end{prop}
+
+\begin{proof}{}{}
+    \begin{itemize}
+        \item Soit $H$ un sous-groupe de $\Z/n\Z,H\neq \{0\}$. Notons
+        \[s=\min\{k\in \N^*,\overline{k}\in H\}\]
+        On a $\sca{\overline{s}}\subset H$. Soit $\overline{k}\in H$, division euclidienne de $k$ par $s$. Il existe $q,r\in \Z$ tels que
+        \[k=sq+r\qquad 0\le r<s\]
+        $\overline{r}=\overline{k}-\overline{s}q\in H$ donc $r=0$, $\overline{k}\in \sca{\overline{s}}$ et $H= \sca{\overline{s}}$.\\
+        On a montré que tous les sous-groupes de $\Z/n\Z$ sont cycliques.
+        \item Soit $d\in \N^*$ telle que $d|n$. Montrons que $\overline{n/d}$ engendre un sous-groupe d'ordre $d$. On a $d\times \overline{n/d}=\overline{0}$ donc l'ordre de $\overline{n/d}$ divise $d$ et si $k\in \N^*$ telle que $k\times \overline{n/d}=\overline{0}$, alors $\frac{k}{d}\ge 1$ donc ordre$\left(\overline{n/d}\right)\ge d$ donc cet ordre est $d$.
+        \item Unicité: Soit $H\subset \Z/n\Z$, un sous-groupe d'ordre $d|n$.\\
+        Alors $H$ est cyclique, donc il existe $\overline{s}\in \Z/n\Z$ tel que $H=\sca{\overline{s}}$. Alors $d\times \overline{s}=0$. Donc $n|ds$, il existe $k\in \Z$ telle que $nk=ds$.\\
+        $s=\frac{n}{d}k\in \sca{\overline{n/d}}$.\\
+        $\sca{s}\subset \sca{\overline{n/d}}$, et égalité par égalité des cardinaux.
+    \end{itemize}
+\end{proof}
+
+\begin{tm}{Théorème (Bézout)}{}
+    Si $\pgcd(k,n)=1$, il existe $u,v\in \Z$ tq
+    \[uk+vn=1\]
+\end{tm}
+
+\chapter{Actions de groupes}
+
+\begin{df}{Action de groupes}{}
+    $X$ un ensemble quelconque, $G$ un groupe. Une action à gauche de $G$ sur $X$ la donnée d'une application
+    \[\fundf{G\times X}{X}{(g,x)}{g\cdot x}\]
+    vérifiant: \begin{enumerate}
+        \item $\forall x\in X,e\cdot x=x$
+        \item $\forall x\in X,g,g'\in G, g\cdot (g'\cdot x)=(gg')\cdot x$
+    \end{enumerate}
+    On dit que $G$ agit sur $X$, ou opère sur $X$.\\
+    Une action à droite est une action qui vérifie les mêmes conditions en symétriques avec
+    \[\fundf{G\times X}{X}{(g,x)}{x\cdot g}\]
+\end{df}
+
+\begin{re}{Remarques sur les actions de groupes}{}
+    \begin{itemize}
+        \item $G$ agit sur lui-même par translation à gauche et à droite.
+        \item Si $G$ un groupe et $H$ sous-groupe de $G$, alors $H$ agit aussi sur $G$ par translation à gauche, $h\cdot g=hg$
+        \item $G$ agit sur lui-même par conjugaison:
+        \[\fundf{G\times G}{G}{(g,x)}{gxg^{-1}}\]
+    \end{itemize}
+\end{re}
+
+\begin{prop}{}{}
+    C'est la même chose de se donner une action de groupes $G$ sur $X$, ou de se donner un morphisme de groupes $G\to \Sr_X$.
+\end{prop}
+
+\begin{proof}{}{}
+    Action $\to $ morphisme. On pose 
+    \[\fundfto{\varphi}{G}{\Sr_X}{g}{\funto{\varphi(g)}{x}{g\cdot x}}\]
+    Vérifions que $\varphi$ est une application bien définie, c'est à dire que $\varphi(g)$ est une bijection de $X$ dans $X$. C'est le cas car $x\mapsto g^{-1}\cdot x$ est sa bijection réciproque.\\
+    $\varphi$ est un morphisme de groupes. Soient $g,g'\in G$, montrons que $\varphi(gg')=\varphi(g)\varphi(g')$. $\forall x\in X$
+    \begin{align*}
+        \varphi (g,g')&=(gg')\cdot x\\
+        &=g\cdot(g'\cdot x)\\
+        &= g\cdot (\varphi(g')\cdot x)\\
+        &= \varphi (g) \left(\varphi(g')(x)\right)\\
+        &=\varphi(g) \varphi(g')(x)
+    \end{align*}
+    Morphisme $\to$ action. Soit $\funto{\psi}{G}{\Sr_X}$ un morphisme de groupes.
+    \[\fundf{G\times X}{X}{(g,x)}{g\cdot x=\psi (g) (x)}\]
+    définit bien une action de $G$ sur $X$. (A VOIR et vérifier)
+\end{proof}
+
+\begin{prop}{}{}
+    Soit $G$ un groupe agissant sur un ensemble $X$. Alors la relation binaire sur $X$ suivante est ne relation d'équivalence.
+    \[\forall x,y\in X\quad x\sim y\iff \exists g\in G, y=gx\]
+\end{prop}
+
+\begin{proof}{}{}
+    \begin{itemize}
+        \item Réfléxive: $\forall x\in X, x\sim x$ car $x= e\cdot x$
+        \item Symétrique: Soient $x,y\in X$ tq $x\sim y$, il existe $g\in G$ tq $y=g\cdot x$, alors $g^{-1}y=x$ donc $y\sim x$.
+        \item Transitive: Soient $x,y,z\in X$ tq $x\sim y$ et $y\sim z$, alors $y=g\cdot x,z=g'\cdot y\implies z=g'(g\cdot x)=(g'g)\cdot x$, $z\sim x$.
+    \end{itemize}
+\end{proof}
+
+\begin{df}{Orbite}{}
+    Les classes d'équivalences pour cette relation sont appelées les orbites de l'action.\\
+    Soit $x\in X$, l'orbite de $X$ sous l'action de $G$ est $\{g\cdot x,g\in G\}$. On la note $\Or(x),\Omega(x),\Omega_x,G\cdot x$
+\end{df}
+
+\begin{df}{L'ensemble des orbites}{}
+    On note $G\wt X$ l'ensemble des orbites ($G\wt X=X/\sim$)
+\end{df}
+
+\begin{re}{}{}
+    Les orbites forment une partition de $X$
+\end{re}
+
+\begin{df}{Stabilisateur}{}
+    $x\in X$, le stabilisateur de $x$ est $\{g\in G, g\cdot x=x\}$. C'est un sous-groupe de $G$. On le note $\text{Stab}_G(x), \text{Stab}(x)$ ou $G_x$ 
+\end{df}
+
+\begin{df}{Stabilisateur d'une partie}{}
+    Soit $S\subset X$ une partie de $X$, le fixateur de $S$ est
+    \[\text{Fix}(S)=\bigcap_{x\in S}\text{Stab}_G(x)\]
+\end{df}
+
+\begin{df}{Action libre, action fidèle}{}
+    Une action de $G$ sur $X$ est libre si $\forall x\in X$
+    \[\text{Stab}(x)=\{e\}\]
+    Une action de $G$ sur $X$ est fidèle si
+    \[\bigcap_{x\in X}\text{Stab}(x)=\{e\}\qquad (\text{Fix}(X)=\{e\})\]
+\end{df}
+
+\begin{prop}{}{}
+    Libre $\implies $ fidèle
+\end{prop}
+
+\begin{df}{Action transitive}{}
+    Une action de $G$ sur $X$ est transitive si $G\wt X$ est un singleton.\\
+    C'est équivalent à ce que l'action n'ait qu'une seule orbite ou que
+    \[\forall x,y\in X,\exists g\in G, y=g\cdot x\]
+\end{df}
+
+\begin{re}{}{}
+    Une action est fidèle \ssi le morphisme associé $\funto{\varphi}{G}{\Sr_X}$ est injectif. En effet,
+    \begin{align*}
+        \ker \varphi&=\{g\in G,\varphi(g)=\id \}\\
+        &=\{g\in G,\forall x\in X,g\cdot x=x\}\\
+        &=\bigcap_{x\in X} \text{Stab}(x)
+    \end{align*}
+\end{re}
+
+\section{Relation Orbite-Stabilisateur}
+
+\begin{prop}{Bijection entre quotient de stabilisateur et orbite}{}
+    Soit $G$ un groupe agissant sur un ensemble $X$. Soit $x\in X$.\\
+    Alors il existe une bijection de $G/\text{Stab}(x)$ dans $\Omega_x$ orbite de $x$.\\
+    Conséquence: $[G:\text{Stab}(x)]=\left|\Omega_x\right|$
+\end{prop}
+
+\begin{proof}{}{}
+    On pose
+    \[\fundfto{f}{G}{\Omega_x}{g}{g\cdot x}\]
+    Cette application est surjective. Soient $g,g'\in G$ tq $g^{-1}g'\in \text{Stab}(x)$. Alors il existe $h\in \text{Stab}(x)$ tq $g'=g\cdot h$. Alors
+    \[f(g')=f(gh)=(gh)\cdot x=g\cdot(h\cdot x)=g\cdot x=f(g)\]
+    $f$ est constante sur les classes modulo $\text{Stab}(x)$. L'application $f$ "passe au quotient" en $\funto{\tilde{f}}{G/\text{Stab}(x)}{\Omega_x}$. $\tilde{f}$ est surjective et injective.
+\end{proof}
+
+\begin{cor}{}{}
+    \[\left|G\right|=\left|\text{Stab}(x)\right|=\left|\Omega_x\right|\]
+    Si $X$ est fini, $\left|X\right|=\sum_{i\in I}\left|\Omega_{x_i}\right|$ où $G\wt X=\{\Omega_i\}_{i\in I}$.\\
+    Si $G$ est fini, et $X$ fini,
+    \[\left|X\right|=\sum_{i\in I}\frac{\left|G\right|}{\left|\text{Stab}(x_i)\right|}\]
+    On appelle cette relation la formule des classes, ou équation aux classes.
+\end{cor}
+
+\begin{df}{Classes de conjugaison}{}
+    Les orbites de l'action de $G$ sur $G$ par conjugaison sont appellées les classes de conjugaison
+\end{df}
+
+\begin{df}{Fixateur, Centre}{}
+    Le fixateur d'une partie $D$ de $G$ est alors appellé centralisateur de $S$ dans $G$, noté $Z(S)$.
+    \begin{align*}
+        Z(S)&=\{g\in G,\forall x\in S,gxg^{-1}=x\}\\
+        &=\{g\in G,\forall x\in S,gx=xg\}
+    \end{align*}
+    On appelle centre de $G$ l'ensemble
+    \[Z(G)=\{g\in G,\forall x\in G,gx=xg\}\]
+\end{df}
+
+\begin{prop}{}{}
+    L'équation aux classes pour la conjugaison s'écrit
+    \[\left|G\right|=\sum_{x\in Z(G)}\left|\Omega_x\right|+\sum_{\substack{x\text{ représentant}\\ \text{des orbites}\\ x\notin Z(G)}} \left|\Omega_x\right|\]
+    \[\left|G\right|=\left|Z(G)\right|+\sum_{\substack{x\text{ représentant}\\ \text{des orbites}\\ x\notin Z(G)}} \frac{\left|G\right|}{\left|\text{Stab}(x)\right|}\]
+    On a $\left(\Omega_x\text{ est un singleton} \iff x\in Z(G)\right)$.\\
+    Application: Si $\left|G\right|=p^k,k\in \N^*,p$ premier, alors $Z(G)\neq \{e\}$ (Exercice)
+\end{prop}
+
+
+\end{document}

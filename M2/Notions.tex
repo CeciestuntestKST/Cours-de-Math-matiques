@@ -1,0 +1,50 @@
+\documentclass[]{report}
+
+\usepackage{import}
+
+\import{../}{settings.tex}
+
+\title{Notions}
+\author{Notions ou propriété en plus dans le cadre de l'aggrégation}
+\date{}
+
+\begin{document}
+
+    \maketitle
+    \tableofcontents
+
+    \chapter{Algèbre}
+
+    \begin{prop}{Continuité d'un morphisme de groupe}{}
+        Soit $\funto{f}{G}{H}$ un morphisme de groupes. Si $f$ est continue en $a\in G$, alors $f$ est continue en tout point de $G$.\\
+        Conséquence: si $f$ est continue en $e_G$, alors $f$ est continue sur $G$.
+    \end{prop}
+
+    \begin{proof}{Continuité d'un morphisme de groupe}{}
+        Supposons que $\funto{f}{G}{H}$ est un morphisme de groupes qui est continue en $a\in G$.
+        \[\forall W\in \Vr(f(a)),\exists V\in \Vr(a), f(V)\subset W\]
+        Supposons d'abord que $a=e_G$. Soit $y\in G$ et $W\in \Vr(f(y))$. En posant,
+        \[W'=f(y)^{-1}\cdot W\]
+        On a que $f(y)^{-1}\cdot f(y)=e_H\in W'$ et donc que $W'$ est un voisinage de $e_H$, il existe donc $U'\in \Vr(e_G)$, tel que $f(U')\subset W'$. On translate par $y$ en posant
+        \[U=y\cdot U'\]
+        qui est un voisinage de $y\cdot e_G=y$. On vérifie alors que $f(U)\subset W$. Soit $x\in U, x=yu$,
+        \[f(x)=f(y)f(u)\in f(y)W'=f(y)f(y)^{-1}W=W\]
+        Donc Si $f$ est continue en $e_G$, alors $f$ est continue sur $G$.\\
+        Supposons maintenant que $a\neq 0$, et montrons que $f$ est continue en $e_G$. Soit $W$ voisinage de $e_H$, on pose
+        \[W'=W\cdot f(a)\]
+        comme $W$ est un voisinage de $e_H$, alors $f(a)\in W'$, donc il existe $V\in \Vr(a)$ tel que
+        \[f(V)\subset W'\]
+        On pose $V'=V\cdot a^{-1}$ est un voisinage de $a a^{-1}=e_G$. On vérifie que $f(V')\subset W$. Soit $x\in V'$, donc $xa\in V$,
+        \[f(x)=f(xa) f(a)^{-1}\in W' \cdot f(a)^{-1}=(W\cdot f(a))\cdot f(a)^{-1}=W\]
+        On a donc que $f(V)\subset W$ et donc que $f$ est continue en $e_G$ et donc sur $G$
+        Il reste simplement à montrer que les translations sont continues, ce qui dépend de la topologie appliquée sur $G$ et $H$
+    \end{proof}
+
+    \section{Algèbre Linéaire}
+
+    \section{Algèbre Générale}
+
+    \chapter{Analyse}
+
+    \chapter{Probabilité}
+\end{document}

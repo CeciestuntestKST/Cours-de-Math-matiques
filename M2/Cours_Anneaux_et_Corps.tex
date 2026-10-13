@@ -1,0 +1,77 @@
+\documentclass[]{report}
+
+\usepackage{import}
+
+\import{../}{settings.tex}
+
+\title{Cours d'anneaux et corps pour l'agrégation}
+
+\author{Cours de Diego IZQUIERDO, transcrit par SADR TAHOURI Luca}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Anneaux et algèbres}
+
+\section{Définitions et exemples}
+
+\begin{df}{Anneaux, anneaux commutatifs}{}
+    Un anneau est un ensemble $A$ muni de deux lois de compositions interne:
+    \[\fundfto{+}{A\times A}{A}{(a,b)}{a+b}\qquad \fundfto{\times }{A\times A}{A}{(a,b)}{a+b}\]
+    appelées respectivement addition et multiplication, telles que:
+    \begin{itemize}
+        \item Le couple $(A,+)$ est un groupe abbélien, dont l'élément neutre est généralement noté $0_A$
+        \item La multiplication est associative:
+        \[\forall (a,b,c)\in A^3,(a\times b)\times c=a\times (b\times c)\]
+        \item La multiplication possède un élément neutre, généralement noté $1_A$:
+        \[\forall a\in A, 1_A\times a=a\times 1_A=a\]
+        \item La multiplication est distributive par rapport à l'addition, c'est-à-dire:
+        \[\forall (a,b,c)\in A^3,(a+b)\times c=a\times c+ b\times c\]
+    \end{itemize}
+    Un anneau est dit commutatif si la multiplication est commutative:
+    \[\forall (a,b)\in A^2, a\times b=b\times a\]
+\end{df}
+
+\begin{df}{Diviseurs de zéro, élément inversible}{}
+    Un élément non-nul $a\in A$ est dit diviseur de zéro s'il existe $b\in A\wt \{0_A\}$ tel que $ab=0_A$ ou $ba=0_A$. L'anneau $A$ est dit intègre s'il est commutatif et non nul et s'il n'a pas de diviseur de zéro.\\
+    Un élément $a\in A$ est dit inversible s'il existe $b\in A$ tel que $ab=ba=1_A$. L'ensemble des éléments inversibles de $A$ est un groupe, généralement noté $A^\times$. L'anneau $A$ est dit être un corps s'il est commutatif non nul et si tout élément non nul de $A$ est inversible.
+\end{df}
+
+\begin{df}{}{}
+    
+\end{df}
+
+\section{Anneaux et polynômes}
+
+\subsection{Polynômes en une indéterminée}
+
+\subsection{Polynômes en plusieurs indéterminées}
+
+\section{Algèbres}
+
+\section{Morphismes d'anneaux et d'algèbres}
+
+\section{Sous-anneaux et idéaux}
+
+\section{Divisibilité et arithmétique dans un anneau intègre}
+
+\section{Idéaux premiers et maximaux}
+
+\section{Anneaux euclidiens}
+
+\section{Anneaux factoriels}
+
+\section{Retour aux anneaux de polynômes}
+
+\subsection{Racines d'un polynôme à une variable}
+
+\subsection{Factoralité des anneaux de polynômes}
+
+\subsection{Polynômes symétriques}
+
+\section{Fractions rationnelles}
+
+\end{document}
