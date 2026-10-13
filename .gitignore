@@ -7,9 +7,12 @@
 *.fdb_latexmk
 *.bbl
 *.blg
+<<<<<<< HEAD
 *.synctex
 *.synctex.gz
 *.synctex(busy)
 
 # On ignore aussi le PDF local pour laisser GitHub générer le PDF propre
 *.pdf
+=======
+>>>>>>> d0e7364bb3cdef6734b27d90a926e51f475bb9c8
