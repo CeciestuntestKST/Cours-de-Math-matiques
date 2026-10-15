@@ -35,7 +35,7 @@
     \[\forall (a,b)\in A^2, a\times b=b\times a\]
 \end{df}
 
-\begin{ex}{}{}
+\begin{ex}{Exemples d'anneaux}{}
     \begin{enumerate}
         \item L'anneau nul $A = \{0_A\}$ est un anneau commutatif. Un anneau $A$ est nul si, et seulement si, $0_A = 1_A$.
         \item Les ensembles $\Z$, $\Z/n\Z$, $\Q$ et $\C$ munis de l'addition et de la multiplication usuelles sont des anneaux commutatifs.
@@ -52,13 +52,65 @@
     Un élément $a\in A$ est dit inversible s'il existe $b\in A$ tel que $ab=ba=1_A$. L'ensemble des éléments inversibles de $A$ est un groupe, généralement noté $A^\times$. L'anneau $A$ est dit être un corps s'il est commutatif non nul et si tout élément non nul de $A$ est inversible.
 \end{df}
 
-\begin{df}{}{}
-    
-\end{df}
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Tout corps est un anneau intègre.
+        \item Les anneaux $\Q$, $\R$ et $\C$ sont des corps.
+        \item L'anneau $\Z$ est intègre mais n'est pas un corps. On a $\Z^\times = \{-1, 1\}$.
+        \item Soit $A$ un anneau intègre commutatif. Le \textbf{corps des quotients} (ou \textbf{corps des fractions}) de $A$ est l'ensemble des classes d'équivalence (appelées fractions) des paires $(a, b)$, avec $a \in A$ et $b \in A \setminus \{0\}$, pour la relation d'équivalence
+        \[(a, b) \sim (a', b') \iff ab' = a'b.\]
+        La classe d'équivalence de $(a, b)$ est notée $\frac{a}{b}$. Muni des opérations (addition et multiplication) habituelles sur les fractions, on vérifie que $K_A$ est bien un corps. L'application
+        \[\fundfto{\iota}{A}{K_A}{a}{\frac{a}{1_A}}\]
+        est injective. Par exemple, le corps des fractions de $\Z$ est $\Q$.
+        \item Considérons l'anneau $\Z/n\Z$ pour un entier $n > 1$. En utilisant le théorème de Bézout, on démontre que :
+        \[(\Z/n\Z)^\times = \{\tilde{a} \mid 1 \le a \le n, \; a \wedge n = 1\}.\]
+        Ainsi, $\Z/n\Z$ est un corps si, et seulement si, $n$ est un nombre premier. Lorsque $n$ n'est pas premier, on peut en dire un peu plus : en effet, on peut écrire $n = ab$ pour certains $a, b > 1$, de sorte que les classes de $a$ et de $b$ modulo $n$ sont des diviseurs de zéro dans $\Z/n\Z$. Il s'ensuit que $\Z/n\Z$ n'est pas intègre.
+
+        En résumé, nous venons de vérifier que les trois assertions suivantes sont équivalentes :
+        \begin{itemize}
+            \item[a.] $\Z/n\Z$ est un corps ;
+            \item[b.] $\Z/n\Z$ est intègre ;
+            \item[c.] $n$ est un nombre premier.
+        \end{itemize}
+        \item Soit $A$ un anneau commutatif et soit $n$ un entier strictement positif. Les unités de l'anneau $\Mr_n(A)$ sont les matrices dont le déterminant est une unité de $A$.
+
+        En effet, si $M \in \Mr_n(A)$ est inversible, il existe une matrice $N \in \Mr_n(A)$ telle que $MN = I_n$. En prenant les déterminants, on obtient $\det(MN) = \det(M)\det(N) = 1$ (le déterminant d'un produit est le produit des déterminants, dans tout anneau commutatif), de sorte que $\det(M)$ est inversible dans $A$ (d'inverse $\det(N)$).
+
+        Inversement, pour toute matrice $M \in \Mr_n(A)$, on a
+        \[{}^t\mathrm{Com}(M) M = M \; {}^t\mathrm{Com}(M) = \det(M) I_n,\]
+        où $\mathrm{Com}(M)$ est la comatrice de $M$ (dont les coefficients sont les cofacteurs de $M$). Si $\det(M)$ est inversible dans $A$, la matrice $M$ est inversible dans $\Mr_n(A)$, d'inverse $(\det(M))^{-1} \; {}^t\mathrm{Com}(M)$.
+    \end{enumerate}
+\end{ex}
+
+\begin{re}{Simplification dans les anneaux intègres}{}
+    Soit $A$ un anneau intègre et soient $a, b, c \in A$ tels que $ab = ac$. Si $a \neq 0_A$, alors $b = c$. En effet, on peut réécrire l'hypothèse $a(b - c) = 0_A$. Comme $a \neq 0_A$ et que l'anneau $A$ est intègre, on a $b - c = 0_A$, c'est-à-dire $b = c$.
+\end{re}
 
 \section{Anneaux et polynômes}
 
 \subsection{Polynômes en une indéterminée}
+
+On fixe un anneau commutatif $A$.
+
+\begin{df}{Anneau des polynômes, Polynômes}{}
+    Considérons l'ensemble $A[X]$ (aussi noté $A^{(\N)}$) des suites $(a_i)_{i\in \N}$ d'éléments de $A$ dont tous les termes, sauf un nombre fini, sont nuls. On le munit de l'addition à terme et de la multiplication suivante :
+    \[(a_i)_{i \in \N} (b_j)_{j \in \N} := \left(\sum_{i = 0}^{k} a_i b_{k - i}\right)_{k \in \N}.\]
+    L'ensemble $A[X]$ muni de ces deux opérations est alors un anneau commutatif, appelé l'anneau des polynômes à coefficients dans $A$. On a $0_{A[X]} = (0_A, 0_A, \ldots)$ et $1_{A[X]} = (1_A, 0_A, 0_A, \ldots)$.
+
+    On note $X$ la suite $(0_A, 1_A, 0_A, \ldots)$. On vérifie par récurrence que, pour $n \ge 0$, on a l'égalité
+    \[X^n = (\underbrace{0_A, \ldots, 0_A}_{n}, 1_A, 0_A, \ldots).\]
+    Ainsi, si $P = (a_i)_{i \in \N}$ est un polynôme non nul et si on note $d$ le plus grand entier tel que $a_d \neq 0_A$, on a :
+    \[P = a_d X^d + \dots + a_1 X + a_0.\]
+    Cette écriture, avec $d \in \N$, $a_d, \ldots, a_1, a_0 \in A$ et $a_d \neq 0_A$, est unique.
+\end{df}
+
+\begin{df}{degré d'un polynôme}{}
+    \begin{enumerate}
+        \item L'entier $d$ s'appelle le \textbf{degré} du polynôme $P$. Par convention, on décrète que le degré du polynôme nul est $-\infty$. Les polynômes de degré $-\infty$ ou $0$ sont dits constants. Ils s'identifient à des éléments de $A$.
+        \item L'élément non nul $a_d$ est le \textbf{coefficient dominant} de $P$. Quand il est égal à $1_A$, on dit que $P$ est \textbf{unitaire}.
+    \end{enumerate}
+\end{df}
+
 
 \subsection{Polynômes en plusieurs indéterminées}
 
