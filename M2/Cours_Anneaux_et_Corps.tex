@@ -139,11 +139,23 @@ On fixe un anneau commutatif $A$.
     Attention, le point 3. ci-dessus n'est plus vrai si $A$ n'est pas intègre. Le polynôme $P(X) = \bar{2}X + \bar{1} \in (\Z/4\Z)[X]$ est inversible dans l'anneau $(\Z/4\Z)[X]$, d'inverse lui-même (puisque $P(X)^2 = \bar{4}X^2 + \bar{4}X + \bar{1} = \bar{1}$), mais il n'est pas constant.
 \end{re}
 
-\begin{dfprop}{}{}
+\begin{dfprop}{Anneau de polynôme intègre}{}
     Si $K$ est un corps, l'anneau $K[X]$ est intègre. On note $K(X)$ son corps des fractions. Ses éléments sont les fractions rationnelles à coefficients dans $K$.
 \end{dfprop}
 
 \subsection{Polynômes en plusieurs indéterminées}
+
+On fixe un anneau commutatif $A$ et $n$ un entier strictement positif.
+
+\begin{df}{}{}
+    Considérons l'ensemble des suites $(a_I)_{I \in \N^n}$ d'éléments de $A$ dont tous les termes, sauf un nombre fini, sont $0_A$. On le munit de l'addition terme à terme et de la multiplication suivante :
+    \[(a_I)_{I \in \N^n} (b_J)_{J \in \N^n} := \left(\sum_{I, J \in \N^n, \; I + J = K} a_I b_J\right)_{K \in \N^n}.\]
+    L'ensemble $A[X_1, \ldots, X_n]$ muni de ces deux opérations est alors un anneau commutatif, appelé l'anneau des polynômes en $n$ indéterminées à coefficients dans $A$.\\
+    Pour $i \in \{1, \ldots, n\}$, on note $X_i$ la suite dont le terme indexé par $I \in \N^n$ vaut $1_A$ si $I$ est l'élément de $\N^n$ dont toutes les coordonnées sont nulles sauf la $i$-ième qui vaut $1$ et $0_A$ sinon. On vérifie alors par récurrence que, pour $i_1, \ldots, i_n \ge 0$, la suite $X_1^{i_1} \cdots X_n^{i_n}$ est celle dont le terme indexé par $I \in \N^n$ vaut $1_A$ si $I = (i_1, \ldots, i_n)$ et $0_A$ sinon. Ainsi, si $P = (a_I)_{I \in \N^n}$ est un polynôme non nul, on a :
+    \[P = \sum_{I = (i_1, \dots, i_n) \in \N^n} a_I X_1^{i_1} \dots X_n^{i_n},\]
+    la somme étant ici finie. Cette écriture est unique.\\
+    On dit qu'un polynôme $P = \sum_{I = (i_1, \ldots, i_n) \in \N^n} a_I X_1^{i_1} \cdots X_n^{i_n}$ est constant si $a_I = 0$ pour $I \neq (0, \ldots, 0)$.
+\end{df}
 
 \section{Algèbres}
 
