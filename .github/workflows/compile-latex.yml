@@ -7,7 +7,7 @@ name: Build LaTeX PDFs and Commit
 #  Exemple : DOSSIERS: "L3,M1,M2,developpements,lecons"
 # ==============================================================
 env:
-  DOSSIERS: "Dossier_Test"
+  DOSSIERS: "L3"
 
 on:
   push:
@@ -26,7 +26,8 @@ jobs:
     steps:
       - name: Transformer la liste en matrice
         id: set
-        run: echo "matrix=$(printf '%s' "$DOSSIERS" | jq -Rsc 'split(",") | map(gsub("^ +| +$";"")) | {dossier: .}')" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "matrix=$(printf '%s' "$DOSSIERS" | jq -Rsc 'split(",") | map(gsub("^ +| +$";"")) | {dossier: .}')" >> "$GITHUB_OUTPUT"
 
   # Job 2 : lance en parallèle un job de compilation par dossier de la liste
   compiler:
