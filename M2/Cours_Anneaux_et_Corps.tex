@@ -93,18 +93,19 @@
 On fixe un anneau commutatif $A$.
 
 \begin{df}{Anneau des polynômes, Polynômes}{}
-    Considérons l'ensemble $A[X]$ (aussi noté $A^{(\N)}$) des suites $(a_i)_{i\in \N}$ d'éléments de $A$ dont tous les termes, sauf un nombre fini, sont nuls. On le munit de l'addition à terme et de la multiplication suivante :
+    Considérons l'ensemble $A[X]$ des suites $(a_i)_{i\in \N}$ d'éléments de $A$ dont tous les termes, sauf un nombre fini, sont nuls. On le munit de l'addition à terme et de la multiplication suivante :
     \[(a_i)_{i \in \N} (b_j)_{j \in \N} := \left(\sum_{i = 0}^{k} a_i b_{k - i}\right)_{k \in \N}.\]
     L'ensemble $A[X]$ muni de ces deux opérations est alors un anneau commutatif, appelé l'anneau des polynômes à coefficients dans $A$. On a $0_{A[X]} = (0_A, 0_A, \ldots)$ et $1_{A[X]} = (1_A, 0_A, 0_A, \ldots)$.
-
     On note $X$ la suite $(0_A, 1_A, 0_A, \ldots)$. On vérifie par récurrence que, pour $n \ge 0$, on a l'égalité
     \[X^n = (\underbrace{0_A, \ldots, 0_A}_{n}, 1_A, 0_A, \ldots).\]
     Ainsi, si $P = (a_i)_{i \in \N}$ est un polynôme non nul et si on note $d$ le plus grand entier tel que $a_d \neq 0_A$, on a :
-    \[P = a_d X^d + \dots + a_1 X + a_0.\]
-    Cette écriture, avec $d \in \N$, $a_d, \ldots, a_1, a_0 \in A$ et $a_d \neq 0_A$, est unique.
+    \[P = a_d X^d + \dots + a_1 X + a_0\]
+    Cette écriture est unique.
 \end{df}
 
 \begin{df}{degré d'un polynôme}{}
+    En notant
+    \[P = a_d X^d + \dots + a_1 X + a_0\]
     \begin{enumerate}
         \item L'entier $d$ s'appelle le \textbf{degré} du polynôme $P$. Par convention, on décrète que le degré du polynôme nul est $-\infty$. Les polynômes de degré $-\infty$ ou $0$ sont dits constants. Ils s'identifient à des éléments de $A$.
         \item L'élément non nul $a_d$ est le \textbf{coefficient dominant} de $P$. Quand il est égal à $1_A$, on dit que $P$ est \textbf{unitaire}.
