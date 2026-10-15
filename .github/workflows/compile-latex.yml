@@ -1,5 +1,14 @@
 name: Build LaTeX PDFs and Commit
 
+# ==============================================================
+#  DOSSIERS À COMPILER
+#  C'est ICI que tu ajoutes ou retires un dossier.
+#  Sépare les noms par des virgules, sans espaces.
+#  Exemple : DOSSIERS: "L3,M1,M2,developpements,lecons"
+# ==============================================================
+env:
+  DOSSIERS: "L3"
+
 on:
   push:
     branches: [ "main" ]
@@ -9,22 +18,63 @@ permissions:
   contents: write
 
 jobs:
-  build_latex_l3:
+  # Job 1 : transforme la liste DOSSIERS en matrice de jobs
+  preparer:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set.outputs.matrix }}
+    steps:
+      - name: Transformer la liste en matrice
+        id: set
+        run: echo "matrix=$(printf '%s' "$DOSSIERS" | jq -Rsc 'split(",") | map(gsub("^ +| +$";"")) | {dossier: .}')" >> "$GITHUB_OUTPUT"
+
+  # Job 2 : lance en parallèle un job de compilation par dossier de la liste
+  compiler:
+    needs: preparer
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.preparer.outputs.matrix) }}
+    steps:
+      - name: Récupérer le code du dépôt
+        uses: actions/checkout@v4
+
+      - name: Compiler les cours du dossier ${{ matrix.dossier }}
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: "*.tex"
+          working_directory: ${{ matrix.dossier }}
+          work_in_root_file_dir: true
+
+      - name: Ranger les PDF pour l'upload
+        run: |
+          mkdir -p out/${{ matrix.dossier }}
+          cp ${{ matrix.dossier }}/*.pdf out/${{ matrix.dossier }}/
+
+      - name: Sauvegarder les PDF compilés
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-${{ matrix.dossier }}
+          path: out/${{ matrix.dossier }}
+
+  # Job 3 : télécharge tous les PDF et les committe en une seule fois
+  committer:
+    needs: compiler
     runs-on: ubuntu-latest
     steps:
       - name: Récupérer le code du dépôt
         uses: actions/checkout@v4
 
-      - name: Compiler les cours du dossier L3
-        uses: xu-cheng/latex-action@v3
+      - name: Télécharger tous les PDF compilés
+        uses: actions/download-artifact@v4
         with:
-          root_file: "*.tex"
-          working_directory: L3
-          work_in_root_file_dir: true
+          pattern: pdf-*
+          path: .
+          merge-multiple: true
 
-      - name: Commiter et pousser le PDF généré par GitHub
+      - name: Commiter et pousser les PDF générés par GitHub
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Auto-build PDF [skip ci]"
-          file_pattern: "L3/*.pdf"
-          add_options: '-f'  # 👈 Le '-f' (force) permet à GitHub de commiter le PDF même s'il est dans .gitignore
+          file_pattern: "**/*.pdf"
+          add_options: '-f'  # le '-f' permet de commiter les PDF malgré le .gitignore
