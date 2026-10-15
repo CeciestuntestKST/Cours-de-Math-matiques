@@ -7,7 +7,7 @@ name: Build LaTeX PDFs and Commit
 #  Exemple : DOSSIERS: "L3,M1,M2,developpements,lecons"
 # ==============================================================
 env:
-  DOSSIERS: "L3"
+  DOSSIERS: "Dossier_Test"
 
 on:
   push:
