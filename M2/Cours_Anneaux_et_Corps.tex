@@ -171,12 +171,86 @@ On fixe un anneau commutatif $A$ et $n$ un entier strictement positif.
     La $A$-algèbre $(E, +, \times, \cdot)$ est commutative si la multiplication de $E$ est commutative.
 \end{df}
 
-
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Il est équivalent de se donner un anneau ou une $\Z$-algèbre.
+        \item Si $A$ est un anneau commutatif, alors l'anneau $\Mr_n(A)$ muni de l'opération externe $a \cdot M := aM$ pour $a \in A$ et $M \in \Mr_n(A)$ est une $A$-algèbre.
+        \item Si $A$ est un anneau commutatif et $n$ un entier naturel, alors $A[X_1, \ldots, X_n]$, muni de l'opération externe $a \cdot P := aP$ pour $a \in A$ et $P \in A[X_1, \ldots, X_n]$, est une $A$-algèbre commutative.
+    \end{enumerate}
+\end{ex}
 
 \section{Morphismes d'anneaux et d'algèbres}
 
+\begin{df}{Morphisme d'anneaux, isomorphisme d'anneaux}{}
+    Soient $A$ et $B$ deux anneaux. Une application $f : A \to B$ est appelée un morphisme d'anneaux si $f$ est un morphisme de \grs $(A, +) \to (B, +)$ tel que :
+    \[f(1_A) = 1_B, \qquad \forall (a, a') \in A^2, \; f(aa') = f(a)f(a').\]
+    Un morphisme d'anneaux bijectif est appelé un isomorphisme. L'application réciproque est alors automatiquement un morphisme d'anneaux.
+\end{df}
+
+\begin{ex}{Exemples de morphismes d'anneaux}{}
+    \begin{enumerate}
+        \item Soit $A$ un anneau. L'application $\Z \to A, \; n \mapsto n \cdot 1$ est l'unique morphisme d'anneaux de $\Z$ vers $A$.
+        \item Pour $n$ un entier strictement positif, l'application
+        \[\fundfto{\pi}{\Z}{\Z/n\Z}{a}{a \mod n}\]
+        est un morphisme d'anneaux surjectif.
+        \item Soit $A$ un anneau intègre de corps des fractions $K_A$. L'inclusion
+        \[\fundfto{\iota}{A}{K_A}{a}{\frac{a}{1_A}}\]
+        est un morphisme d'anneaux.
+    \end{enumerate}
+\end{ex}
+
+\begin{re}{}{}
+    Soit $A$ un anneau commutatif. Se donner une $A$-algèbre revient à se donner un anneau $E$ et un morphisme d'anneaux $\rho : A \to E$ tel que :
+    \[\forall a \in A, \; \forall x \in E, \quad \rho(a) \times x = x \times \rho(a). \tag{1.1}\]
+    En effet, si $E$ est une $A$-algèbre, on définit $\rho$ par
+    \[\forall a \in A, \quad \rho(a) := a \cdot 1_E\]
+    et on a bien, pour $a \in A$ et $x \in E$ :
+    \[(a \cdot 1_E) \times x = a \cdot (1_E \times x) = a \cdot x = a \cdot (x \times 1_E) = x \times (a \cdot 1_E).\]
+    Réciproquement, si $E$ est un anneau muni d'un morphisme d'anneaux $\rho : A \to E$ vérifiant (1.1), on retrouve la multiplication externe par la formule
+    \[\forall a \in A, \; \forall x \in E, \quad a \cdot x := \rho(a) \times x.\]
+\end{re}
+
+\begin{df}{Morphisme d'algèbres, isomorphisme d'algèbres}{}
+    Soient $A$ un anneau commutatif et $B$ et $C$ deux $A$-algèbres. Une application $f : B \to C$ est appelée un morphisme de $A$-algèbres si $f$ est un morphisme d'anneaux $(B, +, \times) \to (C, +, \times)$ tel que :
+    \[\forall a \in A, \; \forall b \in B, \quad f(ab) = af(b).\]
+    Un morphisme d'algèbres bijectif est appelé un isomorphisme. L'application réciproque est alors automatiquement un morphisme d'algèbres.
+\end{df}
+
+\begin{ex}{Exemples d'algèbres}{}
+    Soit $A$ un anneau commutatif.
+    \begin{enumerate}
+        \item L'application envoyant $a \in A$ sur le polynôme constant égal à $a$ dans $A[X_1, \ldots, X_n]$ est un morphisme de $A$-algèbres injectif.
+        \item On a des isomorphismes canoniques de $A$-algèbres :
+        \[A[X_1, \dots, X_n] \cong (A[X_1])[X_2, \dots, X_n] \cong (A[X_1, \dots, X_{n-1}])[X_n].\]
+        En appliquant la proposition sur les degrés de manière répétée, on en déduit que si l'anneau $A$ est intègre, il en est de même de l'anneau $A[X_1, \ldots, X_n]$ et que ses unités sont celles de $A$.
+        \item Soit $B$ une $A$-algèbre commutative. La $A$-algèbre $A[X_1, \ldots, X_n]$ a la propriété universelle suivante : étant donné $(b_1, \ldots, b_n) \in B^n$, il existe un unique morphisme de $A$-algèbres $\mathrm{ev}_{(b_1, \ldots, b_n)} : A[X_1, \ldots, X_n] \to B$ tel que $\mathrm{ev}_{(b_1, \ldots, b_n)}(X_i) = b_i$ pour tout $i \in \{1, \ldots, n\}$. Le morphisme $\mathrm{ev}_{(b_1, \ldots, b_n)}$ est défini par :
+        \[\fundfto{\mathrm{ev}_{(b_1, \dots, b_n)}}{A[X_1, \dots, X_n]}{B}{P}{P(b_1, \dots, b_n)}.\]
+    \end{enumerate}
+\end{ex}
+
 \section{Sous-anneaux et idéaux}
 
+\begin{df}{Sous-anneau}{}
+    Soit $A$ un anneau. Un sous-anneau de $A$ est une partie $B$ de $A$ telle que les opérations $+$ et $\times$ de l'anneau $A$ se restreignent à $B$ de sorte que $(B, +, \times)$ soit un anneau ayant pour unité $1_A$. Autrement dit :
+    \[\cho{(B, +) \text{ est un sous-groupe de } (A, +) \\ \forall (b_1, b_2) \in B^2, \; b_1 b_2 \in B \\ 1_A \in B.}\]
+\end{df}
+
+\begin{ex}{Exemples de sous-anneaux}{}
+    \begin{enumerate}
+        \item L'anneau des entiers $\Z$ est un sous-anneau de $\Q$. Le seul sous-anneau de $\Z$ est $\Z$.
+        \item Si $A$ est un anneau commutatif, on peut le voir comme un sous-anneau de $A[X_1, \ldots, X_n]$ en l'identifiant aux polynômes constants.
+        \item Lorsque $A$ est un sous-anneau d'un anneau commutatif $B$ et $S$ est une partie de $B$, on note $A[S]$ l'intersection de tous les sous-anneaux de $B$ contenant $A$ et $S$. C'est le plus petit de ces sous-anneaux, et on l'appelle le sous-anneau engendré par $A$ et $S$. Ses éléments sont les éléments de $B$ qui peuvent s'écrire sous la forme $P(s_1, ..., s_n)$ avec $s_1, ..., s_n \in S$ et $P \in A[X_1, ..., X_n]$.
+        \item Si $f : A \to B$ est un morphisme d'anneaux, alors l'image $\operatorname{im}(f)$ est un sous-anneau de $B$. Lorsque $f$ est injectif, il induit un isomorphisme entre $A$ et $\operatorname{im}(f)$, et on dit parfois qu'on peut identifier $A$ à un sous-anneau de $B$.
+        \item Si $f : A \to B$ est un morphisme d'anneaux, le noyau $\ker(f) := \{a \in A \mid f(a) = 0_B\}$ n'est pas un sous-anneau de $A$ en général.
+    \end{enumerate}
+\end{ex}
+
+On suppose désormais, et ce jusqu'à la fin du cours, que tous les anneaux sont commutatifs.
+
+\begin{df}{Idéal}{}
+    Soit $A$ un anneau (commutatif). Un idéal de $A$ est un sous-groupe $I$ de $(A, +)$ tel que :
+    \[\forall a \in A, \; \forall i \in I, \quad ai \in I.\]
+\end{df}
 \section{Divisibilité et arithmétique dans un anneau intègre}
 
 \section{Idéaux premiers et maximaux}
