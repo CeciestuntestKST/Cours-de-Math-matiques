@@ -35,6 +35,18 @@
     \[\forall (a,b)\in A^2, a\times b=b\times a\]
 \end{df}
 
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item L'anneau nul $A = \{0_A\}$ est un anneau commutatif. Un anneau $A$ est nul si, et seulement si, $0_A = 1_A$.
+        \item Les ensembles $\Z$, $\Z/n\Z$, $\Q$ et $\C$ munis de l'addition et de la multiplication usuelles sont des anneaux commutatifs.
+        \item Le produit direct $\prod_{i \in I} A_i$ d'une famille d'anneaux $(A_i, +, \times)_{i \in I}$ est un anneau (pour les lois d'addition et de multiplication terme à terme).
+        \item Si $A$ est un anneau commutatif et $n$ un entier strictement positif, l'ensemble $\Mr_n(A)$ des matrices $n \times n$ à coefficients dans $A$ muni de l'addition et de la multiplication usuelles
+        \[(a_{ij})_{1 \le i,j \le n} + (b_{ij})_{1 \le i,j \le n} := (a_{ij} + b_{ij})_{1 \le i,j \le n}\]
+        \[(a_{ij})_{1 \le i,j \le n} (b_{ij})_{1 \le i,j \le n} := \left( \sum_{k=1}^n a_{ik} b_{kj} \right)_{1 \le i,j \le n}\]
+        est un anneau. L'anneau $\Mr_n(A)$ n'est commutatif que si $A$ est l'anneau nul ou si $n = 1$.
+    \end{enumerate}
+\end{ex}
+
 \begin{df}{Diviseurs de zéro, élément inversible}{}
     Un élément non-nul $a\in A$ est dit diviseur de zéro s'il existe $b\in A\wt \{0_A\}$ tel que $ab=0_A$ ou $ba=0_A$. L'anneau $A$ est dit intègre s'il est commutatif et non nul et s'il n'a pas de diviseur de zéro.\\
     Un élément $a\in A$ est dit inversible s'il existe $b\in A$ tel que $ab=ba=1_A$. L'ensemble des éléments inversibles de $A$ est un groupe, généralement noté $A^\times$. L'anneau $A$ est dit être un corps s'il est commutatif non nul et si tout élément non nul de $A$ est inversible.
