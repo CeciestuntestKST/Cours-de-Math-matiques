@@ -1,0 +1,1254 @@
+\documentclass[]{report}
+
+\usepackage{import}
+
+\import{../}{settings.tex}
+
+\title{Anneaux et algèbres}
+\author{Cours de IZQUIERDO Diego, écrit par SADR TAHOURI Luca}
+\date{}
+
+\begin{document}
+
+    \maketitle
+    \tableofcontents
+
+    \chapter{Anneaux et algèbres}
+
+\section{Définitions et exemples}
+
+\begin{df}{}{}
+    Un anneau est un ensemble $A$ muni de deux lois de composition interne
+    \[\fundfto{+}{A \times A}{A}{(a, b)}{a + b} \qquad \fundfto{\times}{A \times A}{A}{(a, b)}{a \cdot b}\]
+    appelées respectivement addition et multiplication, telles que :
+    \begin{itemize}
+        \item[(R1)] le couple $(A, +)$ est un \gr abélien, dont l'élément neutre est généralement noté $0_A$ ou $0$;
+        \item[(R2)] la multiplication est associative :
+        \[\forall (a, b, c) \in A^3, \quad (a \times b) \times c = a \times (b \times c).\]
+        \item[(R3)] la multiplication possède un élément neutre, généralement noté $1_A$ ou $1$ :
+        \[\forall a \in A, \quad 1 \times a = a \times 1 = a.\]
+        \item[(R4)] la multiplication est distributive par rapport à l'addition, c'est-à-dire :
+        \[\forall (a, b, c) \in A^3, \quad (a + b) \times c = a \times b + a \times c, \qquad a \times (b + c) = a \times b + a \times c.\]
+    \end{itemize}
+\end{df}
+
+Un anneau $A$ est dit commutatif si la multiplication est commutative :
+\[\forall (a, b) \in A^2, \quad a \times b = b \times a.\]
+
+\begin{nt}{}{}
+    On note souvent $ab$ au lieu de $a \times b$. On note aussi $-a$ l'opposé de $a$, c'est-à-dire que $a + (-a) = 0_A$.
+\end{nt}
+
+\begin{re}{}{}
+    \begin{enumerate}
+        \item On a, pour tout $a$ dans $A$,
+        \[0_A a = (0_A + 0_A) a = 0_A a + 0_A a,\]
+        d'où, en ajoutant des deux côtés $-0_A a$,
+        \[0_A a = 0_A.\]
+        De même,
+        \[a 0_A = 0_A.\]
+        \item Pour tous éléments $a$ et $b$ de $A$, on a
+        \[ab + (-a)b = (a + (-a))b = 0_A b = 0_A.\]
+        De même :
+        \[a(-b) = -ab, \qquad (-a)(-b) = -(-a)b = -(-ab) = ab.\]
+        \item Si $a \in A$ et $m \in \Z$, on définit $ma$ (comme dans tout \gr abélien) par récurrence sur $m$ en posant
+        \[0a = 0_A, \qquad \forall m \in \N, \quad (m+1)a = ma + a, \qquad \forall m \in \N, \quad (-m)a = -ma.\]
+        On a ainsi, pour tout $m, n \in \Z$,
+        \[(m+n)a = ma + na.\]
+        \item Si $a \in A$ et $m \in \N$, on définit $a^m$ par récurrence sur $m$ en posant
+        \[a^0 := 1_A, \qquad \forall m \in \N, \quad a^{m+1} := a^m \times a.\]
+        On a ainsi, pour tout $m, n \in \N$,
+        \[a^{m+n} = a^m a^n.\]
+    \end{enumerate}
+\end{re}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item L'anneau nul $A = \{0_A\}$ est un anneau commutatif. Un anneau $A$ est nul si, et seulement si, $0_A = 1_A$.
+        \item Les ensembles $\Z$, $\Z/n\Z$, $\Q$ et $\C$ munis de l'addition et de la multiplication usuelles sont des anneaux commutatifs.
+        \item Le produit direct $\prod_{i \in I} A_i$ d'une famille d'anneaux $(A_i, +, \times)_{i \in I}$ est un anneau (pour les lois d'addition et de multiplication terme à terme).
+        \item Si $A$ est un anneau commutatif et $n$ un entier strictement positif, l'ensemble $\Mr_n(A)$ des matrices $n \times n$ à coefficients dans $A$ muni de l'addition et de la multiplication usuelles
+        \[(a_{ij})_{1 \le i,j \le n} + (b_{ij})_{1 \le i,j \le n} := (a_{ij} + b_{ij})_{1 \le i,j \le n}\]
+        \[(a_{ij})_{1 \le i,j \le n} (b_{ij})_{1 \le i,j \le n} := \left( \sum_{k=1}^n a_{ik} b_{kj} \right)_{1 \le i,j \le n}\]
+        est un anneau. L'anneau $\Mr_n(A)$ n'est commutatif que si $A$ est l'anneau nul ou si $n = 1$.
+    \end{enumerate}
+\end{ex}
+
+\begin{df}{}{}
+    Soit $A$ un anneau.
+    \begin{enumerate}
+        \item Un élément non nul $a \in A$ est dit \textbf{diviseur de zéro} s'il existe $b \in A \setminus \{0_A\}$ tel que $ab = 0_A$ ou $ba = 0_A$. L'anneau $A$ est dit \textbf{intègre} s'il est commutatif et non nul et s'il n'a pas de diviseurs de zéro.
+        \item Un élément $a \in A$ est dit \textbf{inversible} (ou une \textbf{unité}) s'il existe $b \in A$ tel que $ab = ba = 1_A$. L'ensemble des éléments inversibles de $A$ est un \gr, généralement noté $A^\times$. L'anneau $A$ est dit être un \textbf{corps} s'il est commutatif non nul et si tout élément non nul de $A$ est inversible.
+    \end{enumerate}
+\end{df}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Tout corps est un anneau intègre.
+        \item Les anneaux $\Q$, $\R$ et $\C$ sont des corps.
+        \item L'anneau $\Z$ est intègre mais n'est pas un corps. On a $\Z^\times = \{-1, 1\}$.
+        \item Soit $A$ un anneau intègre commutatif. Le \textbf{corps des quotients} (ou \textbf{corps des fractions}) de $A$ est l'ensemble des classes d'équivalence (appelées fractions) des paires $(a, b)$, avec $a \in A$ et $b \in A \setminus \{0\}$, pour la relation d'équivalence
+        \[(a, b) \sim (a', b') \iff ab' = a'b.\]
+        La classe d'équivalence de $(a, b)$ est notée $\frac{a}{b}$. Muni des opérations (addition et multiplication) habituelles sur les fractions, on vérifie que $K_A$ est bien un corps. L'application
+        \[\fundfto{\iota}{A}{K_A}{a}{\frac{a}{1_A}}\]
+        est injective. Par exemple, le corps des fractions de $\Z$ est $\Q$.
+        \item Considérons l'anneau $\Z/n\Z$ pour un entier $n > 1$. En utilisant le théorème de Bézout, on démontre que :
+        \[(\Z/n\Z)^\times = \{\tilde{a} \mid 1 \le a \le n, \; a \wedge n = 1\}.\]
+        Ainsi, $\Z/n\Z$ est un corps si, et seulement si, $n$ est un nombre premier. Lorsque $n$ n'est pas premier, on peut en dire un peu plus : en effet, on peut écrire $n = ab$ pour certains $a, b > 1$, de sorte que les classes de $a$ et de $b$ modulo $n$ sont des diviseurs de zéro dans $\Z/n\Z$. Il s'ensuit que $\Z/n\Z$ n'est pas intègre.
+
+        En résumé, nous venons de vérifier que les trois assertions suivantes sont équivalentes :
+        \begin{itemize}
+            \item[a.] $\Z/n\Z$ est un corps ;
+            \item[b.] $\Z/n\Z$ est intègre ;
+            \item[c.] $n$ est un nombre premier.
+        \end{itemize}
+        \item Soit $A$ un anneau commutatif et soit $n$ un entier strictement positif. Les unités de l'anneau $\Mr_n(A)$ sont les matrices dont le déterminant est une unité de $A$.
+
+        En effet, si $M \in \Mr_n(A)$ est inversible, il existe une matrice $N \in \Mr_n(A)$ telle que $MN = I_n$. En prenant les déterminants, on obtient $\det(MN) = \det(M)\det(N) = 1$ (le déterminant d'un produit est le produit des déterminants, dans tout anneau commutatif), de sorte que $\det(M)$ est inversible dans $A$ (d'inverse $\det(N)$).
+
+        Inversement, pour toute matrice $M \in \Mr_n(A)$, on a
+        \[{}^t\mathrm{Com}(M) M = M \; {}^t\mathrm{Com}(M) = \det(M) I_n,\]
+        où $\mathrm{Com}(M)$ est la comatrice de $M$ (dont les coefficients sont les cofacteurs de $M$). Si $\det(M)$ est inversible dans $A$, la matrice $M$ est inversible dans $\Mr_n(A)$, d'inverse $(\det(M))^{-1} \; {}^t\mathrm{Com}(M)$.
+    \end{enumerate}
+\end{ex}
+
+\begin{re}{Simplification dans les anneaux intègres}{}
+    Soit $A$ un anneau intègre et soient $a, b, c \in A$ tels que $ab = ac$. Si $a \neq 0_A$, alors $b = c$. En effet, on peut réécrire l'hypothèse $a(b - c) = 0_A$. Comme $a \neq 0_A$ et que l'anneau $A$ est intègre, on a $b - c = 0_A$, c'est-à-dire $b = c$.
+\end{re}
+
+\section{Anneaux de polynômes}
+
+\subsection{Polynômes en une indéterminée}
+
+On fixe un anneau commutatif $A$.
+
+\begin{df}{}{}
+    Considérons l'ensemble $A[X]$ (aussi noté $A^{(\N)}$) des suites $(a_i)_{i\in \N}$ d'éléments de $A$ dont tous les termes, sauf un nombre fini, sont nuls. On le munit de l'addition à terme et de la multiplication suivante :
+    \[(a_i)_{i \in \N} (b_j)_{j \in \N} := \left(\sum_{i = 0}^{k} a_i b_{k - i}\right)_{k \in \N}.\]
+    L'ensemble $A[X]$ muni de ces deux opérations est alors un anneau commutatif, appelé l'anneau des polynômes à coefficients dans $A$. On a $0_{A[X]} = (0_A, 0_A, \ldots)$ et $1_{A[X]} = (1_A, 0_A, 0_A, \ldots)$.
+
+    On note $X$ la suite $(0_A, 1_A, 0_A, \ldots)$. On vérifie par récurrence que, pour $n \ge 0$, on a l'égalité
+    \[X^n = (\underbrace{0_A, \ldots, 0_A}_{n}, 1_A, 0_A, \ldots).\]
+    Ainsi, si $P = (a_i)_{i \in \N}$ est un polynôme non nul et si on note $d$ le plus grand entier tel que $a_d \neq 0_A$, on a :
+    \[P = a_d X^d + \dots + a_1 X + a_0.\]
+    Cette écriture, avec $d \in \N$, $a_d, \ldots, a_1, a_0 \in A$ et $a_d \neq 0_A$, est unique.
+\end{df}
+
+\begin{df}{}{}
+    On garde les notations précédentes.
+    \begin{enumerate}
+        \item L'entier $d$ s'appelle le \textbf{degré} du polynôme $P$. Par convention, on décrète que le degré du polynôme nul est $-\infty$. Les polynômes de degré $-\infty$ ou $0$ sont dits constants. Ils s'identifient à des éléments de $A$.
+        \item L'élément non nul $a_d$ est le \textbf{coefficient dominant} de $P$. Quand il est égal à $1_A$, on dit que $P$ est \textbf{unitaire}.
+    \end{enumerate}
+\end{df}
+
+\begin{prop}{}{}
+    Soit $A$ un anneau intègre.
+    \begin{enumerate}
+        \item Si $P, Q \in A[X]$, on a $\deg(P + Q) \le \max\{\deg(P), \deg(Q)\}$.
+        \item Si $P, Q \in A[X]$ sont non nuls, le produit $PQ$ est non nul et on a $\deg(PQ) = \deg(P) + \deg(Q)$. En particulier, l'anneau $A[X]$ est intègre.
+        \item Les unités de l'anneau $A[X]$ sont les unités de l'anneau $A$ (vues comme polynômes de degré $0$).
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Si $P = 0$ ou $Q = 0$, l'inégalité est évidente. Sinon, on écrit $P = a_d X^d + \dots + a_1 X + a_0$ et $Q = b_e X^e + \dots + b_1 X + b_0$ avec $a_d \neq 0_A$ et $b_e \neq 0_A$. Quitte à échanger $P$ et $Q$, on suppose que $e \le d$. Alors :
+        \[P + Q = a_d X^d + \dots + a_{e+1} X^{e+1} + (a_e + b_e) X^e + \dots + (a_0 + b_0)\]
+        si $e < d$ et :
+        \[P + Q = (a_d + b_d) X^d + \dots + (a_0 + b_0)\]
+        si $e = d$. Cela montre que $\deg(P + Q) \le d$.
+        \item On écrit $P = a_d X^d + \dots + a_1 X + a_0$ et $Q = b_e X^e + \dots + b_1 X + b_0$ avec $a_d \neq 0_A$ et $b_e \neq 0_A$. Alors :
+        \[PQ = \sum_{i=0}^{\infty} \left( \sum_{j=0}^{i} a_j b_{i-j} \right) X^i,\]
+        avec $a_k = 0$ pour $k > d$ et $b_k = 0$ pour $k > e$. Si $i > d + e$, le coefficient de degré $i$ est $\sum_{j=0}^{i} a_j b_{i-j}$, qui est nul puisque $a_j = 0$ ou $b_{i-j} = 0$ pour chaque $0 \le j \le i$. Le coefficient de degré $d + e$ est $a_d b_e$, qui est non nul car $A$ est intègre. Donc $PQ$ est de degré $d + e$.
+        \item Si $u \in A$ est une unité, son inverse $u^{-1}$ dans $A$ est aussi son inverse dans $A[X]$. Inversement, si $P \in A[X]^{\times}$, on a $PP^{-1} = 1_{A[X]} = 1_A$ et, en prenant les degrés et en appliquant 2., on trouve $\deg(P) + \deg(P^{-1}) = \deg(1_A) = 0$, donc $\deg(P) = \deg(P^{-1}) = 0$. Les polynômes $P$ et $P^{-1}$ sont ainsi constants, donc éléments de $A$, et $P^{-1}$ est l'inverse de $P$ dans $A$, de sorte que $P$ est une unité de $A$.
+    \end{enumerate}
+\end{proof}
+
+\begin{re}{}{}
+    Attention, le point 3. ci-dessus n'est plus vrai si $A$ n'est pas intègre. Le polynôme $P(X) = \bar{2}X + \bar{1} \in (\Z/4\Z)[X]$ est inversible dans l'anneau $(\Z/4\Z)[X]$, d'inverse lui-même (puisque $P(X)^2 = \bar{4}X^2 + \bar{4}X + \bar{1} = \bar{1}$), mais il n'est pas constant.
+\end{re}
+
+\begin{df}{}{}
+    Si $K$ est un corps, l'anneau $K[X]$ est intègre. On note $K(X)$ son corps des fractions. Ses éléments sont les fractions rationnelles à coefficients dans $K$.
+\end{df}
+
+\subsection{Polynômes en plusieurs indéterminées}
+
+On fixe un anneau commutatif $A$ et $n$ un entier strictement positif.
+
+\begin{df}{}{}
+    Considérons l'ensemble des suites $(a_I)_{I \in \N^n}$ d'éléments de $A$ dont tous les termes, sauf un nombre fini, sont $0_A$. On le munit de l'addition terme à terme et de la multiplication suivante :
+    \[(a_I)_{I \in \N^n} (b_J)_{J \in \N^n} := \left(\sum_{I, J \in \N^n, \; I + J = K} a_I b_J\right)_{K \in \N^n}.\]
+    L'ensemble $A[X_1, \ldots, X_n]$ muni de ces deux opérations est alors un anneau commutatif, appelé l'anneau des polynômes en $n$ indéterminées à coefficients dans $A$.
+
+    Pour $i \in \{1, \ldots, n\}$, on note $X_i$ la suite dont le terme indexé par $I \in \N^n$ vaut $1_A$ si $I$ est l'élément de $\N^n$ dont toutes les coordonnées sont nulles sauf la $i$-ième qui vaut $1$ et $0_A$ sinon. On vérifie alors par récurrence que, pour $i_1, \ldots, i_n \ge 0$, la suite $X_1^{i_1} \cdots X_n^{i_n}$ est celle dont le terme indexé par $I \in \N^n$ vaut $1_A$ si $I = (i_1, \ldots, i_n)$ et $0_A$ sinon. Ainsi, si $P = (a_I)_{I \in \N^n}$ est un polynôme non nul, on a :
+    \[P = \sum_{I = (i_1, \dots, i_n) \in \N^n} a_I X_1^{i_1} \dots X_n^{i_n},\]
+    la somme étant ici finie. Cette écriture est unique.
+
+    On dit qu'un polynôme $P = \sum_{I = (i_1, \ldots, i_n) \in \N^n} a_I X_1^{i_1} \cdots X_n^{i_n}$ est constant si $a_I = 0$ pour $I \neq (0, \ldots, 0)$.
+\end{df}
+
+\section{Algèbres}
+
+\begin{df}{}{}
+    Soit $A$ un anneau commutatif. Une $A$-algèbre (unitaire associative) est un quadruplet $(E, +, \times, \cdot)$, où $+$ et $\times$ (l'addition et la multiplication) sont des lois internes sur $E$ et $\cdot$ est une loi externe $A \times E \rightarrow E$ telles que
+    \begin{itemize}
+        \item $(E, +, \times)$ est un anneau (unitaire) ;
+        \item on a les relations
+        \[\forall a, b \in A, \; \forall x, y \in E, \quad 1_A \cdot x = x, \qquad (ab) \cdot x = a \cdot (b \cdot x),\]
+        \[a \cdot (x + y) = a \cdot x + a \cdot y, \qquad (a + b) \cdot x = a \cdot x + b \cdot x,\]
+        \[a \cdot (x \times y) = (a \cdot x) \times y = x \times (a \cdot y).\]
+    \end{itemize}
+    La $A$-algèbre $(E, +, \times, \cdot)$ est commutative si la multiplication de $E$ est commutative.
+\end{df}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Il est équivalent de se donner un anneau ou une $\Z$-algèbre.
+        \item Si $A$ est un anneau commutatif, alors l'anneau $\Mr_n(A)$ muni de l'opération externe $a \cdot M := aM$ pour $a \in A$ et $M \in \Mr_n(A)$ est une $A$-algèbre.
+        \item Si $A$ est un anneau commutatif et $n$ un entier naturel, alors $A[X_1, \ldots, X_n]$, muni de l'opération externe $a \cdot P := aP$ pour $a \in A$ et $P \in A[X_1, \ldots, X_n]$, est une $A$-algèbre commutative.
+    \end{enumerate}
+\end{ex}
+
+\section{Morphismes d'anneaux et d'algèbres}
+
+\begin{df}{}{}
+    Soient $A$ et $B$ deux anneaux. Une application $f : A \to B$ est appelée un morphisme d'anneaux si $f$ est un morphisme de \grs $(A, +) \to (B, +)$ tel que :
+    \[f(1_A) = 1_B, \qquad \forall (a, a') \in A^2, \; f(aa') = f(a)f(a').\]
+    Un morphisme d'anneaux bijectif est appelé un isomorphisme. L'application réciproque est alors automatiquement un morphisme d'anneaux.
+\end{df}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Soit $A$ un anneau. L'application $\Z \to A, \; n \mapsto n \cdot 1$ est l'unique morphisme d'anneaux de $\Z$ vers $A$.
+        \item Pour $n$ un entier strictement positif, l'application
+        \[\fundfto{\pi}{\Z}{\Z/n\Z}{a}{a \mod n}\]
+        est un morphisme d'anneaux surjectif.
+        \item Soit $A$ un anneau intègre de corps des fractions $K_A$. L'inclusion
+        \[\fundfto{\iota}{A}{K_A}{a}{\frac{a}{1_A}}\]
+        est un morphisme d'anneaux.
+    \end{enumerate}
+\end{ex}
+
+\begin{re}{}{}
+    Soit $A$ un anneau commutatif. Se donner une $A$-algèbre revient à se donner un anneau $E$ et un morphisme d'anneaux $\rho : A \to E$ tel que :
+    \[\forall a \in A, \; \forall x \in E, \quad \rho(a) \times x = x \times \rho(a). \tag{1.1}\]
+    En effet, si $E$ est une $A$-algèbre, on définit $\rho$ par
+    \[\forall a \in A, \quad \rho(a) := a \cdot 1_E\]
+    et on a bien, pour $a \in A$ et $x \in E$ :
+    \[(a \cdot 1_E) \times x = a \cdot (1_E \times x) = a \cdot x = a \cdot (x \times 1_E) = x \times (a \cdot 1_E).\]
+    Réciproquement, si $E$ est un anneau muni d'un morphisme d'anneaux $\rho : A \to E$ vérifiant (1.1), on retrouve la multiplication externe par la formule
+    \[\forall a \in A, \; \forall x \in E, \quad a \cdot x := \rho(a) \times x.\]
+\end{re}
+
+\begin{df}{}{}
+    Soient $A$ un anneau commutatif et $B$ et $C$ deux $A$-algèbres. Une application $f : B \to C$ est appelée un morphisme de $A$-algèbres si $f$ est un morphisme d'anneaux $(B, +, \times) \to (C, +, \times)$ tel que :
+    \[\forall a \in A, \; \forall b \in B, \quad f(ab) = af(b).\]
+    Un morphisme d'algèbres bijectif est appelé un isomorphisme. L'application réciproque est alors automatiquement un morphisme d'algèbres.
+\end{df}
+
+\begin{ex}{}{}
+    Soit $A$ un anneau commutatif.
+    \begin{enumerate}
+        \item L'application envoyant $a \in A$ sur le polynôme constant égal à $a$ dans $A[X_1, \ldots, X_n]$ est un morphisme de $A$-algèbres injectif.
+        \item On a des isomorphismes canoniques de $A$-algèbres :
+        \[A[X_1, \dots, X_n] \cong (A[X_1])[X_2, \dots, X_n] \cong (A[X_1, \dots, X_{n-1}])[X_n].\]
+        En appliquant la proposition sur les degrés de manière répétée, on en déduit que si l'anneau $A$ est intègre, il en est de même de l'anneau $A[X_1, \ldots, X_n]$ et que ses unités sont celles de $A$.
+        \item Soit $B$ une $A$-algèbre commutative. La $A$-algèbre $A[X_1, \ldots, X_n]$ a la propriété universelle suivante : étant donné $(b_1, \ldots, b_n) \in B^n$, il existe un unique morphisme de $A$-algèbres $\mathrm{ev}_{(b_1, \ldots, b_n)} : A[X_1, \ldots, X_n] \to B$ tel que $\mathrm{ev}_{(b_1, \ldots, b_n)}(X_i) = b_i$ pour tout $i \in \{1, \ldots, n\}$. Le morphisme $\mathrm{ev}_{(b_1, \ldots, b_n)}$ est défini par :
+        \[\fundfto{\mathrm{ev}_{(b_1, \dots, b_n)}}{A[X_1, \dots, X_n]}{B}{P}{P(b_1, \dots, b_n)}.\]
+    \end{enumerate}
+\end{ex}
+
+\section{Sous-anneaux et idéaux}
+
+\begin{df}{}{}
+    Soit $A$ un anneau. Un sous-anneau de $A$ est une partie $B$ de $A$ telle que les opérations $+$ et $\times$ de l'anneau $A$ se restreignent à $B$ de sorte que $(B, +, \times)$ soit un anneau ayant pour unité $1_A$. Autrement dit :
+    \[\cho{(B, +) \text{ est un sous-groupe de } (A, +) \\ \forall (b_1, b_2) \in B^2, \; b_1 b_2 \in B \\ 1_A \in B.}\]
+\end{df}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item L'anneau des entiers $\Z$ est un sous-anneau de $\Q$. Le seul sous-anneau de $\Z$ est $\Z$.
+        \item Si $A$ est un anneau commutatif, on peut le voir comme un sous-anneau de $A[X_1, \ldots, X_n]$ en l'identifiant aux polynômes constants.
+        \item Lorsque $A$ est un sous-anneau d'un anneau commutatif $B$ et $S$ est une partie de $B$, on note $A[S]$ l'intersection de tous les sous-anneaux de $B$ contenant $A$ et $S$. C'est le plus petit de ces sous-anneaux, et on l'appelle le sous-anneau engendré par $A$ et $S$. Ses éléments sont les éléments de $B$ qui peuvent s'écrire sous la forme $P(s_1, ..., s_n)$ avec $s_1, ..., s_n \in S$ et $P \in A[X_1, ..., X_n]$.
+        \item Si $f : A \to B$ est un morphisme d'anneaux, alors l'image $\operatorname{im}(f)$ est un sous-anneau de $B$. Lorsque $f$ est injectif, il induit un isomorphisme entre $A$ et $\operatorname{im}(f)$, et on dit parfois qu'on peut identifier $A$ à un sous-anneau de $B$.
+        \item Si $f : A \to B$ est un morphisme d'anneaux, le noyau $\ker(f) := \{a \in A \mid f(a) = 0_B\}$ n'est pas un sous-anneau de $A$ en général.
+    \end{enumerate}
+\end{ex}
+
+On suppose désormais, et ce jusqu'à la fin du cours, que tous les anneaux sont commutatifs.
+
+\begin{df}{}{}
+    Soit $A$ un anneau (commutatif). Un idéal de $A$ est un sous-groupe $I$ de $(A, +)$ tel que :
+    \[\forall a \in A, \; \forall i \in I, \quad ai \in I.\]
+\end{df}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Les idéaux de $\Z$ sont les $n\Z$ pour $n \in \N$. En effet, soit $I$ un idéal non nul de $\Z$. On peut alors trouver $a \in I \setminus \{0\}$. Quitte à remplacer $a$ par $-a$, on peut supposer que $a > 0$. Ainsi $I \cap \N^* \neq \emptyset$. Prenons $b \in I \cap \N^*$ minimal. On a bien sûr $b\Z \subset I$. Réciproquement, si $c \in I$, on peut écrire la division euclidienne de $c$ par $b$ :
+        \[c = bq + r, \quad \text{avec } 0 \le r \le b - 1.\]
+        On a alors $r = c - bq \in I$. Par minimalité de $b$, on déduit que $r = 0$ et donc que $c \in b\Z$. On obtient ainsi l'égalité $I = b\Z$.
+        \item Le noyau d'un morphisme d'anneaux $f : A \rightarrow B$ est un idéal de $A$.
+        \item Une intersection quelconque d'idéaux est un idéal.
+        \item Soient $I$ et $J$ deux idéaux d'un anneau $A$. Soit $I + J$ la partie de $A$ constituée des éléments de la forme $x + y$ avec $x \in I$ et $y \in J$ et soit $IJ$ la partie de $A$ constituée des éléments de la forme $\sum_{k=1}^n x_k y_k$ pour un certain $n \in \N$, certains $x_1, \dots, x_n \in I$ et certains $y_1, \dots, y_n \in J$. Les ensembles $I + J$ et $IJ$ sont des idéaux de $A$. On les appelle respectivement la \textbf{somme} et le \textbf{produit} de $I$ et $J$.
+    \end{enumerate}
+\end{ex}
+
+Lorsque $S$ est une partie d'un anneau $A$, on note $(S)$ l'intersection de tous les idéaux de $A$ contenant $S$. C'est le plus petit idéal de $A$ contenant $S$, et on l'appelle l'\textbf{idéal engendré par} $S$. Ses éléments sont les éléments de $A$ qui peuvent s'écrire comme une somme finie $\sum_{i=1}^n a_i s_i$ avec $a_1, \dots, a_n \in A$ et $s_1, \dots, s_n \in S$.
+
+Un idéal de $A$ est dit \textbf{principal} s'il est de la forme $(a)$ pour un certain $a \in A$. Un anneau intègre dont tout idéal est principal est appelé un \textbf{anneau principal}.
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item L'anneau $\Z$ est principal. De plus, si $S$ est une partie de $\Z$, on a :
+        \[(S) = \pgcd(S) \, \Z.\]
+        \item L'anneau $\C[X, Y]$ n'est pas principal, car l'idéal $(X, Y)$ n'est pas principal.
+        \item L'anneau $\Z[X]$ n'est pas principal, car l'idéal $(2, X)$ n'est pas principal.
+    \end{enumerate}
+\end{ex}
+
+Nous terminons cette section en discutant des quotients d'anneaux par des idéaux. Étant donnés un anneau $A$ et un idéal $I$ de $A$, on peut munir le quotient de \grs abéliens $A/I$ d'une structure d'anneau par :
+\[\forall (a, b) \in A^2, \quad (a + I) \cdot (b + I) = (ab) + I.\]
+L'anneau $A/I$ est alors appelé le \textbf{quotient} de $A$ par $I$. Il possède la propriété universelle suivante :
+
+\begin{tm}{Propriété universelle du quotient}{}
+    Soit $f : A \to B$ un morphisme d'anneaux. Soit $I$ un idéal de $A$ et notons $p : A \to A/I$ la projection naturelle. Alors il existe un unique morphisme d'anneaux $\hat{f} : A/I \to B$ tel que $f = \hat{f} \circ p$ si et seulement si $I \subseteq \ker(f)$. Dans ce cas :
+    \[\operatorname{im}(\hat{f}) = \operatorname{im}(f), \qquad \ker(\hat{f}) = \ker(f)/I.\]
+    En particulier, si $f : A \to B$ est un morphisme d'anneaux, alors $f$ induit un isomorphisme entre $A/\ker(f)$ et $\operatorname{im}(f)$.
+\end{tm}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Le morphisme d'anneaux $f : \R[T] \to \C, \; P \mapsto P(i)$ est surjectif et son noyau contient $(T^2 + 1)$. Soit maintenant $P = \sum_{k=0}^{n} a_k T^k \in \ker f$. Dans le quotient $\R[T]/(T^2 + 1)$, on a $\tilde{T}^2 = -1$, donc :
+        \[\tilde{P} = \left(\sum_{k = 0}^{E((n-1)/2)} a_{2k+1} (-1)^k\right) \tilde{T} + \left(\sum_{k = 0}^{E(n/2)} a_{2k} (-1)^k\right).\]
+        Donc
+        \[P = (T^2 + 1)Q + \left(\sum_{k = 0}^{E((n-1)/2)} a_{2k+1} (-1)^k\right) T + \left(\sum_{k = 0}^{E(n/2)} a_{2k} (-1)^k\right)\]
+        pour un certain $Q \in \R[T]$. Comme :
+        \[P(i) = \left(\sum_{k = 0}^{E((n-1)/2)} a_{2k+1} (-1)^k\right) i + \left(\sum_{k = 0}^{E(n/2)} a_{2k} (-1)^k\right) = 0,\]
+        on obtient que $\sum_{k=0}^{E((n-1)/2)} a_{2k+1}(-1)^k = \sum_{k=0}^{E(n/2)} a_{2k}(-1)^k = 0$, et donc $P = (T^2 + 1)Q$. Cela prouve que $\ker f = (T^2 + 1)$, et donc le morphisme $f$ induit un isomorphisme :
+        \[\R[T]/(T^2 + 1) \cong \C.\]
+        \item Le morphisme d'anneaux $f : \Z[T] \to \Z[i], \; P \mapsto P(i)$ est surjectif et on peut vérifier comme dans l'exemple précédent que son noyau est $(T^2 + 1)\Z[T]$. Il induit donc un isomorphisme :
+        \[\Z[T]/(T^2 + 1) \cong \Z[i].\]
+        \item Soient $A$ un anneau (commutatif) et $B$ une $A$-algèbre (commutative). Étant donnés un idéal $I$ de $A[X_1, \ldots, X_n]$ et un élément $b = (b_1, \ldots, b_n) \in B^n$, le morphisme de $A$-algèbres
+        \[\mathrm{ev}_{(b_1, \dots, b_n)} : A[X_1, \dots, X_n] \to B\]
+        induit un morphisme de $A$-algèbres :
+        \[\overline{\mathrm{ev}}_{(b_1, \dots, b_n)} : A[X_1, \dots, X_n]/I \rightarrow B\]
+        si, et seulement si, $P(b) = 0$ pour tout $P \in I$. De plus, tout morphisme de $A$-algèbres
+        \[f : A[X_1, \dots, X_n]/I \to B\]
+        est de cette forme.
+    \end{enumerate}
+\end{ex}
+
+Une conséquence importante de la propriété universelle du quotient est le théorème dit des restes chinois. Pour l'anneau $\Z$, il affirme que $\Z/(mn)\Z$ est isomorphe à $\Z/m\Z \times \Z/n\Z$ dès que $m$ et $n$ sont premiers entre eux. Plus généralement :
+
+\begin{tm}{Théorème des restes chinois}{}
+    Soient $I_1, \ldots, I_n$ des idéaux d'un anneau $A$ tels que $I_i + I_j = A$ pour tous $i \neq j$. Alors il existe un isomorphisme naturel :
+    \[A/(I_1 \cap \dots \cap I_n) \cong A/I_1 \times \dots \times A/I_n.\]
+\end{tm}
+
+\begin{proof}
+    Considérons le morphisme :
+    \[f : A \to A/I_1 \times A/I_2 \times \dots \times A/I_n, \quad a \mapsto (a \bmod I_1, \dots, a \bmod I_n).\]
+    Son noyau est $I_1 \cap \ldots \cap I_n$. Par la propriété universelle du quotient, il reste seulement à démontrer que $f$ est surjectif. Pour cela, il suffit de vérifier que
+    \[(1, 0, 0, \dots, 0), \; (0, 1, 0, \dots, 0), \; \dots, \; (0, 0, \dots, 0, 1)\]
+    appartiennent tous à l'image de $f$. Sans perte de généralité, montrons que $(1, 0, 0, \ldots, 0)$ est dans l'image de $f$. Pour cela, pour tout $2 \le i \le n$, écrivons $a_i + b_i = 1$ pour certains $a_i \in I_1$ et $b_i \in I_i$. On peut alors facilement vérifier que l'image de $\prod_{i=2}^{n}(1 - a_i) = \prod_{i=2}^{n} b_i$ par $f$ est précisément $(1, 0, 0, \ldots, 0)$.
+\end{proof}
+
+\begin{ex}{}{}
+    Pour $n \ge 2$, nous avons déjà vu que :
+    \[(\Z/n\Z)^{\times} = \{\tilde{a} \mid 1 \le a \le n, \; a \wedge n = 1\}.\]
+    En particulier, si l'on introduit l'indicatrice d'Euler :
+    \[\fundfto{\varphi}{\N^*}{\N}{n}{|\{a \in \N : 1 \le a \le n, \; \pgcd(a, n) = 1\}|},\]
+    alors l'ordre de $(\Z/n\Z)^{\times}$ est $\varphi(n)$. Pour calculer le nombre $\varphi(n)$, écrivons la décomposition de $n$ en facteurs premiers :
+    \[n = p_1^{r_1} \dots p_s^{r_s}.\]
+    Le théorème des restes chinois donne alors un isomorphisme d'anneaux :
+    \[\Z/n\Z \cong \prod_{i = 1}^{s} \Z/p_i^{r_i}\Z,\]
+    et on obtient donc un isomorphisme de \grs :
+    \[(\Z/n\Z)^{\times} \cong \prod_{i = 1}^{s} (\Z/p_i^{r_i}\Z)^{\times}. \tag{1.2}\]
+    Comme :
+    \[|(\Z/p_i^{r_i}\Z)^{\times}| = |\{a \in \N : a \le p_i^{r_i}, \; p_i \nmid a\}| = p_i^{r_i - 1}(p_i - 1),\]
+    on en déduit que :
+    \[\varphi(n) = \prod_{i = 1}^{s} p_i^{r_i - 1}(p_i - 1).\]
+\end{ex}
+
+Par l'isomorphisme (1.2), la description du \gr $(\Z/n\Z)^{\times}$ se ramène au cas où $n$ est une puissance d'un nombre premier. Le théorème suivant achève donc la description du \gr des unités de $\Z/n\Z$ :
+
+\begin{tm}{}{}
+    Soit $r$ un entier strictement positif. Le \gr $(\Z/2^r\Z)^{\times}$ est trivial pour $r = 1$ et, pour $r \ge 2$, est isomorphe à :
+    \[\Z/2\Z \times \Z/2^{r-2}\Z.\]
+    Pour tout nombre premier impair $p$, le \gr $(\Z/p^r\Z)^{\times}$ est isomorphe à :
+    \[\Z/p^{r-1}(p-1)\Z.\]
+\end{tm}
+
+Le reste de cette section est consacré à la démonstration de ce résultat. Nous commençons par le cas $r = 1$ :
+
+\begin{prop}{}{}
+    Soit $K$ un corps. Tout sous-groupe fini $H$ de $K^{\times}$ est cyclique.
+\end{prop}
+
+\begin{proof}
+    Soit $n$ l'ordre de $H$. Pour $d \mid n$, soit $H_d$ l'ensemble des éléments de $H$ d'ordre $d$. Supposons que $H_d \neq \emptyset$ et prenons un élément $x \in H_d$. Le \gr $\langle x \rangle$ est alors cyclique d'ordre $d$. Comme $K$ est un corps, on en déduit que $\langle x \rangle = \{y \in K : y^d = 1\}$. En particulier, $H_d$ est l'ensemble des éléments d'ordre $d$ dans le \gr cyclique $\langle x \rangle$ et donc $|H_d| = \varphi(d)$. On obtient ainsi :
+    \[n = |H| = \sum_{d \mid n} |H_d| \le \sum_{d \mid n} \varphi(d).\]
+    En observant que $\varphi(d)$ est le nombre d'éléments de $\Z/n\Z$ d'ordre $d$ pour tout $d \mid n$, on obtient $\sum_{d \mid n}\varphi(d) = n$, et l'inégalité précédente est donc en fait une égalité. En particulier, $|H_n| = \varphi(n) \neq 0$, de sorte que $H$ est cyclique.
+\end{proof}
+
+En particulier, on obtient que $(\Z/p\Z)^{\times} \cong \Z/(p-1)\Z$ pour tout nombre premier $p$. Nous établissons maintenant deux lemmes préliminaires qui nous permettront de démontrer le théorème précédent.
+
+\begin{lm}{}{}
+    \begin{enumerate}
+        \item[(i)] Soit $p$ un nombre premier impair. Pour tout $s \ge 0$ :
+        \[(1 + p)^{p^s} \equiv 1 + p^{s+1} \mod p^{s+2}.\]
+        \item[(ii)] Pour tout $s \ge 0$ :
+        \[5^{2^s} \equiv 1 + 2^{s+2} \mod 2^{s+3}.\]
+    \end{enumerate}
+\end{lm}
+
+\begin{proof}
+    (i) On procède par récurrence sur $s$. Pour $s = 0$, la congruence est évidente. Considérons maintenant un entier $s \ge 1$ et supposons que :
+    \[(1 + p)^{p^{s-1}} \equiv 1 + p^s \mod p^{s+1}.\]
+    Prenons $k \in \Z$ tel que :
+    \[(1 + p)^{p^{s-1}} = 1 + p^s + kp^{s+1}.\]
+    Alors, par la formule du binôme de Newton :
+    \[(1 + p)^{p^s} = (1 + p^s + kp^{s+1})^p \equiv (1 + p^s)^p \mod p^{s+2} \equiv 1 + p^{s+1} \mod p^{s+2}.\]
+    (ii) On procède à nouveau par récurrence sur $s$. Pour $s = 0$, la congruence est évidente. Considérons maintenant un entier $s \ge 1$ et supposons que :
+    \[5^{2^{s-1}} \equiv 1 + 2^{s+1} \mod 2^{s+2}.\]
+    Prenons $k \in \Z$ tel que :
+    \[5^{2^{s-1}} = 1 + 2^{s+1} + k 2^{s+2}.\]
+    Alors, par la formule du binôme de Newton :
+    \[5^{2^s} = (1 + 2^{s+1} + k2^{s+2})^2 \equiv 1 + 2^{s+2} \mod 2^{s+3}.\]
+\end{proof}
+
+\begin{lm}{}{}
+    Soit $G$ un \gr et soient $g$ et $h$ des éléments de $G$ d'ordres respectifs $r$ et $s$. Supposons que $gh = hg$ et que $\pgcd(r, s) = 1$. Alors $gh$ est d'ordre $rs$.
+\end{lm}
+
+\begin{proof}
+    Bien sûr, on a $(gh)^{rs} = (g^r)^s (h^s)^r = 1$. Réciproquement, soit $n$ un entier tel que $(gh)^n = 1$ et montrons que $n$ est divisible par $rs$. Pour cela, observons que l'ordre de $g^n = h^{-n}$ divise $\pgcd(r, s) = 1$. Ainsi, $g^n = h^{-n} = 1$, et $n$ doit être divisible à la fois par $r$ et par $s$. En utilisant à nouveau le fait que $r$ et $s$ sont premiers entre eux, l'entier $n$ doit être divisible par $rs$.
+\end{proof}
+
+\begin{proof}[Démonstration du théorème]
+    (i) Le cas $r = 1$ est évident. Supposons $r \ge 2$. D'une part, d'après le lemme (i), on a :
+    \[(1 + p)^{p^{r-2}} \not\equiv 1 \mod p^r, \qquad (1 + p)^{p^{r-1}} \equiv 1 \mod p^r.\]
+    Ainsi, $1 + p$ est d'ordre $p^{r-1}$ dans $(\Z/p^r\Z)^{\times}$.
+
+    D'autre part, considérons la projection $\pi : (\Z/p^r\Z)^{\times} \to (\Z/p\Z)^{\times}$ et fixons un générateur $x$ de $(\Z/p\Z)^{\times}$. Soit $\bar{x}$ un relèvement de $x$ dans $(\Z/p^r\Z)^{\times}$. Comme $x = \pi(\bar{x})$ est d'ordre $p - 1$, l'ordre de $\bar{x}$ est nécessairement divisible par $p - 1$, de sorte que l'on peut trouver une puissance $y$ de $\bar{x}$ qui soit d'ordre exactement $p - 1$.
+
+    D'après le lemme, l'ordre de $(1 + p)y$ est $(p - 1)p^{r-1}$. Cela termine la démonstration puisque $|(\Z/p^r\Z)^{\times}| = (p - 1)p^{r-1}$.
+
+    (ii) Le résultat est évident pour $r \le 2$. Supposons $r \ge 3$. D'après le lemme (ii), on a :
+    \[5^{2^{r-3}} \not\equiv 1 \mod 2^r, \qquad 5^{2^{r-2}} \equiv 1 \mod 2^r.\]
+    Ainsi, 5 est d'ordre $2^{r-2}$ dans $(\Z/2^r\Z)^{\times}$.
+
+    Considérons maintenant la projection $\pi : (\Z/2^r\Z)^{\times} \to (\Z/4\Z)^{\times}$ et le morphisme de \grs :
+    \[\fundfto{f}{\Z/2\Z \times \Z/2^{r-2}\Z}{(\Z/2^r\Z)^{\times}}{(a, b)}{(-1)^a 5^b}.\]
+    Montrons que $f$ est un isomorphisme. Comme
+    \[|\Z/2\Z \times \Z/2^{r-2}\Z| = |(\Z/2^r\Z)^{\times}|,\]
+    il suffit de vérifier que $f$ est injectif. Pour cela, fixons $(a, b) \in \ker(f)$. Alors $(-1)^a 5^b = 1$. En particulier :
+    \[1 = \pi((-1)^a 5^b) = (-1)^a\]
+    dans $\Z/4\Z$, de sorte que $a = 0$. Mais alors $5^b = 1$ dans $\Z/2^r\Z$ et donc $b = 0$.
+\end{proof}
+
+L'arithmétique du \gr $(\Z/n\Z)^{\times}$ est très importante en cryptographie, notamment via le cryptosystème RSA.
+
+\begin{re}{Algorithme (Chiffrement RSA)}{}
+    Alice souhaite recevoir des messages confidentiels de Bob, même si une tierce personne peut lire tout ce qui est transmis. Le principe d'un cryptosystème à clé publique est qu'Alice publie les données permettant de chiffrer un message, mais garde secrètes celles qui permettent de le déchiffrer. Voici la version élémentaire de RSA.
+
+    \textbf{1. Construction des clés.} Alice choisit deux grands nombres premiers impairs distincts $p$ et $q$, puis calcule
+    \[n = pq, \qquad \varphi(n) = (p - 1)(q - 1).\]
+    Elle choisit un entier $e$ tel que $1 < e < \varphi(n)$ et $e \wedge \varphi(n) = 1$. Par Bézout, elle peut calculer un entier $d$, avec $1 \le d < \varphi(n)$, tel que
+    \[ed \equiv 1 \pmod{\varphi(n)}.\]
+    Elle publie sa clé publique $(n, e)$ et garde sa clé privée $d$ secrète, ainsi que $p$, $q$ et $\varphi(n)$.
+
+    \textbf{2. Chiffrement.} Bob souhaite envoyer de manière sécurisée un message à Alice, qu'il représente par un entier $m \in \{0, 1, \ldots, n-1\}$. Pour cela, Bob utilise la clé publique d'Alice et calcule l'unique entier $c$ tel que
+    \[0 \le c < n, \quad c \equiv m^e \pmod{n}.\]
+    Il transmet $c$, appelé le message chiffré. Il n'a besoin de connaître ni $p$, ni $q$, ni $d$.
+
+    \textbf{3. Déchiffrement.} À la réception de $c$, Alice utilise sa clé privée et calcule l'unique entier $m'$ tel que
+    \[0 \le m' < n, \quad m' \equiv c^d \pmod{n}.\]
+    On a alors $m' = m$, ce qui permet à Alice de retrouver le message initial de Bob.
+
+    Expliquons pourquoi $m' = m$. Pour cela, écrivons $ed = 1 + k(p - 1)(q - 1)$ avec $k \ge 0$. Si $p$ ne divise pas $m$, le petit théorème de Fermat donne $m^{p-1} \equiv 1 \pmod{p}$, donc
+    \[m^{ed} = m \big(m^{p-1}\big)^{k(q-1)} \equiv m \pmod{p}.\]
+    Si $p$ divise $m$, cette dernière congruence reste vraie, les deux membres étant nuls modulo $p$. Le même raisonnement modulo $q$ donne $m^{ed} \equiv m \pmod{q}$. Le théorème chinois entraîne alors
+    \[m' \equiv c^d \equiv m^{ed} \equiv m \pmod{n}.\]
+    Comme $m$ et $m'$ appartiennent à $\{0, \ldots, n-1\}$, ils sont égaux.
+
+    Discutons maintenant la difficulté du déchiffrement. Tout le monde connaît $n$ et $e$, et peut donc chiffrer. Une personne qui intercepte $c$ doit, pour retrouver $m$, inverser l'application $\tilde{m} \mapsto \tilde{m}^e$ de $\Z/n\Z$ dans lui-même. L'exposant secret $d$ fournit précisément cette application inverse. Si cette personne parvient à factoriser $n$, elle peut calculer $\varphi(n)$, puis un inverse de $e$ modulo $\varphi(n)$, et déchiffrer comme Alice. On choisit donc $p$ et $q$ très grands pour rendre cette factorisation difficile. Bien sûr, cela ne prouve pas que toute méthode de déchiffrement exige de factoriser $n$ et on peut imaginer diverses attaques au système RSA.
+\end{re}
+
+\begin{ex}{}{}
+    Disons qu'Alice choisit $p = 5$ et $q = 11$. Alors $n = 55$ et $\varphi(n) = 40$. Elle prend $e = 3$ et $d = 27$, car
+    \[3 \times 27 = 81 = 1 + 2 \times 40.\]
+    Sa clé publique est $(55, 3)$ et son exposant privé est $27$.
+
+    Convenons de coder les lettres $A, \ldots, Z$ par $1, \ldots, 26$. Pour transmettre la lettre $G$, Bob code donc $m = 7$ et calcule
+    \[7^3 = 343 \equiv 13 \pmod{55}.\]
+    Il transmet le nombre 13. Alice calcule $13^{27}$ modulo 55. Pour effectuer ce calcul efficacement, elle procède par carrés successifs :
+    \[13^2 \equiv 4, \quad 13^4 \equiv 16, \quad 13^8 \equiv 36, \quad 13^{16} \equiv 31 \pmod{55}.\]
+    Comme $27 = 16 + 8 + 2 + 1$, elle obtient
+    \[13^{27} \equiv 31 \times 36 \times 4 \times 13 \equiv 7 \pmod{55}.\]
+    Elle retrouve le bloc 7, donc la lettre $G$.
+
+    Un agent extérieur qui aurait intercepté le message de Bob aurait dû quant à lui résoudre l'équation $x^3 \equiv 13 \pmod{55}$ sans savoir que $\varphi(55) = 40$ et sans savoir que l'inverse de 3 modulo $\varphi(55)$ est 27.
+\end{ex}
+
+\section{Divisibilité et arithmétique dans un anneau intègre}
+
+\begin{df}{}{}
+    Soit $A$ un anneau intègre et soient $a$ et $b$ des éléments de $A$.
+    \begin{enumerate}
+        \item On dit que $a$ \textbf{divise} $b$, ce que l'on note $a \mid b$, s'il existe $c \in A$ tel que $b = ac$. De manière équivalente, $(b) \subseteq (a)$.
+        \item On dit que $a$ et $b$ sont \textbf{associés} si $a \mid b$ et $b \mid a$. De manière équivalente, il existe une unité $u \in A^{\times}$ telle que $b = ua$.
+        \item L'élément $a$ est dit \textbf{irréductible} s'il est non nul, si ce n'est pas une unité, et si, pour tous $x, y \in A$ tels que $xy = a$, l'un des éléments $x$ ou $y$ est une unité. En particulier, les diviseurs de $a$ dans $A$ sont les unités et les éléments de $A$ qui sont associés à $a$.
+        \item Les éléments $a$ et $b$ sont \textbf{premiers entre eux} si tout diviseur commun de $a$ et de $b$ est une unité.
+    \end{enumerate}
+\end{df}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Prenons $A = \Z$. Deux entiers $a$ et $b$ sont associés si et seulement si $a = \pm b$. Les éléments irréductibles de $\Z$ sont les nombres premiers et leurs opposés.
+        \item Prenons $A = K[X]$ avec $K$ un corps. Deux polynômes $P$ et $Q$ sont associés si et seulement si $P = \lambda Q$ pour un certain $\lambda \in K^{\times}$. Un élément $P \in K[X]$ est irréductible si, et seulement si, il est de degré au moins 1 et il n'est divisible par aucun polynôme de degré compris entre 1 et $\deg(P) - 1$.
+    \end{enumerate}
+\end{ex}
+
+Nous allons maintenant étudier le cas particulièrement intéressant des anneaux principaux.
+
+\begin{df}{}{}
+    Soient $a$ et $b$ des éléments d'un anneau principal $A$.
+    \begin{enumerate}
+        \item L'idéal $\langle a, b \rangle$ est engendré par un élément de $A$, uniquement déterminé à multiplication par un élément inversible de $A$ près. On l'appelle un \textbf{pgcd} (plus grand commun diviseur) de $a$ et $b$, parfois noté $a \wedge b$.
+        \item L'idéal $\langle a \rangle \cap \langle b \rangle$ est engendré par un élément de $A$, uniquement déterminé à multiplication par un élément inversible de $A$ près, le \textbf{ppcm} (plus petit commun multiple) de $a$ et $b$, parfois noté $a \vee b$.
+    \end{enumerate}
+\end{df}
+
+\begin{re}{}{}
+    Dans la suite, dans les formules utilisant des pgcd ou des ppcm, les égalités s'entendent à multiplication par une unité près ; on peut choisir des représentants compatibles pour obtenir des égalités exactes.
+\end{re}
+
+\begin{ex}{}{}
+    On a $a \wedge 0 = a$ et $a \vee 0 = 0$, et $a \wedge b = 0$ si et seulement si $a = b = 0$.
+\end{ex}
+
+Le lemme suivant justifie la terminologie employée.
+
+\begin{prop}{}{}
+    Soit $A$ un anneau principal et soient $a$ et $b$ des éléments de $A$.
+    \begin{enumerate}
+        \item Le pgcd $a \wedge b$ divise $a$ et $b$ et tout élément $d$ de $A$ qui divise $a$ et $b$ divise $a \wedge b$. En particulier, $a$ et $b$ sont premiers entre eux si, et seulement si, $a \wedge b = 1$. Si $d$ est un élément non nul de $A$ qui divise $a$ et $b$, on a de plus $\frac{a}{d} \wedge \frac{b}{d} = \frac{a \wedge b}{d}$.
+        \item Le ppcm $a \vee b$ est divisible par $a$ et par $b$ et tout élément de $A$ qui est divisible par $a$ et $b$ est divisible par $a \vee b$. En particulier, $a \vee b$ divise $ab$. Si $d$ est un élément non nul de $A$ qui divise $a$ et $b$, on a de plus $\frac{a}{d} \vee \frac{b}{d} = \frac{a \vee b}{d}$.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    \begin{enumerate}
+        \item On a $\langle a \rangle \subset \langle a, b \rangle = \langle a \wedge b \rangle$, donc $a \wedge b$ divise $a$. Il divise $b$ pour la même raison. Inversement, si un élément $d$ de $A$ divise $a$ et $b$, on a $\langle d \rangle \supset \langle a \rangle$ et $\langle d \rangle \supset \langle b \rangle$, donc $\langle d \rangle \supset \langle a, b \rangle = \langle a \wedge b \rangle$ et $d$ divise $a \wedge b$. Ceci montre la première partie du point 1. Pour la seconde, on remarque que si $d$ est non nul, on a $x \in \langle \frac{a}{d}, \frac{b}{d} \rangle$ si, et seulement si, $dx \in \langle a, b \rangle$, donc $\frac{a}{d} \wedge \frac{b}{d} = \frac{a \wedge b}{d}$.
+        \item On a $\langle a \vee b \rangle \subset \langle a \rangle$, donc $a$ divise $a \vee b$ et de même, $b$ divise $a \vee b$. Inversement, si un élément $e$ de $A$ est divisible par $a$ et $b$, on a $\langle e \rangle \subset \langle a \rangle$ et $\langle e \rangle \subset \langle b \rangle$, donc $\langle e \rangle \subset \langle a \rangle \cap \langle b \rangle = \langle a \vee b \rangle$ et $e$ est divisible par $a \vee b$. Ceci montre la première partie du point 2. Pour la seconde, on remarque que comme $d$ est non nul, on a $x \in \langle \frac{a}{d} \rangle \cap \langle \frac{b}{d} \rangle$ si, et seulement si, $dx \in \langle a \rangle \cap \langle b \rangle$, donc $\frac{a}{d} \vee \frac{b}{d} = \frac{a \vee b}{d}$.
+    \end{enumerate}
+\end{proof}
+
+\begin{tm}{Théorème de Bézout}{}
+    Soit $A$ un anneau principal. Des éléments $a$ et $b$ de $A$ sont premiers entre eux si, et seulement si, il existe $x$ et $y$ dans $A$ tels que
+    \[xa + yb = 1.\]
+\end{tm}
+
+\begin{proof}
+    L'existence de $x$ et $y$ équivaut à dire $1 \in (a, b)$, c'est-à-dire $a \wedge b = 1$.
+\end{proof}
+
+\begin{prop}{Lemme de Gauss}{}
+    Soit $A$ un anneau principal. Si $a$, $b$ et $c$ sont des éléments de $A$ tels que $a$ divise $bc$ mais est premier avec $b$, alors $a$ divise $c$.
+
+    De façon équivalente, si $a$ et $b$ sont premiers entre eux et qu'un élément de $A$ est divisible par $a$ et par $b$, il est divisible par $ab$ ; autrement dit, $a \vee b = ab$.
+\end{prop}
+
+\begin{proof}
+    Écrivons $bc = ad$ (puisque $a$ divise $bc$) et $xa + yb = 1$ (puisque $a$ et $b$ sont premiers entre eux). On a alors $c = (xa + yb)c = xac + yad$, qui est bien divisible par $a$.
+
+    Pour la deuxième formulation, si $x$ est divisible par $a$ et par $b$, on écrit $x = bc$ (puisque $b$ divise $x$). Comme $a$ aussi divise $x$, il divise $c$ par la première formulation, donc $ab$ divise $x$.
+\end{proof}
+
+\begin{cor}{}{}
+    Soient $a$ et $b$ des éléments d'un anneau principal $A$. On a
+    \[(a \wedge b)(a \vee b) = ab.\]
+\end{cor}
+
+\begin{proof}
+    Le corollaire est évident si $a = b = 0$. Sinon, $a \wedge b \neq 0$ et il résulte de la proposition précédente que $\frac{a}{a \wedge b}$ et $\frac{b}{a \wedge b}$ sont premiers entre eux. Le lemme de Gauss entraîne donc $\frac{a}{a \wedge b} \vee \frac{b}{a \wedge b} = \left(\frac{a}{a \wedge b}\right)\left(\frac{b}{a \wedge b}\right)$. On applique alors la proposition précédente, qui donne $\frac{a}{a \wedge b} \vee \frac{b}{a \wedge b} = \frac{a \vee b}{a \wedge b}$, d'où $\left(\frac{a}{a \wedge b}\right)\left(\frac{b}{a \wedge b}\right) = \frac{a \vee b}{a \wedge b}$ et le résultat cherché en multipliant les deux membres de cette égalité par $(a \wedge b)^2$.
+\end{proof}
+
+\begin{prop}{}{}
+    Soit $A$ un anneau principal et soient $a, b_1, \dots, b_r$ des éléments de $A$.
+    \begin{enumerate}
+        \item Si $a$ est premier avec chacun des $b_i$, alors $a$ est premier avec $b_1 \cdots b_r$.
+        \item Si les $b_i$ sont premiers entre eux deux à deux et que $a$ est divisible par chacun des $b_i$, il est divisible par $b_1 \cdots b_r$.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    \begin{enumerate}
+        \item On écrit le théorème de Bézout pour chacune des paires $(a, b_i)$ : on a $x_i a + y_i b_i = 1$. En prenant le produit de toutes ces identités, on obtient
+        \[(x_1 a + y_1 b_1) \cdots (x_r a + y_r b_r) = 1.\]
+        Le membre de gauche s'écrit $xa + y_1 \cdots y_r b_1 \cdots b_r = 1$ pour un certain $x \in A$, ce qui montre que $a$ est premier avec $b_1 \cdots b_r$.
+        \item On procède par récurrence sur $r$, le cas $r = 1$ étant trivial. Supposons $r \ge 2$. Le point 1. nous dit que $b_1$ est premier avec $b_2 \cdots b_r$ et l'hypothèse de récurrence que $a$ est divisible par $b_2 \cdots b_r$ (et par $b_1$). La deuxième version du lemme de Gauss entraîne que $a$ est divisible par $b_1 \cdots b_r$.
+    \end{enumerate}
+\end{proof}
+
+\section{Idéaux premiers et maximaux}
+
+\begin{df}{}{}
+    Soit $A$ un anneau.
+    \begin{enumerate}
+        \item[(i)] Un idéal \textbf{maximal} de $A$ est un idéal $\mathfrak{m}$ de $A$ qui est maximal parmi les idéaux stricts de $A$. De manière équivalente, c'est un idéal tel que le quotient $A/\mathfrak{m}$ soit un corps.
+        \item[(ii)] Un idéal \textbf{premier} de $A$ est un idéal $\mathfrak{p}$ tel que le quotient $A/\mathfrak{p}$ soit intègre. De manière équivalente, c'est un idéal strict $\mathfrak{p} \neq A$ tel que :
+        \[\forall (a, b) \in A^2, \; ab \in \mathfrak{p} \Rightarrow (a \in \mathfrak{p} \text{ ou } b \in \mathfrak{p}).\]
+    \end{enumerate}
+    En particulier, tout idéal maximal est un idéal premier.
+\end{df}
+
+\begin{proof}[Démonstration des équivalences]
+    (i) Supposons que $\mathfrak{m}$ est un idéal maximal de $A$ et soit $\pi : A \to A/\mathfrak{m}$ la projection naturelle. Prenons un élément non nul quelconque $\overline{a} \in A/\mathfrak{m}$. On peut alors trouver $a \in A \setminus \mathfrak{m}$ tel que $\overline{a} = \pi(a)$. Par maximalité de $\mathfrak{m}$, on a $\mathfrak{m} + (a) = A$. On peut donc trouver $b \in \mathfrak{m}$ et $c \in A$ tels que $b + ac = 1$. En appliquant $\pi$, on obtient $\overline{a} \, \pi(c) = \pi(a)\pi(c) = 1$. Ainsi, $\overline{a} \in (A/\mathfrak{m})^{\times}$, et $A/\mathfrak{m}$ est bien un corps.
+
+    Réciproquement, supposons que $A/\mathfrak{m}$ est un corps et soit $I$ un idéal de $A$ qui contient strictement $\mathfrak{m}$. Prenons $a \in I \setminus \mathfrak{m}$. Comme $A/\mathfrak{m}$ est un corps, $\pi(a) \in (A/\mathfrak{m})^{\times}$, et on peut donc trouver $b \in A$ tel que $\pi(a)\pi(b) = 1$. Autrement dit, $ab - 1 \in \mathfrak{m}$, de sorte que $1 \in I$ et $I = A$.
+
+    (ii) Supposons que $A/\mathfrak{p}$ est intègre et prenons $(a, b) \in A^2$ tel que $ab \in \mathfrak{p}$. Si $\pi : A \to A/\mathfrak{p}$ est la projection naturelle, alors $\pi(a)\pi(b) = 0$, et donc $\pi(a) = 0$ ou $\pi(b) = 0$ puisque $A/\mathfrak{p}$ est intègre. On en déduit que $a \in \mathfrak{p}$ ou $b \in \mathfrak{p}$.
+
+    Réciproquement, supposons que $\mathfrak{p} \neq A$ (donc $A/\mathfrak{p}$ est non nul) et que :
+    \[\forall (a, b) \in A^2, \quad ab \in \mathfrak{p} \Rightarrow (a \in \mathfrak{p} \text{ ou } b \in \mathfrak{p}).\]
+    Prenons $\overline{a}$ et $\overline{b}$ dans $A/\mathfrak{p}$ tels que $\overline{a}\overline{b} = 0$. On peut trouver $a$ et $b$ dans $A$ tels que $\pi(a) = \overline{a}$ et $\pi(b) = \overline{b}$. On obtient $\pi(ab) = \pi(a)\pi(b) = 0$. Ainsi, $ab \in \mathfrak{p}$. Par hypothèse, on en déduit que $a \in \mathfrak{p}$ ou $b \in \mathfrak{p}$, de sorte que $\overline{a} = 0$ ou $\overline{b} = 0$. L'anneau $A/\mathfrak{p}$ est donc intègre.
+\end{proof}
+
+\begin{prop}{}{}
+    Soit $A$ un anneau intègre et soit $a \in A \setminus \{0\}$. Considérons les assertions suivantes :
+    \begin{itemize}
+        \item[(i)] l'élément $a$ est irréductible dans $A$ ;
+        \item[(ii)] l'idéal $(a)$ est premier ;
+        \item[(iii)] l'idéal $(a)$ est maximal.
+    \end{itemize}
+    On a $(iii) \Rightarrow (ii) \Rightarrow (i)$. De plus, si $A$ est un anneau principal, alors $(i) \Rightarrow (iii)$.
+\end{prop}
+
+\begin{proof}
+    Les implications $(iii) \Rightarrow (ii) \Rightarrow (i)$ découlent immédiatement des définitions.
+
+    Supposons maintenant que $A$ est un anneau principal et que $a$ est irréductible. Nous allons montrer que $(a)$ est un idéal maximal de $A$. Pour cela, soit $I$ un idéal contenant strictement $(a)$, et prenons $b \in I \setminus (a)$. Comme $A$ est un anneau principal, on peut trouver $c \in A$ tel que $(a, b) = (c)$. Mais $a$ est irréductible. Ainsi, soit $c$ est une unité, soit $c$ est associé à $a$. Ce second cas est impossible car $b \notin (a)$. Ainsi, $c$ est une unité et $I \supseteq (c) = A$. Cela établit la maximalité de $(a)$.
+\end{proof}
+
+\begin{re}{}{}
+    Les implications $(i) \Rightarrow (iii)$ et $(ii) \Rightarrow (iii)$ sont fausses en général : par exemple, l'idéal $(X)$ est un idéal premier de $\C[X, Y]$, mais il n'est pas maximal.
+\end{re}
+
+\begin{tm}{Krull}{}
+    Soit $A$ un anneau. Pour tout idéal strict $I$ de $A$, il existe un idéal maximal de $A$ contenant $I$.
+\end{tm}
+
+\begin{proof}
+    Soit $\mathscr{E}$ la famille des idéaux stricts de $A$ contenant $I$. Munissons $\mathscr{E}$ de l'ordre donné par l'inclusion. La famille $\mathscr{E}$ n'est pas vide puisqu'elle contient $I$, et si $(I_j)_{j \in J}$ est une famille non vide totalement ordonnée d'éléments de $\mathscr{E}$, alors $\bigcup_{j \in J} I_j \in \mathscr{E}$. Par le lemme de Zorn, on en déduit que $\mathscr{E}$ possède un élément maximal.
+\end{proof}
+
+En particulier, tout anneau non nul possède un idéal maximal.
+
+\section{Anneaux euclidiens}
+
+Rappelons que la principalité de $\Z$ et de $K[X]$ découle de l'existence d'une division euclidienne dans ces anneaux. C'est la méthode la plus courante pour montrer qu'un anneau est principal. Pour formaliser cela, nous introduisons la définition suivante :
+
+\begin{df}{}{}
+    \begin{enumerate}
+        \item Soit $A$ un anneau intègre. Un \textbf{stathme euclidien} (ou une division euclidienne) sur $A$ est une application $f : A \setminus \{0\} \to \N$ vérifiant la propriété suivante : pour tous $a$ et $b$ dans $A$ avec $b \neq 0$, on peut écrire $a = bq + r$ avec $r = 0$ ou $r \neq 0$ et $f(r) < f(b)$.
+        \item Un \textbf{anneau euclidien} est un anneau intègre qui possède un stathme euclidien.
+    \end{enumerate}
+\end{df}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item L'anneau intègre $\Z$ est euclidien pour le stathme euclidien $f(n) = |n|$.
+        \item Considérons l'anneau intègre $A = \Z[i]$ et définissons l'application :
+        \[\fundfto{f}{A}{\N}{z}{|z|^2}.\]
+        Prenons $a$ et $b$ dans $A$ avec $b \neq 0$, et écrivons $\frac{a}{b} = x + iy$ avec $x, y \in \Q$. On peut trouver $x', y' \in \Z$ tels que $|x - x'| \le \frac{1}{2}$ et $|y - y'| \le \frac{1}{2}$. Ainsi :
+        \[\left| \frac{a}{b} - x' - iy' \right|^2 = (x - x')^2 + (y - y')^2 \le \left(\frac{1}{2}\right)^2 + \left(\frac{1}{2}\right)^2 < 1.\]
+        Donc :
+        \[f(a - b(x' + iy')) < f(b),\]
+        et $A$ est un anneau euclidien.
+        \item Si $K$ est un corps, l'anneau $K[X]$ est euclidien pour le stathme euclidien $f(P) = \deg P$, comme le démontre le théorème suivant.
+    \end{enumerate}
+\end{ex}
+
+\begin{tm}{Division euclidienne des polynômes}{}
+    Soit $A$ un anneau intègre. Soient $P, Q \in A[X]$, où $Q$ est un polynôme non nul dont le coefficient dominant est une unité de $A$. Alors, il existe un unique couple $B, R \in A[X]$ tel que $P = BQ + R$ et $\deg(R) < \deg(Q)$.
+\end{tm}
+
+\begin{proof}
+    Montrons l'existence. On procède par récurrence sur $\deg(P)$, en commençant par le cas $\deg(P) = -\infty$, c'est-à-dire $P = 0$ : on prend alors $B = R = 0$. Si $P \neq 0$, on écrit $P(X) = a_d X^d + \cdots + a_1 X + a_0$, avec $a_d \neq 0_A$ et $d = \deg(P)$, et $Q(X) = b_e X^e + \cdots + b_1 X + b_0$, avec $b_e \in A^{\times}$ et $e = \deg(Q)$. Si $d < e$, on prend $B = 0$ et $R = P$. Si $d \ge e$, le polynôme
+    \begin{align*}
+    P_1(X) & := P(X) - a_d b_e^{-1} X^{d-e} Q(X)\\
+    & = a_d X^d + \dots + a_1 X + a_0 - a_d b_e^{-1} X^{d-e} (b_e X^e + \dots + b_1 X + b_0)\\
+    & = (a_{d-1} - a_d b_e^{-1} b_{e-1}) X^{d-1} + \dots,
+    \end{align*}
+    est de degré $< d$. On peut donc lui appliquer l'hypothèse de récurrence : il existe $B_1, R_1 \in A[X]$ tels que $P_1 = B_1 Q + R_1$ et $\deg(R_1) < \deg(Q)$. On a ainsi
+    \begin{align*}
+    P(X) & = P_1(X) + a_d b_e^{-1} X^{d-e} Q(X)\\
+    & = B_1(X) Q(X) + R_1(X) + a_d b_e^{-1} X^{d-e} Q(X)\\
+    & = (B_1(X) + a_d b_e^{-1} X^{d-e}) Q(X) + R_1(X),
+    \end{align*}
+    ce qui montre ce que l'on voulait.
+
+    Montrons l'unicité. Si $P = BQ + R = B'Q + R'$, on a $(B - B')Q = R - R'$. Si $B \neq B'$, on a $R \neq R'$ et, en prenant les degrés et en utilisant la proposition sur les degrés,
+    \[\deg(R - R') = \deg(B - B') + \deg(Q) \ge \deg(Q).\]
+    Mais cela contredit l'inégalité $\deg(P + Q) \le \max\{\deg(P), \deg(Q)\}$, puisque $\max\{\deg(R), \deg(R')\} < \deg(Q)$.
+
+    On a ainsi $B = B'$, donc $R = R'$.
+\end{proof}
+
+L'intérêt pour les anneaux euclidiens vient du résultat suivant :
+
+\begin{tm}{}{}
+    Tout anneau euclidien est un anneau principal.
+\end{tm}
+
+\begin{proof}
+    Soit $A$ un anneau euclidien pour un certain stathme euclidien $f$. Soit $I$ un idéal non nul de $A$ et considérons un élément $b \in I \setminus \{0\}$ qui minimise $f(b)$. Bien sûr, $(b) \subseteq I$. Réciproquement, étant donné $a \in I$, on peut trouver $q$ et $r$ dans $A$ tels que $a = bq + r$ et soit $r = 0$, soit $r \neq 0$ et $f(r) < f(b)$. Comme $r = a - bq \in I$, la minimalité de $f(b)$ implique que le cas $r \neq 0$ et $f(r) < f(b)$ est exclu. Ainsi, $r = 0$ et $a \in (b)$. Par conséquent, $I = (b)$, et $A$ est bien un anneau principal.
+\end{proof}
+
+\begin{cor}{}{}
+    Les anneaux $\Z[i]$ et $K[X]$ avec $K$ corps sont principaux.
+\end{cor}
+
+\begin{re}{}{}
+    Il existe des anneaux principaux qui ne sont pas euclidiens. C'est par exemple le cas de l'anneau intègre $\Z\left[\frac{1+i\sqrt{19}}{2}\right]$.
+\end{re}
+
+Dans un anneau euclidien $A$, la division euclidienne permet d'écrire un algorithme (dit d'Euclide) permettant de calculer des pgcd.
+
+\begin{re}{Algorithme d'Euclide}{}
+    Soit $A$ un anneau euclidien. Soient $a$ et $b$ non nuls dans $A$. Pour calculer un pgcd de $a$ et $b$, on fait la division euclidienne $a = bq + r$ :
+    \begin{itemize}
+        \item si $r = 0$ (c'est-à-dire si $b$ divise $a$), on arrête : $a \wedge b = b$ ;
+        \item si $r \neq 0$, on remplace le couple $(a, b)$ par le couple $(b, r)$ puis on recommence.
+    \end{itemize}
+    Comme la suite des entiers naturels $f(b)$ est strictement décroissante, l'algorithme s'arrête en temps fini. À chaque étape, le pgcd de $a$ et $b$ ne change pas (puisqu'on remplace $(a, b)$ par $(b, a - bq)$) : on aboutit donc au couple $(a \wedge b, 0)$.
+
+    L'algorithme d'Euclide permet également de trouver des éléments $x$ et $y$ de $A$ tels que $xa + yb = a \wedge b$ : c'est l'algorithme d'Euclide étendu. Soient $A$ un anneau euclidien et $a$ et $b$ deux éléments non nuls de $A$. On pose $u_0 = 1$, $v_0 = 0$, $u_1 = 0$, $v_1 = 1$, $r_0 = a$, $r_1 = b$, et on définit par récurrence les suites $(r_i)_{i \ge 0}$, $(q_i)_{i \ge 2}$, $(u_i)_{i \ge 0}$ et $(v_i)_{i \ge 0}$ via
+    \begin{itemize}
+        \item[(i)] division euclidienne : $r_i = r_{i+1}q_{i+2} + r_{i+2}$ ;
+        \item[(ii)] $u_i = u_{i+1}q_{i+2} + u_{i+2}$ ;
+        \item[(iii)] $v_i = v_{i+1}q_{i+2} + v_{i+2}$.
+    \end{itemize}
+    On s'arrête au premier entier $n$ tel que $r_{n+1} = 0$. Une récurrence simple montre que $au_k + bv_k = r_k$ pour tout $k \le n$, et donc une relation de Bézout est donnée par $au_n + bv_n = r_n$.
+\end{re}
+
+\begin{ex}{}{}
+    Calculons le pgcd de deux nombres de Fibonacci consécutifs (c'est là où l'algorithme est le plus long), par exemple $8 \wedge 13$. On écrit
+    \begin{center}
+    \begin{tabular}{c|c|c|c|c|c}
+        $i$ & $r_i$ & $q_i$ & $u_i$ & $v_i$ & division euclidienne \\
+        \hline
+        0 & 8 & - & 1 & 0 & - \\
+        1 & 13 & - & 0 & 1 & - \\
+        2 & 8 & 0 & 1 & 0 & $8 = 13 \cdot 0 + 8$ \\
+        3 & 5 & 1 & $-1$ & 1 & $13 = 8 \cdot 1 + 5$ \\
+        4 & 3 & 1 & 2 & $-1$ & $8 = 5 \cdot 1 + 3$ \\
+        5 & 2 & 1 & $-3$ & 2 & $5 = 3 \cdot 1 + 2$ \\
+        6 & 1 & 1 & 5 & $-3$ & $3 = 2 \cdot 1 + 1$ \\
+        7 & 0 & 2 & - & - & $2 = 1 \cdot 2 + 0$
+    \end{tabular}
+    \end{center}
+    de sorte que $8 \wedge 13 = 1$ et $5 \cdot 8 - 3 \cdot 13 = 1$.
+\end{ex}
+
+\begin{re}{}{}
+    La division euclidienne est aussi utile pour décomposer une matrice à coefficients dans un anneau euclidien comme produit de matrices élémentaires (ce qu'on ne peut pas toujours faire pour les matrices à coefficients dans un anneau principal).
+\end{re}
+
+\section{Anneaux factoriels}
+
+\begin{df}{}{}
+    Soit $A$ un anneau. On dit que $A$ est un anneau \textbf{factoriel} s'il est intègre, si tout élément $a \in A \setminus \{0\}$ peut s'écrire sous la forme :
+    \[a = u \, p_1 \dots p_r \tag{1.3}\]
+    où $u \in A^{\times}$ et $p_1, \ldots, p_r$ sont des éléments irréductibles de $A$, et si cette décomposition est unique au sens suivant : si $a = vq_1 \ldots q_s$ est une autre décomposition de $a$ dans laquelle $v \in A^{\times}$ et $q_1, \ldots, q_s$ sont des éléments irréductibles, alors $r = s$ et il existe une permutation $\sigma \in \Sr_r$ et des unités $u_1, \ldots, u_r \in A^{\times}$ telles que $q_i = u_i p_{\sigma(i)}$ pour tout $i$.
+\end{df}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item L'anneau $\Z$ est factoriel.
+        \item Il existe des anneaux intègres qui ne sont pas factoriels. C'est par exemple le cas de l'anneau intègre $\Z[\sqrt{5}]$. On a :
+        \[2 \times 2 = (3 + \sqrt{5})(3 - \sqrt{5})\]
+        et on peut vérifier que $2$, $3 + \sqrt{5}$ et $3 - \sqrt{5}$ sont des éléments irréductibles non associés dans $\Z[\sqrt{5}]$.
+    \end{enumerate}
+\end{ex}
+
+Soit $A$ un anneau factoriel, et fixons un ensemble d'éléments irréductibles $\Par$ de $A$ tel que tout élément irréductible de $A$ soit associé à exactement un élément de $\Par$. Tout élément non nul $a \in A$ peut alors s'écrire sous la forme :
+\[a = u \prod_{p \in \Par} p^{\alpha_p}\]
+avec $u \in A^{\times}$ et $\alpha_p \in \N$ pour tout $p \in \Par$ (les $\alpha_p$ étant presque tous nuls). L'unité $u$ et les $\alpha_p$ sont uniquement déterminés, et on peut donc poser $v_p(a) := \alpha_p$ (la valuation $p$-adique de $a$).
+
+Prenons maintenant deux éléments non nuls $a$ et $b$ de $A$. Alors :
+\begin{itemize}
+    \item[(i)] pour tout $p \in \Par$, on a $v_p(ab) = v_p(a) + v_p(b)$ ;
+    \item[(ii)] $a$ divise $b$ si et seulement si $v_p(a) \le v_p(b)$ pour tout $p \in \Par$ ;
+    \item[(iii)] $a$ et $b$ sont associés si et seulement si $v_p(a) = v_p(b)$ pour tout $p \in \Par$ ;
+    \item[(iv)] $a$ et $b$ sont premiers entre eux si et seulement si $v_p(a) = 0$ ou $v_p(b) = 0$ pour tout $p \in \Par$.
+\end{itemize}
+De plus, le pgcd et le ppcm de $a$ et de $b$ peuvent être définis par :
+\[a \wedge b := \prod_{p \in \Par} p^{\min\{v_p(a), v_p(b)\}}, \qquad a \vee b := \prod_{p \in \Par} p^{\max\{v_p(a), v_p(b)\}},\]
+de sorte que $(a \wedge b)(a \vee b)$ est associé à $ab$. Même si ces définitions dépendent du choix de la famille d'éléments irréductibles $\Par$, le pgcd et le ppcm sont bien définis à multiplication près par une unité de $A$.
+
+Le pgcd divise à la fois $a$ et $b$ et tout diviseur commun de $a$ et de $b$ le divise. De même, le ppcm est un multiple de $a$ et de $b$, et il divise tout multiple commun de $a$ et de $b$. Notons cependant que, contrairement à ce qui se passe dans un anneau principal, l'idéal $(a, b)$ n'est pas nécessairement engendré par $a \wedge b$. Par exemple, si $K$ est un corps, on verra plus tard que l'anneau $K[X, Y]$ est factoriel. Pourtant, on a $X \wedge Y = 1$ et $(X, Y) = \{P \in K[X, Y] \mid P(0, 0) = 0\} \neq (1)$.
+
+\begin{prop}{}{}
+    Soit $A$ un anneau intègre tel que tout élément $a \in A \setminus \{0\}$ peut s'écrire sous la forme (1.3). Les propriétés suivantes sont équivalentes :
+    \begin{itemize}
+        \item[(i)] l'anneau $A$ est factoriel ;
+        \item[(ii)] pour tout élément irréductible $p$ de $A$, l'idéal $(p)$ est premier ;
+        \item[(iii)] le lemme de Gauss est vrai dans $A$ : si $a$, $b$ et $c$ sont des éléments de $A$ tels que $a$ divise $bc$ mais est premier avec $b$, alors $a$ divise $c$.
+    \end{itemize}
+\end{prop}
+
+\begin{proof}
+    Supposons (iii). Soit $p$ un élément irréductible de $A$. L'idéal $(p)$ est strict. Si $p \mid ab$ et $p \nmid a$, alors $p$ et $a$ sont premiers entre eux. Par (iii), on déduit que $p \mid b$. Ainsi l'idéal $(p)$ est premier.
+
+    Supposons (ii). Pour montrer que $A$ est factoriel, il suffit de comparer des décompositions $a = u \prod_{p \in \Par} p^{v_p} = v \prod_{p \in \Par} p^{w_p}$. Si $w_{p_0} \neq v_{p_0}$ pour un $p_0 \in \Par$, on a par exemple $w_{p_0} > v_{p_0}$ et $p_0$ divise $\prod_{p \in \Par, p \neq p_0} p^{v_p}$. Comme l'idéal $(p_0)$ est premier, $p_0$ divise un $p \neq p_0$. Ces deux éléments irréductibles sont alors associés, ce qui contredit le choix de $\Par$. On a donc une contradiction, de sorte que $w_{p_0} = v_{p_0}$ pour tout $p_0 \in \Par$, ce qui montre (i).
+
+    Enfin, supposons l'anneau $A$ factoriel et que $a$ divise $bc$, avec $a$ premier avec $b$. Si $c = 0$, alors $a$ divise $c$. Supposons donc $c \neq 0$. Si $b = 0$, alors $a$ divise $a$ et $b$, donc $a$ est une unité : il divise bien $c$. On peut donc supposer aussi $b \neq 0$, soit $bc \neq 0$. Comme $a$ divise $bc$, on a aussi $a \neq 0$. On a alors $v_p(a) \le v_p(b) + v_p(c)$ pour tout $p \in \Par$. Comme $a$ est premier avec $b$, on a, pour tout $p$, soit $v_p(a) = 0$, soit $v_p(b) = 0$. Dans les deux cas, on obtient $v_p(a) \le v_p(c)$, c'est-à-dire $a \mid c$. D'où (iii).
+\end{proof}
+
+\begin{tm}{}{}
+    Un anneau principal est un anneau factoriel.
+\end{tm}
+
+\begin{proof}
+    Soit $A$ un anneau principal, et prenons un élément non nul $a \in A$. Supposons que $a$ ne peut pas s'écrire sous la forme (1.3). Alors $a$ n'est ni une unité ni un élément irréductible. On peut donc écrire $a = a_1 b_1$, avec $a_1$ et $b_1$ dans $A \setminus A^{\times}$. Bien sûr, au moins l'un des éléments $a_1$ et $b_1$ ne peut pas s'écrire sous la forme (1.3). Ainsi, en répétant cet argument, on peut construire une suite infinie $a_0 = a, a_1, a_2, \ldots$ telle que, pour tout $i$, on ait $a_{i+1} \mid a_i$, mais $a_i$ et $a_{i+1}$ ne soient pas associés. Soit $I$ l'idéal engendré par tous les $a_i$. Comme $A$ est un anneau principal, on peut trouver $c \in A$ tel que $I = (c)$. Mais $I = \bigcup_i (a_i)$. Ainsi, $c \in (a_n)$ pour un certain $n \ge 0$, de sorte que $a_n \mid c \mid a_{n+1}$ : cela contredit le fait que $a_n$ et $a_{n+1}$ ne sont pas associés ! On en déduit que $a$ peut s'écrire sous la forme (1.3).
+
+    Considérons maintenant deux unités $u, v \in A^{\times}$, des éléments irréductibles deux à deux non associés $p_1, \ldots, p_r$, et des entiers positifs ou nuls $\alpha_1, \ldots, \alpha_r, \beta_1, \ldots, \beta_r$ tels que :
+    \[a = u \, p_1^{\alpha_1} \cdots p_r^{\alpha_r} = v \, p_1^{\beta_1} \cdots p_r^{\beta_r}.\]
+    Supposons par l'absurde que $\alpha_1 > \beta_1$. Alors $p_1$ devrait diviser $v \, p_2^{\beta_2} \cdots p_r^{\beta_r}$. Mais comme $A$ est un anneau principal, l'idéal $(p_1)$ est premier, et donc $p_1$ devrait diviser $v$ ou l'un des $p_i$ avec $i \ne 1$ : contradiction ! On en déduit que $\alpha_1 \le \beta_1$, et par symétrie que $\alpha_1 = \beta_1$. Le même argument permet de montrer que $\alpha_i = \beta_i$ pour tout $i$.
+\end{proof}
+
+\begin{cor}{}{}
+    Les anneaux $\Z[i]$ et $K[X]$ (avec $K$ corps) sont factoriels.
+\end{cor}
+
+\section{Retour aux anneaux de polynômes}
+
+Dans cette section, nous nous intéressons à l'étude détaillée des anneaux de polynômes.
+
+\subsection{Racines d'un polynôme à une variable}
+
+\subsubsection{Notion de racine}
+
+Soit $A$ un anneau commutatif et soit $P(X) = a_n X^n + \cdots + a_0 \in A[X]$. Soit $x$ un élément de $A$. On pose
+\[P(x) := a_n x^n + \dots + a_0 \in A.\]
+L'application
+\[\fundfto{\mathrm{ev}_x}{A[X]}{A}{P}{P(x)}\]
+est un morphisme d'anneaux appelé évaluation en $x$.
+
+\begin{df}{}{}
+    Soient $P \in A[X]$ et $x \in A$. On dit que $x$ est une racine de $P$ si $P(x) = 0_A$.
+\end{df}
+
+\begin{prop}{}{}
+    Soit $A$ un anneau commutatif, soit $P$ un élément de $A[X]$ et soit $x$ un élément de $A$. On a équivalence entre
+    \begin{itemize}
+        \item[(i)] $x$ est racine de $P$, c'est-à-dire $P(x) = 0_A$ ;
+        \item[(ii)] le polynôme $P$ est divisible par $X - x$ dans $A[X]$.
+    \end{itemize}
+\end{prop}
+
+\begin{proof}
+    Supposons que $P(x) = 0_A$. On a pour tout entier $m \ge 1$ l'identité remarquable
+    \[X^m - x^m = (X - x)\left(\sum_{i = 0}^{m - 1} x^i X^{m - 1 - i}\right).\]
+    En particulier, le polynôme $X^m - x^m$ est divisible par $X - x$. Il s'ensuit que le polynôme
+    \[P(X) = P(X) - P(x) = \left(a_n X^n + \dots + a_0\right) - \left(a_n x^n + \dots + a_0\right) = a_n(X^n - x^n) + \dots + a_1(X - x)\]
+    est aussi divisible par $X - x$.
+
+    L'implication (ii) $\Rightarrow$ (i) est évidente.
+\end{proof}
+
+\begin{df}{}{}
+    Soit $A$ un anneau commutatif, soit $P$ un élément non nul de $A[X]$ et soit $x$ un élément de $A$. On appelle multiplicité de $x$ comme racine de $P$ le plus grand entier $m$ tel que $P$ est divisible par $(X - x)^m$.
+
+    Cette définition a un sens même si $A$ n'est pas intègre : le polynôme $(X - x)^m$ étant unitaire, on a $m \le \deg(P)$ s'il divise $P$ ; la multiplicité de toute racine de $P$ est donc $\le \deg(P)$. On peut décider que la multiplicité de n'importe quel élément de $A$ comme racine du polynôme nul est infinie.
+\end{df}
+
+\begin{prop}{}{}
+    Soit $A$ un anneau intègre. Soit $P$ un élément non nul de $A[X]$ et soient $x_1, \ldots, x_r \in A$ des racines distinctes de $P$, de multiplicités respectives $m_1, \ldots, m_r$. Alors $P$ est divisible par le polynôme $(X - x_1)^{m_1} \cdots (X - x_r)^{m_r}$. En particulier, $\deg(P) \ge m_1 + \cdots + m_r$.
+\end{prop}
+
+\begin{proof}
+    Plaçons-nous dans l'anneau principal $K_A[X]$. Soit $i \ne j$ ; comme $X - x_i$ et $X - x_j$ sont premiers entre eux (une relation de Bézout est $\frac{1}{x_j - x_i}\big((X - x_i) - (X - x_j)\big) = 1$), il en est de même de $(X - x_i)^{m_i}$ et $(X - x_j)^{m_j}$, par deux applications de la proposition sur les éléments premiers entre eux. Comme $P$ est divisible par chaque $(X - x_i)^{m_i}$, il est divisible par leur produit, dans l'anneau $K_A[X]$. Mais le quotient de $P$ par $\prod_i (X - x_i)^{m_i}$ est en fait dans $A[X]$, puisque $\prod_i (X - x_i)^{m_i}$ est un polynôme unitaire (division euclidienne des polynômes).
+\end{proof}
+
+\begin{re}{}{}
+    \begin{enumerate}
+        \item La proposition implique qu'un polynôme à coefficients dans un anneau intègre qui a un nombre infini de racines est nul.
+        \item La conclusion de la proposition ne subsiste pas dans un anneau non intègre : dans $\Z/8\Z$, le polynôme $4X$, de degré 1, a 4 racines (simples), $0, 2, 4$, et $6$, tandis que le polynôme $X^3$, de degré 3, a comme racines $0$ (triple), $2$, $4$ (double), et $6$.
+    \end{enumerate}
+\end{re}
+
+Il est particulièrement important de comprendre le cas où $A = \C$.
+
+\begin{tm}{Théorème de d'Alembert-Gauss}{}
+    Tout polynôme non constant à coefficients dans $\C$ admet une racine complexe.
+\end{tm}
+
+Ainsi, si $P \in \C[X]$ est non constant, il se factorise sous la forme :
+\[P = \lambda (X - z_1) \dots (X - z_n)\]
+avec $\lambda \in \C^{\times}$, $n = \deg(P)$, et $z_1, \ldots, z_n \in \C$. En particulier, les polynômes irréductibles dans $\C[X]$ sont ceux de degré 1 et tout polynôme non constant de $\C[X]$ est produit de polynômes irréductibles.
+
+\subsubsection{Comment calculer la multiplicité d'une racine ?}
+
+Afin de calculer des multiplicités de racines de polynômes, il est utile de disposer d'une formule de Taylor. On commence donc par introduire la notion de polynôme dérivé.
+
+\begin{df}{}{}
+    Soit $A$ un anneau commutatif et soit $P = a_n X^n + \cdots + a_0 \in A[X]$. On appelle polynôme dérivé de $P$ le polynôme
+    \[P'(X) := n a_n X^{n-1} + \dots + a_1.\]
+    Il est clair que la dérivation est linéaire (c'est un morphisme de \grs abéliens de $A[X]$ dans $A[X]$) : on a $(P + Q)' = P' + Q'$. On vérifie par un calcul direct la formule de Leibniz
+    \[\forall P, Q \in A[X], \quad (PQ)' = P'Q + PQ',\]
+    ainsi que
+    \[\forall P, Q \in A[X], \quad (P \circ Q)' = (P' \circ Q) Q'.\]
+\end{df}
+
+\begin{re}{}{}
+    Lorsque $A = \R$, la fonction polynomiale $x \mapsto P'(x)$ est bien la dérivée (au sens des fonctions réelles de variable réelle) de la fonction polynomiale $x \mapsto P(x)$, mais notre définition générale est purement formelle et ne fait pas intervenir de notion de limite (qui n'aurait aucun sens dans un anneau général).
+
+    La dérivée d'un polynôme constant est nulle mais un polynôme de dérivée nulle peut ne pas être constant : si $p$ est un nombre premier, c'est le cas du polynôme $X^p$ dans $(\Z/p\Z)[X]$.
+
+    On peut itérer l'opération de dérivation en posant $P'' := (P')'$, etc. On définit ainsi $P^{(r)}$ la dérivée $r$-ième de $P$ pour tout entier naturel $r$. On notera que $P^{(r)} = 0$ pour tout $r > \deg(P)$.
+\end{re}
+
+\begin{prop}{Formule de Taylor}{}
+    Soit $A$ un anneau commutatif, soit $P \in A[X]$ un polynôme de degré inférieur ou égal à $n$, et soit $x \in A$.
+    \begin{enumerate}
+        \item Si $n! \cdot 1_A$ est inversible dans $A$, on a :
+        \[P(X) = P(x) + \frac{P'(x)}{1!}(X - x) + \dots + \frac{P^{(n)}(x)}{n!}(X - x)^n,\]
+        où $\frac{P^{(n)}(x)}{n!}$ signifie $P^{(n)}(x)(n! \cdot 1_A)^{-1}$.
+        \item Soit $m$ un entier positif. On a
+        \[x \text{ est racine de } P \text{ de multiplicité} > m \implies P(x) = \cdots = P^{(m)}(x) = 0.\]
+        La réciproque est vraie si $m! \cdot 1_A$ est inversible dans $A$.
+    \end{enumerate}
+    En particulier, dans tous les cas, $x$ est racine multiple (c'est-à-dire de multiplicité $> 1$) de $P$ si et seulement si $P(x) = P'(x) = 0$ (il suffit d'appliquer 2. avec $m = 1$).
+\end{prop}
+
+\begin{proof}
+    Il suffit de montrer la proposition pour $x = 0_A$ puis de l'appliquer au polynôme $Q(X) := P(X + x)$, en notant que $P^{(r)}(x) = Q^{(r)}(0)$ pour tout entier positif $r$. Le point 1. résulte alors du fait que, si $Q = a_n X^n + \cdots + a_0$, on a $Q^{(r)}(0) = r!a_r$. Quant au point 2., si $0_A$ est racine de $Q$ de multiplicité $> m$, on a $a_m = \cdots = a_0 = 0$ ; inversement, si $Q(0_A) = \cdots = Q^{(m)}(0_A) = 0$, on a $m!a_m = \cdots = 0!a_0 = 0$, d'où $a_m = \cdots = a_0 = 0$ si $m! \cdot 1_A$ est inversible dans $A$ (il en est alors de même de $r! \cdot 1_A$ pour tout $r \le m$).
+\end{proof}
+
+\begin{ex}{}{}
+    Soit $p$ un nombre premier, de sorte que l'anneau $\Z/p\Z$ est intègre (c'est même un corps). Considérons le polynôme $P(X) = X^p - X \in (\Z/p\Z)[X]$. Comme $(\Z/p\Z)^{\times}$ est un \gr (multiplicatif) d'ordre $p - 1$, on a (théorème de Lagrange) $x^{p-1} = 1$ pour tout $x \in (\Z/p\Z)^{\times}$, donc $x^p = x$ pour tout $x \in \Z/p\Z$. Le polynôme $P$ a donc au moins $p$ racines distinctes. Comme il est de degré $p$, ce sont toutes ses racines, elles sont simples et
+    \[X^p - X = \prod_{x \in \Z/p\Z}(X - x) \in (\Z/p\Z)[X].\]
+    On vérifie dans ce cas la formule de Taylor : on a $P'(X) = -1$, donc $P'$ n'a aucune racine et toutes les racines de $P$ sont simples.
+\end{ex}
+
+\begin{ex}{}{}
+    Soit $P \in \R[X]$ non nul. Si $z \in \C$ est une racine de multiplicité $m$, alors $P(z) = \cdots = P^{(m-1)}(z) = 0$ et $P^{(m)}(z) \neq 0$. On déduit que $P(\bar{z}) = \cdots = P^{(m-1)}(\bar{z}) = 0$ et $P^{(m)}(\bar{z}) \neq 0$, et donc que $\bar{z}$ est aussi racine de $P$ de multiplicité $m$. En utilisant le théorème de d'Alembert-Gauss, on peut donc écrire :
+    \[P = \lambda \prod_{i = 1}^{r}(X - x_i)^{\alpha_i} \cdot \prod_{j = 1}^{s}\big((X - z_j)(X - \bar{z}_j)\big)^{\beta_j}\]
+    où $\lambda \in \R$, les $x_i$ sont des nombres réels deux à deux distincts et les $z_j$ sont des nombres complexes non réels, deux à deux distincts et non conjugués. Du coup, $P = \lambda \prod_{i=1}^{r}(X - x_i)^{\alpha_i} \cdot \prod_{j=1}^{s}Q_j^{\beta_j}$ avec $Q_j := X^2 - 2\mathrm{Re}(z_j)X + |z_j|^2$ de degré 2 sans racines réelles. Cela prouve en particulier que les polynômes irréductibles dans $\R[X]$ sont ceux de degré 1 et ceux de degré 2 sans racine réelle, et que tout polynôme non constant de $\R[X]$ est produit de polynômes irréductibles.
+\end{ex}
+
+\subsection{Factorialité des anneaux de polynômes}
+
+On s'intéresse ici aux anneaux de polynômes à coefficients dans un anneau factoriel.
+
+\begin{df}{}{}
+    Soit $A$ un anneau factoriel de corps des fractions $K$ et soit $P \in K[T] \setminus \{0\}$. Étant donné $a \in A \setminus \{0\}$ tel que $aP \in A[T]$, le contenu de $P$, noté $\operatorname{ct}(P)$, est la classe de $\frac{d}{a}$ dans le quotient $K^{\times}/A^{\times}$ où $d$ est le pgcd des coefficients de $aP$. Il est indépendant du choix de $a$.
+\end{df}
+
+\begin{re}{}{}
+    Le contenu $\operatorname{ct}(P)$ n'est bien défini qu'à association près. Dans la suite, si $\mathcal{R}$ est un système de représentants de $K^{\times}/A^{\times}$ dans $K^{\times}$ et $P$ est un polynôme non nul dans $K[X]$, on notera $\operatorname{ct}_{\mathcal{R}}(P)$ le représentant de $\operatorname{{ct}}(P)$ dans $\mathcal{R}$ pour chaque polynôme $P \in K[X]$.
+\end{re}
+
+\begin{prop}{Gauss}{}
+    Soit $A$ un anneau factoriel de corps des fractions $K$. Pour tous $P$ et $Q$ non nuls dans $K[T]$, on a :
+    \[\operatorname{ct}(PQ) = \operatorname{ct}(P) \cdot \operatorname{ct}(Q).\]
+\end{prop}
+
+\begin{proof}
+    Soit $\mathcal{R}$ un système de représentants de $K^{\times}/A^{\times}$ dans $K^{\times}$. Quitte à remplacer $P$ et $Q$ par $\mathrm{ct}_{\mathcal{R}}(P)^{-1}P$ et $\mathrm{ct}_{\mathcal{R}}(Q)^{-1}Q$, on peut supposer que $\mathrm{ct}(P) = \mathrm{ct}(Q) = 1$. Supposons par l'absurde que $\mathrm{ct}(PQ) \neq 1$. On peut alors trouver un élément irréductible $\pi$ qui divise $\mathrm{ct}_{\mathcal{R}}(PQ)$. En notant $\overline{P}$ et $\overline{Q}$ les réductions de $P$ et de $Q$ modulo $\pi$, on obtient l'égalité suivante dans $(A/(\pi))[T]$ :
+    \[\overline{P} \cdot \overline{Q} = 0.\]
+    Mais $A/(\pi)$ est intègre d'après la caractérisation des anneaux factoriels, donc $(A/(\pi))[T]$ l'est aussi et on obtient que $\overline{P} = 0$ ou $\overline{Q} = 0$. Cela signifie que $\pi$ divise $\operatorname{ct}_{\mathcal{R}}(P)$ ou $\operatorname{ct}_{\mathcal{R}}(Q)$ : contradiction ! Ainsi, $\operatorname{ct}(PQ) = 1$, comme souhaité.
+\end{proof}
+
+\begin{tm}{}{}
+    Soit $A$ un anneau factoriel de corps des fractions $K$. Les éléments irréductibles de $A[T]$ sont :
+    \begin{itemize}
+        \item[(a)] les polynômes constants $p$ avec $p$ irréductible dans $A$ ;
+        \item[(b)] les polynômes de degré au moins 1 qui ont un contenu égal à 1 et qui sont irréductibles dans $K[T]$.
+    \end{itemize}
+\end{tm}
+
+\begin{proof}
+    Comme $(A[T])^{\times} = A^{\times}$, il est clair que les polynômes constants qui sont irréductibles dans $A[T]$ sont les polynômes décrits en (a).
+
+    Soit maintenant $P \in A[T]$ un polynôme de degré au moins 1 qui est irréductible dans $K[T]$ et tel que $\operatorname{ct}(P) = 1$. Soient $Q, R \in A[T]$ tels que $P = QR$. Par la proposition de Gauss, on a $\operatorname{ct}(Q) = \operatorname{ct}(R) = 1$. De plus, comme $P$ est irréductible dans $K[T]$, on a $Q \in K^{\times}$ ou $R \in K^{\times}$. Ainsi, $Q \in A^{\times}$ ou $R \in A^{\times}$, et $P$ est irréductible dans $A[T]$.
+
+    Réciproquement, supposons que $P$ est un polynôme irréductible non constant de $A[T]$ et fixons un système de représentants $\mathcal{R}$ de $K^{\times}/A^{\times}$ dans $K^{\times}$. Comme $\mathrm{ct}_{\mathcal{R}}(P)$ divise $P$, on a $\mathrm{ct}_{\mathcal{R}}(P) \in A^{\times}$ et le contenu de $P$ vaut nécessairement 1. Montrons que $P$ est irréductible dans $K[T]$. Pour cela, prenons $Q, R \in K[T]$ tels que $P = QR$. Alors $1 = \mathrm{ct}(P) = \mathrm{ct}(Q)\mathrm{ct}(R)$, ce qui signifie que $u := \mathrm{ct}_{\mathcal{R}}(Q)\mathrm{ct}_{\mathcal{R}}(R) \in A^{\times}$. Donc :
+    \[P = u \frac{Q}{\mathrm{ct}_{\mathcal{R}}(Q)} \cdot \frac{R}{\mathrm{ct}_{\mathcal{R}}(R)}\]
+    avec $u \frac{Q}{\mathrm{ct}_{\mathcal{R}}(Q)} \in A[T]$ et $\frac{R}{\mathrm{ct}_{\mathcal{R}}(R)} \in A[T]$. Comme $P$ est irréductible dans $A[T]$, on en déduit que $u \frac{Q}{\mathrm{ct}_{\mathcal{R}}(Q)} \in A^{\times}$ ou $\frac{R}{\mathrm{ct}_{\mathcal{R}}(R)} \in A^{\times}$. Ainsi, $Q \in K^{\times}$ ou $R \in K^{\times}$, ce qui établit que $P$ est irréductible dans $K[T]$.
+\end{proof}
+
+\begin{tm}{}{}
+    Soit $A$ un anneau factoriel. Alors $A[T]$ est aussi factoriel.
+\end{tm}
+
+\begin{proof}
+    Soit $K$ le corps des fractions de $A$ et soit $P$ un polynôme non nul de $A[T]$. Si $P$ est un polynôme constant, alors il peut s'écrire sous la forme :
+    \[P = u \, p_1 \dots p_r\]
+    où $u \in A^{\times}$ et $p_1, \ldots, p_r$ sont des éléments irréductibles de $A$. Mais alors $u \in A[T]^{\times}$ et, d'après le théorème précédent, $p_1, \ldots, p_r$ sont irréductibles dans $A[T]$. Ainsi, $P$ est soit une unité, soit un produit d'éléments irréductibles de $A[T]$.
+
+    Supposons maintenant que $P$ est de degré au moins 1. Comme $K[T]$ est un anneau factoriel, on peut écrire $P$ sous la forme :
+    \[P = aP_1 \dots P_r\]
+    avec $P_1, \dots, P_r$ des polynômes irréductibles de $K[T]$ et $a \in K^{\times}$. Par la proposition de Gauss, on a :
+    \[a \cdot \operatorname{ct}(P_1) \dots \operatorname{ct}(P_r) = \operatorname{ct}(P).\]
+    En fixant un système de représentants $\mathcal{R}$ de $K^{\times}/A^{\times}$ dans $K^{\times}$ et en posant $\tilde{P}_i = \operatorname{ct}_{\mathcal{R}}(P_i)^{-1} P_i$ pour tout $i$, on obtient donc :
+    \[P = \lambda \tilde{P}_1 \dots \tilde{P}_r\]
+    avec $\lambda = a \cdot \operatorname{ct}_{\mathcal{R}}(P_1) \dots \operatorname{ct}_{\mathcal{R}}(P_r) = u' \cdot \operatorname{ct}_{\mathcal{R}}(P)$ pour un certain $u' \in A^{\times}$. En particulier, $\lambda \in A \setminus \{0\}$, et donc $\lambda$ est soit une unité, soit un produit d'éléments irréductibles de $A[T]$. De plus, d'après le théorème précédent, chaque $\tilde{P}_i$ est irréductible dans $A[T]$ puisque son contenu vaut 1 et qu'il est irréductible dans $K[T]$. Ainsi, $P$ est soit une unité, soit un produit d'éléments irréductibles de $A[T]$.
+
+    Supposons maintenant que :
+    \[P = u P_1^{\alpha_1} \dots P_r^{\alpha_r} = v P_1^{\beta_1} \dots P_r^{\beta_r}\]
+    où $u, v$ sont des unités de $A[T]^{\times} = A^{\times}$, $P_1, \dots, P_r$ sont des éléments irréductibles deux à deux non associés de $A[T]$, et $\alpha_1, \dots, \alpha_r, \beta_1, \dots, \beta_r$ sont des entiers positifs ou nuls. On peut supposer sans perte de généralité qu'il existe $k \in \{1, \dots, r+1\}$ tel que $P_1, \dots, P_{k-1}$ sont des polynômes constants et $P_k, \dots, P_r$ sont de degré au moins 1. Par le théorème précédent, les polynômes $P_k, \dots, P_r$ sont tous irréductibles dans $K[T]$. Vu qu'ils sont de contenu 1 et deux à deux non associés dans $A[T]$, ils sont deux à deux non associés dans $K[T]$. Donc, $K[T]$ étant factoriel, on déduit que $\alpha_i = \beta_i$ pour tout $i \in \{k, \dots, r\}$. Par conséquent, on obtient :
+    \[u P_1^{\alpha_1} \dots P_{k-1}^{\alpha_{k-1}} = v P_1^{\beta_1} \dots P_{k-1}^{\beta_{k-1}}.\]
+    Mais $A$ est factoriel et $P_1, \dots, P_{k-1}$ sont irréductibles dans $A$ d'après le théorème précédent. Ainsi, $\alpha_i = \beta_i$ pour tout $i \in \{1, \dots, k-1\}$. Il s'ensuit que $A[T]$ est factoriel.
+\end{proof}
+
+\begin{ex}{}{}
+    Pour tout $n \ge 1$, les anneaux $\C[X_1, \dots, X_n]$ et $\Z[X_1, \dots, X_n]$ sont factoriels.
+\end{ex}
+
+\begin{tm}{Critère d'Eisenstein}{}
+    Soit $A$ un anneau factoriel de corps des fractions $K$ et soit $\pi$ un élément irréductible de $A$. Soit $P(T) = \sum_{k=0}^{n} a_k T^k$ un polynôme de $A[T]$, avec $n \ge 1$. Supposons que :
+    \begin{itemize}
+        \item[(a)] $\pi$ ne divise pas $a_n$ ;
+        \item[(b)] $\pi$ divise $a_k$ pour tout $k \in \{0, \dots, n - 1\}$ ;
+        \item[(c)] $\pi^2$ ne divise pas $a_0$.
+    \end{itemize}
+    Alors $P$ est irréductible dans $K[T]$.
+\end{tm}
+
+\begin{proof}
+    Soient $Q, R \in K[T]$ des polynômes non constants tels que $P = QR$. Soit $m \in \{1, \dots, n-1\}$ le degré de $Q$. Par la proposition de Gauss, on a $\operatorname{ct}(P) = \operatorname{ct}(Q)\operatorname{ct}(R)$. Ainsi, en fixant un système de représentants $\mathcal{R}$ de $K^{\times}/A^{\times}$ dans $K^{\times}$ et en remplaçant $P$, $Q$ et $R$ par des multiples convenables, on peut supposer que $\operatorname{ct}(P) = \operatorname{ct}(Q) = \operatorname{ct}(R) = 1$.
+
+    Soient maintenant $\overline{P}$, $\overline{Q}$ et $\overline{R}$ les réductions de $P$, $Q$ et de $R$ modulo $\pi$. On a alors l'égalité suivante dans $(A/(\pi))[T]$ :
+    \[\overline{a_n} T^n = \overline{P} = \overline{Q} \cdot \overline{R}\]
+    où $\overline{a_n} \in A/(\pi)$ est la réduction de $a_n$ modulo $\pi$. Or $\overline{a_n} \neq 0$ et $A/(\pi)$ est intègre. En travaillant dans l'anneau principal $K_{A/(\pi)}[X]$, on voit alors que $\overline{Q} = \alpha T^\mu$ et $\overline{R} = \beta T^{n - \mu}$ pour certains $\alpha, \beta \in (A/(\pi)) \setminus \{0\}$ et $\mu \in \{0, \dots, n\}$. Mais $\mu = \deg \bar{Q} \le \deg Q = m$ et $n - \mu = \deg \bar{R} \le \deg R = n - m$. On déduit que $\mu = m \in \{1, \dots, n - 1\}$, puis que $\pi$ divise à la fois $Q(0)$ et $R(0)$. Mais par hypothèse, $\pi^2$ ne divise pas $a_0 = P(0) = Q(0)R(0)$ : contradiction ! Ainsi, $P$ est irréductible dans $K[T]$.
+\end{proof}
+
+\begin{ex}{}{}
+    Le polynôme $T^{10} + 4T^3 + 2T + 6$ est irréductible dans $\Z[T]$ et dans $\Q[T]$.
+\end{ex}
+
+\subsection{Polynômes symétriques}
+
+\subsubsection{Polynômes homogènes}
+
+Soit $A$ un anneau commutatif et soit $n$ un entier strictement positif. On considère l'anneau $A[X_1, \ldots, X_n]$.
+
+\begin{df}{}{}
+    \begin{enumerate}
+        \item Un \textbf{monôme} est un polynôme du type $X_1^{i_1} \cdots X_n^{i_n}$, avec $i_1, \dots, i_n \in \N$. Son \textbf{degré} (total) est l'entier naturel $i_1 + \cdots + i_n$. Le \textbf{degré} (total) d'un polynôme non nul est le plus grand des degrés des monômes qui le composent. Par convention, le degré du polynôme nul est $-\infty$.
+        \item Un polynôme $P$ est \textbf{homogène de degré} $d$ s'il est combinaison linéaire à coefficients dans $A$ de monômes de même degré $d$ (le polynôme nul est donc homogène de tous les degrés). C'est équivalent à dire qu'on a l'égalité
+        \[P(YX_1, \dots, YX_n) = Y^d P(X_1, \dots, X_n)\]
+        dans l'anneau $A[X_1, \dots, X_n, Y]$.
+    \end{enumerate}
+\end{df}
+
+\begin{re}{}{}
+    \begin{enumerate}
+        \item Tout polynôme $P$ non nul s'écrit de façon unique comme somme
+        \[P = P_0 + \cdots + P_d,\]
+        où $d$ est le degré de $P$ et $P_i$ est un polynôme homogène de degré $i$.
+        \item Le produit de deux polynômes homogènes de degrés respectifs $d$ et $e$ est un polynôme homogène de degré $d + e$. Toute somme de polynômes homogènes de même degré $d$ est un polynôme homogène de degré $d$.
+        \item Si $K$ est un corps, les polynômes homogènes de degré $d$ en $n$ variables forment un $K$-\ev de dimension :
+        \[\operatorname{Card}\big(\{(a_1, \dots, a_n) \in \N^n : a_1 + \cdots + a_n = d\}\big) = \binom{n+d-1}{d}.\]
+    \end{enumerate}
+\end{re}
+
+\subsubsection{Polynômes symétriques}
+
+Soit $A$ un anneau commutatif et soit $n$ un entier naturel. On dit qu'un polynôme $P \in A[X_1, \dots, X_n]$ est \textbf{symétrique} si, pour toute permutation $\sigma \in \mathfrak{S}_n$, on a
+\[P(X_{\sigma(1)}, \dots, X_{\sigma(n)}) = P(X_1, \dots, X_n).\]
+L'ensemble des polynômes symétriques forme un sous-anneau de $A[X_1, \dots, X_n]$ contenant $A$.
+
+\begin{df}{}{}
+    Soit $A$ un anneau commutatif et soient $n$ et $r$ des entiers strictement positifs. On appelle $r$-ième polynôme symétrique élémentaire le polynôme
+    \[\Sigma_r(X_1, \dots, X_n) := \sum_{1 \le i_1 < \dots < i_r \le n} X_{i_1} \dots X_{i_r}.\]
+    On a en particulier
+    \[\Sigma_1(X_1, \dots, X_n) = X_1 + \dots + X_n, \qquad \Sigma_n(X_1, \dots, X_n) = X_1 \dots X_n,\]
+    \[\Sigma_r(X_1, \dots, X_n) = 0 \text{ pour } r > n.\]
+\end{df}
+
+\begin{re}{}{}
+    La notation n'est pas entièrement satisfaisante car il y manque l'entier $n$, mais ça ne pose en général pas de problème en pratique : une remarque essentielle est que si on annule un certain nombre des indéterminées $X_1, \ldots, X_n$ dans un polynôme $\Sigma_r$, le polynôme qu'on obtient sera encore le polynôme $\Sigma_r$ en les indéterminées restantes.
+
+    Chaque polynôme $\Sigma_r$ est à coefficients entiers, symétrique, homogène de degré $r$. On a l'identité :
+    \[\prod_{i = 1}^{n}(Y - X_i) = Y^n - \Sigma_1(X_1, \dots, X_n) Y^{n-1} + \dots + (-1)^n \Sigma_n(X_1, \dots, X_n) \tag{1.4}\]
+    ou encore
+    \[\prod_{i = 1}^{n}(Y X_i + 1) = \Sigma_n(X_1, \dots, X_n) Y^n + \dots + \Sigma_1(X_1, \dots, X_n) Y + 1\]
+    dans l'anneau $A[X_1, \ldots, X_n, Y]$.
+\end{re}
+
+\begin{tm}{}{}
+    Soit $A$ un anneau commutatif et soit $n$ un entier naturel. Pour tout polynôme symétrique $P \in A[X_1, \ldots, X_n]$, il existe un unique polynôme $Q \in A[Y_1, \ldots, Y_n]$ tel que
+    \[P = Q(\Sigma_1, \dots, \Sigma_n). \tag{1.5}\]
+\end{tm}
+
+\begin{proof}
+    Si $n = 0$, il n'y a rien à démontrer. Supposons $n \ge 1$ et supposons par l'absurde qu'il existe des polynômes symétriques dans $A[X_1, \ldots, X_n]$ qui ne sont pas de la forme (1.5). Soit $d_0$ le degré total d'un tel polynôme et ordonnons les monômes de $A[X_1, \ldots, X_n]$ lexicographiquement : $X_1^{i_1} \ldots X_n^{i_n} > X_1^{j_1} \ldots X_n^{j_n}$ s'il existe $k \in \{1, \ldots, n\}$ tel que $i_1 = j_1, \ldots, i_{k-1} = j_{k-1}$, $i_k > j_k$. Comme $A[X_1, \ldots, X_n]$ contient un nombre fini de monômes de degré majoré par $d_0$, on peut trouver, parmi les polynômes symétriques de $A[X_1, \ldots, X_n]$ de degré $\le d_0$ qui ne sont pas de la forme (1.5), un polynôme $P_0$ dont le monôme le plus grand $X_1^{a_1} \cdots X_n^{a_n}$ est minimal. Le polynôme $P_0$ étant symétrique, on a $a_1 \ge \cdots \ge a_n$. On note $c$ le coefficient de $X_1^{a_1} \cdots X_n^{a_n}$ dans $P_0$. Le produit
+    \[M = \Sigma_1^{a_1 - a_2} \Sigma_2^{a_2 - a_3} \dots \Sigma_{n-1}^{a_{n-1} - a_n} \Sigma_n^{a_n}\]
+    est homogène symétrique de degré $a_1 + \cdots + a_n \le d_0$ et a pour plus grand monôme $X_1^{a_1} \cdots X_n^{a_n}$, avec coefficient 1. Du coup, le polynôme $P_0 - cM$ est symétrique de degré au plus $d_0$ et ne peut pas être de la forme (1.5), car sinon $P_0$ le serait aussi. Il est donc non nul et a un plus grand monôme strictement inférieur à $X_1^{a_1} \cdots X_n^{a_n}$ : contradiction !
+
+    Pour l'unicité, il s'agit de prouver que $Q(\Sigma_1, \ldots, \Sigma_n) \neq 0$ pour tout polynôme non nul $Q \in A[Y_1, \ldots, Y_n]$. On procède par récurrence sur $n$ (le cas $n = 1$ étant trivial), puis par récurrence sur $\deg(Q)$ (le cas $\deg(Q) = 0$ étant trivial).
+    \begin{itemize}
+        \item Si $Y_n \mid Q$, on écrit $Q = Y_n Q_1$, avec $Q_1$ non nul de degré $\deg(Q) - 1$. Par hypothèse de récurrence, on a $Q_1(\Sigma_1, \ldots, \Sigma_n) \neq 0$. La multiplication par le monôme $\Sigma_n = X_1 \cdots X_n$ étant injective dans $A[X_1, \ldots, X_n]$, on déduit que $Q(\Sigma_1, \ldots, \Sigma_n) = \Sigma_n Q_1(\Sigma_1, \ldots, \Sigma_n) \neq 0$.
+        \item Si $Y_n \nmid Q$, on a $\tilde{Q}(Y_1, \ldots, Y_{n-1}) := Q(Y_1, \ldots, Y_{n-1}, 0) \neq 0$. L'hypothèse de récurrence (sur $n$) entraîne $\tilde{Q}(\tilde{\Sigma}_1, \ldots, \tilde{\Sigma}_{n-1}) \neq 0$, où $\tilde{\Sigma}_1, \ldots, \tilde{\Sigma}_{n-1}$ sont les polynômes symétriques élémentaires en $n-1$ variables, dont on remarque que ce sont aussi les polynômes $\Sigma_1(X_1, \ldots, X_{n-1}, 0), \ldots, \Sigma_{n-1}(X_1, \ldots, X_{n-1}, 0)$. On a alors
+        \[Q(\Sigma_1, \ldots, \Sigma_n)(X_1, \ldots, X_{n-1}, 0) = Q(\tilde{\Sigma}_1, \ldots, \tilde{\Sigma}_{n-1}, 0) = \tilde{Q}(\tilde{\Sigma}_1, \ldots, \tilde{\Sigma}_{n-1}) \neq 0,\]
+        donc en particulier $Q(\Sigma_1, \ldots, \Sigma_n) \neq 0$.
+    \end{itemize}
+\end{proof}
+
+\begin{ex}{}{}
+    Considérons le polynôme $P(X_1, X_2) = X_1^3 + X_2^3$. On a $\tilde{P}(X_1) = P(X_1, 0) = X_1^3 = \tilde{\Sigma}_1^3$. On considère alors
+    \[P - \Sigma_1^3 = X_1^3 + X_2^3 - (X_1 + X_2)^3 = -3X_1 X_2 (X_1 + X_2) = -3\Sigma_2 \Sigma_1.\]
+    On a donc $Q(Y_1, Y_2) = Y_1^3 - 3Y_1 Y_2$.
+\end{ex}
+
+\subsubsection{Sommes de Newton}
+
+Soit $A$ un anneau commutatif et soit $n$ un entier naturel. Les sommes de Newton sont les polynômes symétriques
+\[S_d(X_1, \ldots, X_n) := X_1^d + \dots + X_n^d\]
+pour $d > 0$ (on ne définit pas $S_0$). D'après le théorème précédent, ce sont des polynômes à coefficients entiers en les polynômes symétriques élémentaires. On a par exemple $S_1 = \Sigma_1$ et $S_2 = \Sigma_1^2 - 2\Sigma_2$.
+
+Pour le théorème suivant, on rappelle que $\Sigma_r = 0$ pour $r > n$.
+
+\begin{tm}{Formules de Newton-Girard-Waring}{}
+    On a, pour tout $d \in \N^*$,
+    \[S_d - \Sigma_1 S_{d-1} + \dots + (-1)^{d-1} \Sigma_{d-1} S_1 + (-1)^d \, d \, \Sigma_d = 0.\]
+\end{tm}
+
+\begin{re}{}{}
+    \begin{enumerate}
+        \item Ces relations permettent d'exprimer de proche en proche les $S_d$ comme polynômes à coefficients entiers en $\Sigma_1, \ldots, \Sigma_d$. On remarque que la formule ne dépend pas du nombre $n$ de variables. Cela peut se comprendre en remarquant que toute formule de ce type pour $n$ variables entraîne la même formule pour $m \le n$ variables en évaluant simplement en $X_{m+1} = \cdots = X_n = 0$ (on utilisera une démarche inverse dans la preuve).
+        \item Pour $d > n$, la formule se réduit à
+        \[S_d - \Sigma_1 S_{d-1} + \dots + (-1)^n \Sigma_n S_{d-n} = 0,\]
+        tandis que pour $d = n$, on a
+        \[S_n - \Sigma_1 S_{n-1} + \dots + (-1)^n \, n \, \Sigma_n = 0.\]
+    \end{enumerate}
+\end{re}
+
+\begin{proof}
+    En substituant $Y = X_i$ dans (1.4), on obtient
+    \[X_i^n - \Sigma_1 X_i^{n-1} + \dots + (-1)^n \Sigma_n = 0.\]
+    Si $d \ge n$, on multiplie par $X_i^{d-n}$ et on somme sur $i$, ce qui nous donne la formule cherchée.
+
+    Supposons maintenant $d < n$. Il s'agit de montrer que le polynôme $S_d - \Sigma_1 S_{d-1} + \cdots + (-1)^d d \Sigma_d$ est nul. Or, chaque monôme qui pourrait apparaître dans ce polynôme est de degré $d$ ; il implique donc au plus $d$ des variables $X_1, \ldots, X_n$. On voit aussi qu'il ne change pas si on annule les autres variables. Si on écrit, en degré $d$, l'identité de Newton (qu'on vient de démontrer) pour ces $d$ variables, on voit que le coefficient de ce monôme est en fait nul.
+\end{proof}
+
+On a par exemple
+\[S_2 - \Sigma_1 S_1 + 2\Sigma_2 = 0\]
+et on retrouve $S_2 = \Sigma_1^2 - 2\Sigma_2$. On a ensuite
+\[S_3 - \Sigma_1 S_2 + \Sigma_2 S_1 - 3\Sigma_3 = 0,\]
+d'où on déduit
+\begin{align*}
+S_3 & = \Sigma_1 S_2 - \Sigma_2 S_1 + 3\Sigma_3\\
+& = \Sigma_1(\Sigma_1^2 - 2\Sigma_2) - \Sigma_2 \Sigma_1 + 3\Sigma_3\\
+& = \Sigma_1^3 - 3\Sigma_1 \Sigma_2 + 3\Sigma_3.
+\end{align*}
+
+\subsubsection{Relations entre coefficients et racines d'un polynôme à une indéterminée}
+
+Soit $A$ un anneau intègre. On dit qu'un élément $P$ de $A[X]$ est \textbf{scindé} (dans $A[X]$) si
+\[P(X) = a(X - x_1) \cdots (X - x_n),\]
+avec $a, x_1, \dots, x_n \in A$ (pas nécessairement distincts).
+
+\begin{prop}{}{}
+    Soit $A$ un anneau intègre. Soit $P(X) = a_n X^n + \dots + a_0$ un polynôme scindé de degré $n$ dans $A[X]$, de racines $x_1, \dots, x_n$ (pas nécessairement distinctes). Pour tout $r \in \{1, \dots, n\}$, on a
+    \[a_n \Sigma_r(x_1, \dots, x_n) = (-1)^r a_{n-r}.\]
+\end{prop}
+
+\begin{proof}
+    Il suffit de développer l'expression $P(X) = a_n(X - x_1) \cdots (X - x_n)$ et d'identifier les coefficients de $X^{n-r}$.
+\end{proof}
+
+Par exemple, si $n = 3$, que $A$ est un corps et que $a_0 a_3 \neq 0$, on a
+\[\frac{1}{x_1} + \frac{1}{x_2} + \frac{1}{x_3} = \frac{x_2 x_3 + x_1 x_3 + x_1 x_2}{x_1 x_2 x_3} = \frac{a_1/a_3}{-a_0/a_3} = -\frac{a_1}{a_0}\]
+ainsi que
+\[x_1^2 + x_2^2 + x_3^2 = (x_1 + x_2 + x_3)^2 - 2(x_1 x_2 + x_2 x_3 + x_3 x_1) = (-a_2/a_3)^2 - 2(a_1/a_3) = \frac{a_2^2 - 2a_1 a_3}{a_3^2}.\]
+On peut ainsi calculer ces expressions, qui sont symétriques en les racines, sans effectivement connaître celles-ci.
+
+\section{Fractions rationnelles}
+
+Soit $K$ un corps. On rappelle qu'une fraction rationnelle (à coefficients dans $K$) est un élément du corps des fractions $K(X)$ de l'anneau de polynômes $K[X]$. Elle s'écrit donc $P/Q$, avec $P, Q \in K[X]$ et $Q$ non nul. Comme l'anneau $K[X]$ est factoriel, on peut toujours supposer $P$ et $Q$ premiers entre eux.
+
+Le théorème suivant est parfois utile pour trouver des primitives des fractions rationnelles. C'est un classique des programmes de classes préparatoires dont la vraie utilité mathématique est marginale. Il est aussi au programme de l'agrégation. L'énoncé théorique est simple à démontrer ; la mise en œuvre pratique de la décomposition donne lieu à des myriades d'astuces (mais les ordinateurs font ça très bien).
+
+\begin{tm}{Décomposition en éléments simples}{}
+    Soit $K$ un corps. Soient $P$ et $Q$ des éléments non nuls de $K[X]$ premiers entre eux et soit
+    \[Q = \lambda \prod_{i = 1}^{r} Q_i^{\nu_i}\]
+    la décomposition de $Q$ en produit de facteurs irréductibles dans $K[X]$, avec $\lambda \in K^{\times}$. Il existe une unique décomposition
+    \[\frac{P}{Q} = E + \sum_{i = 1}^{r}\left(\frac{A_{i,1}}{Q_i} + \dots + \frac{A_{i,\nu_i}}{Q_i^{\nu_i}}\right)\]
+    avec $E, A_{i,j} \in K[X]$ et $\deg(A_{i,j}) < \deg(Q_i)$.
+
+    Le polynôme $E$ est appelé partie entière de la fraction rationnelle $P/Q$. Il est obtenu comme quotient de la division euclidienne de $P$ par $Q$.
+\end{tm}
+
+Avant de prouver le théorème, nous avons besoin du lemme suivant :
+
+\begin{lm}{}{}
+    Soient $Q \in K[X]$ un polynôme non constant et $h$ son degré. Étant donné un entier $\nu \ge 1$, tout polynôme $S$ de degré strictement inférieur à $\nu h$ s'écrit de manière unique sous la forme
+    \[S = C_0 + C_1 Q + \dots + C_{\nu - 1} Q^{\nu - 1}, \quad \text{avec } \deg C_k < h \text{ pour } 0 \le k < \nu. \tag{1.6}\]
+\end{lm}
+
+\begin{proof}
+    On procède par récurrence sur $\nu \ge 1$. Pour $\nu = 1$, il suffit de prendre $C_0 = S$, et l'écriture (1.6) est bien unique. Supposons le résultat établi au rang $\nu - 1$, avec $\nu \ge 2$, et soit $S$ tel que $\deg S < \nu h$. La division euclidienne de $S$ par $Q$ donne un couple $(T, C_0)$ tel que
+    \[S = QT + C_0, \qquad \deg C_0 < h.\]
+    Si $T \neq 0$, on a $\deg S = h + \deg T$, et donc $\deg T < (\nu - 1)h$. Cette dernière inégalité vaut aussi lorsque $T = 0$. Par l'hypothèse de récurrence, $T$ possède une écriture
+    \[T = C_1 + C_2 Q + \dots + C_{\nu - 1} Q^{\nu - 2}, \quad \text{avec } \deg C_k < h \text{ pour } 1 \le k < \nu.\]
+    En la reportant dans $S = QT + C_0$, on obtient l'écriture souhaitée de $S$.
+
+    Pour vérifier l'unicité, observons que, dans toute écriture de la forme (1.6), le terme $C_0$ est nécessairement le reste de la division de $S$ par $Q$, et $C_1 + C_2 Q + \dots + C_{\nu - 1} Q^{\nu - 2}$ en est le quotient. L'unicité de la division euclidienne détermine donc $C_0$ et $C_1 + C_2 Q + \dots + C_{\nu - 1} Q^{\nu - 2}$, puis l'hypothèse de récurrence détermine $C_1, \dots, C_{\nu - 1}$. Cela achève notre récurrence.
+\end{proof}
+
+\begin{proof}[Démonstration du théorème de décomposition en éléments simples]
+    Le cas $Q$ constant est évident. Supposons désormais $\deg Q > 0$. La division euclidienne donne une unique écriture
+    \[P = EQ + R, \qquad \deg R < \deg Q. \tag{1.7}\]
+    Il suffit donc de décomposer $R/Q$.
+
+    Posons $D_i = Q_i^{\nu_i}$ et $B_i = Q/D_i$. Les $D_i$ sont deux à deux premiers entre eux. De plus, $B_i$ est premier avec $D_i$, donc sa classe est inversible dans $K[X]/(D_i)$ par Bézout. Il existe ainsi un unique polynôme $S_i$ de degré strictement inférieur à $\deg D_i$ tel que
+    \[S_i B_i \equiv R \pmod{D_i}.\]
+    Pour tout $i$, les termes $S_j B_j$ avec $j \ne i$ sont divisibles par $D_i$. Par le théorème chinois, le polynôme
+    \[R - \sum_{i=1}^{r} S_i B_i\]
+    est donc divisible par $\prod_i D_i = Q$. Or son degré est strictement inférieur à $\deg Q$ : il est nul. En divisant par $Q$, on obtient
+    \[\frac{R}{Q} = \sum_{i=1}^{r} \frac{S_i}{Q_i^{\nu_i}}. \tag{1.8}\]
+    Appliquons le lemme à $S = S_i$ et $\nu = \nu_i$ :
+    \[S_i = C_{i,0} + C_{i,1} Q_i + \dots + C_{i,\nu_i - 1} Q_i^{\nu_i - 1}, \quad \text{avec } \deg C_{i,k} < \deg Q_i \text{ pour } 0 \le k < \nu_i,\]
+    de sorte que :
+    \[\frac{S_i}{Q_i^{\nu_i}} = \frac{C_{i,0}}{Q_i^{\nu_i}} + \dots + \frac{C_{i,\nu_i - 1}}{Q_i} = \frac{A_{i,\nu_i}}{Q_i^{\nu_i}} + \frac{A_{i,\nu_i - 1}}{Q_i^{\nu_i - 1}} + \dots + \frac{A_{i,1}}{Q_i}\]
+    avec $A_{i,k} = C_{i,\nu_i - k}$ pour $1 \le k \le \nu_i$. En combinant avec (1.7) et (1.8), on obtient :
+    \[\frac{P}{Q} = E + \sum_{i = 1}^{r}\left(\frac{A_{i,1}}{Q_i} + \dots + \frac{A_{i,\nu_i}}{Q_i^{\nu_i}}\right), \qquad \deg A_{i,j} < \deg Q_i, \tag{1.9}\]
+    comme souhaité.
+
+    Pour l'unicité, on remarque que, étant donnée une décomposition de la forme (1.9), on a
+    \[P = EQ + Q\sum_{i = 1}^{r}\left(\frac{A_{i,1}}{Q_i} + \dots + \frac{A_{i,\nu_i}}{Q_i^{\nu_i}}\right) = EQ + \sum_{i = 1}^{r} B_i \underbrace{D_i\left(\frac{A_{i,1}}{Q_i} + \cdots + \frac{A_{i,\nu_i}}{Q_i^{\nu_i}}\right)}_{=: R_i}.\]
+    Comme $R := \sum_{i=1}^{r} B_i R_i$ est un polynôme de degré $< \deg Q$, on sait que $E$ et $R$ sont le quotient et le reste respectivement de la division euclidienne de $P$ par $Q$. De plus, en réduisant modulo $D_i$, on obtient $B_i R_i \equiv P \pmod{D_i}$. Comme $B_i$ est inversible dans $K[X]/(D_i)$ et comme $\deg R_i < \deg D_i$, le polynôme $R_i$ est uniquement déterminé. Le lemme montre alors que les $A_{i,j}$ sont eux-mêmes uniquement déterminés.
+\end{proof}
+
+Dans la pratique, on souhaite souvent calculer des décompositions en éléments simples de fractions rationnelles dans $\C$, de sorte que les $Q_i$ sont des polynômes de degré 1 et les $A_{i,j}$ des constantes, ou dans $\R$, auquel cas les $Q_i$ sont des polynômes de degré 1 ou 2 (il est souvent utile de commencer par décomposer sur $\C$ : on regroupe ensuite les fractions dont les dénominateurs sont conjugués).
+
+Je ne donnerai qu'une seule astuce : si $Q_1(X) = X - x$ et $\nu_1 = 1$ (c'est-à-dire $x$ est racine simple de $Q$), il est facile de déterminer la constante $a = A_{1,1}$. Écrivons $Q(X) = (X - x)R(X)$, avec $R(x) \neq 0$ ; on peut alors écrire
+\[\frac{P}{Q} = E + \frac{a}{X - x} + \frac{P_1}{R}.\]
+On en déduit, en réduisant au même dénominateur,
+\[P(X) = E(X)Q(X) + aR(X) + (X - x)P_1(X)\]
+d'où on tire, en faisant $X = x$, la relation $a = P(x)/R(x)$. On obtient d'autre part par dérivation $Q'(X) = R(X) + (X - x)R'(X)$, soit $R(x) = Q'(x)$, d'où finalement
+\[a = \frac{P(x)}{Q'(x)}.\]
+
+\begin{ex}{}{}
+    Soit $P \in \C[X]$ et soit $n > \deg(P)$ ; on pose $\omega := e^{2i\pi/n}$. Cherchons la décomposition en éléments simples
+    \[\frac{P(X)}{X^n - 1} = \sum_{k = 0}^{n - 1} \frac{a_k}{X - \omega^k}.\]
+    D'après ce qui précède, on a
+    \[a_k = \frac{P(\omega^k)}{n(\omega^k)^{n-1}} = \frac{1}{n}\omega^k P(\omega^k).\]
+    Si $P \in \R[X]$, on peut en déduire la décomposition en éléments simples sur $\R[X]$ : si on suppose pour simplifier $n$ impair (de sorte que $-1$ n'est pas racine), on a
+    \begin{align*}
+    \frac{P(X)}{X^n - 1} & = \sum_{k = 0}^{n - 1} \frac{1}{n} \frac{\omega^k P(\omega^k)}{X - \omega^k}\\
+    & = \frac{P(1)}{n(X - 1)} + \sum_{k = 1}^{(n-1)/2} \frac{1}{n}\left(\frac{\omega^k P(\omega^k)}{X - \omega^k} + \frac{\bar{\omega}^k P(\bar{\omega}^k)}{X - \bar{\omega}^k}\right)\\
+    & = \frac{P(1)}{n(X - 1)} + \sum_{k = 1}^{(n-1)/2} \frac{2}{n}\left(\frac{\operatorname{Re}(\omega^k P(\omega^k)) X - \operatorname{Re}(P(\omega^k))}{X^2 - 2\left(\cos \frac{2k\pi}{n}\right) X + 1}\right).
+    \end{align*}
+\end{ex}
+
+\end{document}
