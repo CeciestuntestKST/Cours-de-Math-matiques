@@ -47,16 +47,17 @@ jobs:
           working_directory: ${{ matrix.dossier }}
           work_in_root_file_dir: true
 
-      - name: Ranger les PDF pour l'upload
+      - name: Ranger les PDF pour l'upload (en conservant le nom du dossier)
         run: |
-          mkdir -p out/${{ matrix.dossier }}
-          cp ${{ matrix.dossier }}/*.pdf out/${{ matrix.dossier }}/
+          mkdir -p out
+          cp -r ${{ matrix.dossier }} out/
+          rm out/${{ matrix.dossier }}/*.tex
 
       - name: Sauvegarder les PDF compilés
         uses: actions/upload-artifact@v4
         with:
           name: pdf-${{ matrix.dossier }}
-          path: out/${{ matrix.dossier }}
+          path: out
 
   # Job 3 : télécharge tous les PDF et les committe en une seule fois
   committer:
@@ -72,6 +73,9 @@ jobs:
           pattern: pdf-*
           path: .
           merge-multiple: true
+
+      - name: Lister les PDF reçus (diagnostic)
+        run: find . -name "*.pdf" -not -path "./.git/*"
 
       - name: Commiter et pousser les PDF générés par GitHub
         uses: stefanzweifel/git-auto-commit-action@v5
