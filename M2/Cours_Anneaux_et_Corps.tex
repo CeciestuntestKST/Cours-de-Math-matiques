@@ -159,6 +159,20 @@ On fixe un anneau commutatif $A$ et $n$ un entier strictement positif.
 
 \section{Algèbres}
 
+\begin{df}{Algèbre}{}
+    Soit $A$ un anneau commutatif. Une $A$-algèbre (unitaire associative) est un quadruplet $(E, +, \times, \cdot)$, où $+$ et $\times$ (l'addition et la multiplication) sont des lois internes sur $E$ et $\cdot$ est une loi externe $A \times E \rightarrow E$ telles que
+    \begin{itemize}
+        \item $(E, +, \times)$ est un anneau (unitaire) ;
+        \item on a les relations
+        \[\forall a, b \in A, \; \forall x, y \in E, \quad 1_A \cdot x = x, \qquad (ab) \cdot x = a \cdot (b \cdot x),\]
+        \[a \cdot (x + y) = a \cdot x + a \cdot y, \qquad (a + b) \cdot x = a \cdot x + b \cdot x,\]
+        \[a \cdot (x \times y) = (a \cdot x) \times y = x \times (a \cdot y).\]
+    \end{itemize}
+    La $A$-algèbre $(E, +, \times, \cdot)$ est commutative si la multiplication de $E$ est commutative.
+\end{df}
+
+
+
 \section{Morphismes d'anneaux et d'algèbres}
 
 \section{Sous-anneaux et idéaux}
