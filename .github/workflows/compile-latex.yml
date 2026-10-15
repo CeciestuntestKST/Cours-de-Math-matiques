@@ -82,4 +82,5 @@ jobs:
         with:
           commit_message: "Auto-build PDF [skip ci]"
           file_pattern: "**/*.pdf"
-          add_options: '-f'  # le '-f' permet de commiter les PDF malgré le .gitignore
+          add_options: '-f'           # le '-f' permet de commiter les PDF malgré le .gitignore
+          skip_dirty_check: true      # indispensable : les PDF sont ignorés, donc "git status" ne les voit pas
