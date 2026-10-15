@@ -112,6 +112,32 @@ On fixe un anneau commutatif $A$.
     \end{enumerate}
 \end{df}
 
+\begin{prop}{}{}
+    Soit $A$ un anneau intègre.
+    \begin{enumerate}
+        \item Si $P, Q \in A[X]$, on a $\deg(P + Q) \le \max\{\deg(P), \deg(Q)\}$.
+        \item Si $P, Q \in A[X]$ sont non nuls, le produit $PQ$ est non nul et on a $\deg(PQ) = \deg(P) + \deg(Q)$. En particulier, l'anneau $A[X]$ est intègre.
+        \item Les unités de l'anneau $A[X]$ sont les unités de l'anneau $A$ (vues comme polynômes de degré $0$).
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Si $P = 0$ ou $Q = 0$, l'inégalité est évidente. Sinon, on écrit $P = a_d X^d + \dots + a_1 X + a_0$ et $Q = b_e X^e + \dots + b_1 X + b_0$ avec $a_d \neq 0_A$ et $b_e \neq 0_A$. Quitte à échanger $P$ et $Q$, on suppose que $e \le d$. Alors :
+        \[P + Q = a_d X^d + \dots + a_{e+1} X^{e+1} + (a_e + b_e) X^e + \dots + (a_0 + b_0)\]
+        si $e < d$ et :
+        \[P + Q = (a_d + b_d) X^d + \dots + (a_0 + b_0)\]
+        si $e = d$. Cela montre que $\deg(P + Q) \le d$.
+        \item On écrit $P = a_d X^d + \dots + a_1 X + a_0$ et $Q = b_e X^e + \dots + b_1 X + b_0$ avec $a_d \neq 0_A$ et $b_e \neq 0_A$. Alors :
+        \[PQ = \sum_{i=0}^{\infty} \left( \sum_{j=0}^{i} a_j b_{i-j} \right) X^i,\]
+        avec $a_k = 0$ pour $k > d$ et $b_k = 0$ pour $k > e$. Si $i > d + e$, le coefficient de degré $i$ est $\sum_{j=0}^{i} a_j b_{i-j}$, qui est nul puisque $a_j = 0$ ou $b_{i-j} = 0$ pour chaque $0 \le j \le i$. Le coefficient de degré $d + e$ est $a_d b_e$, qui est non nul car $A$ est intègre. Donc $PQ$ est de degré $d + e$.
+        \item Si $u \in A$ est une unité, son inverse $u^{-1}$ dans $A$ est aussi son inverse dans $A[X]$. Inversement, si $P \in A[X]^{\times}$, on a $PP^{-1} = 1_{A[X]} = 1_A$ et, en prenant les degrés et en appliquant 2., on trouve $\deg(P) + \deg(P^{-1}) = \deg(1_A) = 0$, donc $\deg(P) = \deg(P^{-1}) = 0$. Les polynômes $P$ et $P^{-1}$ sont ainsi constants, donc éléments de $A$, et $P^{-1}$ est l'inverse de $P$ dans $A$, de sorte que $P$ est une unité de $A$.
+    \end{enumerate}
+\end{proof}
+
+\begin{re}{}{}
+    Attention, le point 3. ci-dessus n'est plus vrai si $A$ n'est pas intègre. Le polynôme $P(X) = \bar{2}X + \bar{1} \in (\Z/4\Z)[X]$ est inversible dans l'anneau $(\Z/4\Z)[X]$, d'inverse lui-même (puisque $P(X)^2 = \bar{4}X^2 + \bar{4}X + \bar{1} = \bar{1}$), mais il n'est pas constant.
+\end{re}
 
 \subsection{Polynômes en plusieurs indéterminées}
 
