@@ -377,7 +377,19 @@ En particulier, on obtient que $(\Z/p\Z)^{\times} \cong \Z/(p-1)\Z$ pour tout no
     dans $\Z/4\Z$, de sorte que $a = 0$. Mais alors $5^b = 1$ dans $\Z/2^r\Z$ et donc $b = 0$.
 \end{proof}
 
+L'arithmétique du \gr $(\Z/n\Z)^{\times}$ est très importante en cryptographie, notamment via le cryptosystème RSA.
+
 \section{Divisibilité et arithmétique dans un anneau intègre}
+
+\begin{df}{Divisibilité, éléments associés, premiers entre eux,irréductible}{}
+    Soit $A$ un anneau intègre et soient $a$ et $b$ des éléments de $A$.
+    \begin{enumerate}
+        \item On dit que $a$ divise $b$, ce que l'on note $a \mid b$, s'il existe $c \in A$ tel que $b = ac$. De manière équivalente, $(b) \subseteq (a)$.
+        \item On dit que $a$ et $b$ sont associés si $a \mid b$ et $b \mid a$. De manière équivalente, il existe une unité $u \in A^{\times}$ telle que $b = ua$.
+        \item L'élément $a$ est dit irréductible s'il est non nul, si ce n'est pas une unité, et si, pour tous $x, y \in A$ tels que $xy = a$, l'un des éléments $x$ ou $y$ est une unité. En particulier, les diviseurs de $a$ dans $A$ sont les unités et les éléments de $A$ qui sont associés à $a$.
+        \item Les éléments $a$ et $b$ sont premiers entre eux si tout diviseur commun de $a$ et de $b$ est une unité.
+    \end{enumerate}
+\end{df}
 
 \section{Idéaux premiers et maximaux}
 
