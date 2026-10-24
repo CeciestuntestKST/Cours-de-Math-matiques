@@ -276,6 +276,16 @@ On suppose désormais, et ce jusqu'à la fin du cours, que tous les anneaux sont
     \end{enumerate}
 \end{ex}
 
+Nous terminons cette section en discutant des quotients d'anneaux par des idéaux. Étant donnés un anneau $A$ et un idéal $I$ de $A$, on peut munir le quotient de \grs abéliens $A/I$ d'une structure d'anneau par :
+\[\forall (a, b) \in A^2, \quad (a + I) \cdot (b + I) = (ab) + I.\]
+L'anneau $A/I$ est alors appelé le \textbf{quotient} de $A$ par $I$. Il possède la propriété universelle suivante :
+
+\begin{tm}{Propriété universelle du quotient}{}
+    Soit $f : A \to B$ un morphisme d'anneaux. Soit $I$ un idéal de $A$ et notons $p : A \to A/I$ la projection naturelle. Alors il existe un unique morphisme d'anneaux $\hat{f} : A/I \to B$ tel que $f = \hat{f} \circ p$ si et seulement si $I \subseteq \ker(f)$. Dans ce cas :
+    \[\operatorname{im}(\hat{f}) = \operatorname{im}(f), \qquad \ker(\hat{f}) = \ker(f)/I.\]
+    En particulier, si $f : A \to B$ est un morphisme d'anneaux, alors $f$ induit un isomorphisme entre $A/\ker(f)$ et $\operatorname{im}(f)$.
+\end{tm}
+
 
 \section{Divisibilité et arithmétique dans un anneau intègre}
 
