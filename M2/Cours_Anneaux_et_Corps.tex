@@ -347,6 +347,35 @@ En particulier, on obtient que $(\Z/p\Z)^{\times} \cong \Z/(p-1)\Z$ pour tout no
     \[5^{2^s} = (1 + 2^{s+1} + k2^{s+2})^2 \equiv 1 + 2^{s+2} \mod 2^{s+3}.\]
 \end{proof}
 
+\begin{lm}{}{}
+    Soit $G$ un \gr et soient $g$ et $h$ des éléments de $G$ d'ordres respectifs $r$ et $s$. Supposons que $gh = hg$ et que $\pgcd(r, s) = 1$. Alors $gh$ est d'ordre $rs$.
+\end{lm}
+
+\begin{proof}
+    Bien sûr, on a $(gh)^{rs} = (g^r)^s (h^s)^r = 1$. Réciproquement, soit $n$ un entier tel que $(gh)^n = 1$ et montrons que $n$ est divisible par $rs$. Pour cela, observons que l'ordre de $g^n = h^{-n}$ divise $\pgcd(r, s) = 1$. Ainsi, $g^n = h^{-n} = 1$, et $n$ doit être divisible à la fois par $r$ et par $s$. En utilisant à nouveau le fait que $r$ et $s$ sont premiers entre eux, l'entier $n$ doit être divisible par $rs$.
+\end{proof}
+
+\begin{proof}[Démonstration du théorème]
+    (i) Le cas $r = 1$ est évident. Supposons $r \ge 2$. D'une part, d'après le lemme (i), on a :
+    \[(1 + p)^{p^{r-2}} \not\equiv 1 \mod p^r, \qquad (1 + p)^{p^{r-1}} \equiv 1 \mod p^r.\]
+    Ainsi, $1 + p$ est d'ordre $p^{r-1}$ dans $(\Z/p^r\Z)^{\times}$.
+
+    D'autre part, considérons la projection $\pi : (\Z/p^r\Z)^{\times} \to (\Z/p\Z)^{\times}$ et fixons un générateur $x$ de $(\Z/p\Z)^{\times}$. Soit $\bar{x}$ un relèvement de $x$ dans $(\Z/p^r\Z)^{\times}$. Comme $x = \pi(\bar{x})$ est d'ordre $p - 1$, l'ordre de $\bar{x}$ est nécessairement divisible par $p - 1$, de sorte que l'on peut trouver une puissance $y$ de $\bar{x}$ qui soit d'ordre exactement $p - 1$.
+
+    D'après le lemme, l'ordre de $(1 + p)y$ est $(p - 1)p^{r-1}$. Cela termine la démonstration puisque $|(\Z/p^r\Z)^{\times}| = (p - 1)p^{r-1}$.
+
+    (ii) Le résultat est évident pour $r \le 2$. Supposons $r \ge 3$. D'après le lemme (ii), on a :
+    \[5^{2^{r-3}} \not\equiv 1 \mod 2^r, \qquad 5^{2^{r-2}} \equiv 1 \mod 2^r.\]
+    Ainsi, 5 est d'ordre $2^{r-2}$ dans $(\Z/2^r\Z)^{\times}$.
+
+    Considérons maintenant la projection $\pi : (\Z/2^r\Z)^{\times} \to (\Z/4\Z)^{\times}$ et le morphisme de \grs :
+    \[\fundfto{f}{\Z/2\Z \times \Z/2^{r-2}\Z}{(\Z/2^r\Z)^{\times}}{(a, b)}{(-1)^a 5^b}.\]
+    Montrons que $f$ est un isomorphisme. Comme
+    \[|\Z/2\Z \times \Z/2^{r-2}\Z| = |(\Z/2^r\Z)^{\times}|,\]
+    il suffit de vérifier que $f$ est injectif. Pour cela, fixons $(a, b) \in \ker(f)$. Alors $(-1)^a 5^b = 1$. En particulier :
+    \[1 = \pi((-1)^a 5^b) = (-1)^a\]
+    dans $\Z/4\Z$, de sorte que $a = 0$. Mais alors $5^b = 1$ dans $\Z/2^r\Z$ et donc $b = 0$.
+\end{proof}
 
 \section{Divisibilité et arithmétique dans un anneau intègre}
 
