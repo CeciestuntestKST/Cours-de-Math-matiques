@@ -299,7 +299,38 @@ L'anneau $A/I$ est alors appelé le \textbf{quotient} de $A$ par $I$. Il possèd
     appartiennent tous à l'image de $f$. Sans perte de généralité, montrons que $(1, 0, 0, \ldots, 0)$ est dans l'image de $f$. Pour cela, pour tout $2 \le i \le n$, écrivons $a_i + b_i = 1$ pour certains $a_i \in I_1$ et $b_i \in I_i$. On peut alors facilement vérifier que l'image de $\prod_{i=2}^{n}(1 - a_i) = \prod_{i=2}^{n} b_i$ par $f$ est précisément $(1, 0, 0, \ldots, 0)$.
 \end{proof}
 
+Par l'isomorphisme (1.2), la description du \gr $(\Z/n\Z)^{\times}$ se ramène au cas où $n$ est une puissance d'un nombre premier. Le théorème suivant achève donc la description du \gr des unités de $\Z/n\Z$ :
 
+\begin{tm}{}{}
+    Soit $r$ un entier strictement positif. Le \gr $(\Z/2^r\Z)^{\times}$ est trivial pour $r = 1$ et, pour $r \ge 2$, est isomorphe à :
+    \[\Z/2\Z \times \Z/2^{r-2}\Z.\]
+    Pour tout nombre premier impair $p$, le \gr $(\Z/p^r\Z)^{\times}$ est isomorphe à :
+    \[\Z/p^{r-1}(p-1)\Z.\]
+\end{tm}
+
+Le reste de cette section est consacré à la démonstration de ce résultat. Nous commençons par le cas $r = 1$ :
+
+\begin{prop}{}{}
+    Soit $K$ un corps. Tout sous-groupe fini $H$ de $K^{\times}$ est cyclique.
+\end{prop}
+
+
+\begin{proof}
+    Soit $n$ l'ordre de $H$. Pour $d \mid n$, soit $H_d$ l'ensemble des éléments de $H$ d'ordre $d$. Supposons que $H_d \neq \emptyset$ et prenons un élément $x \in H_d$. Le \gr $\langle x \rangle$ est alors cyclique d'ordre $d$. Comme $K$ est un corps, on en déduit que $\langle x \rangle = \{y \in K : y^d = 1\}$. En particulier, $H_d$ est l'ensemble des éléments d'ordre $d$ dans le \gr cyclique $\langle x \rangle$ et donc $|H_d| = \varphi(d)$. On obtient ainsi :
+    \[n = |H| = \sum_{d \mid n} |H_d| \le \sum_{d \mid n} \varphi(d).\]
+    En observant que $\varphi(d)$ est le nombre d'éléments de $\Z/n\Z$ d'ordre $d$ pour tout $d \mid n$, on obtient $\sum_{d \mid n}\varphi(d) = n$, et l'inégalité précédente est donc en fait une égalité. En particulier, $|H_n| = \varphi(n) \neq 0$, de sorte que $H$ est cyclique.
+\end{proof}
+
+En particulier, on obtient que $(\Z/p\Z)^{\times} \cong \Z/(p-1)\Z$ pour tout nombre premier $p$. Nous établissons maintenant deux lemmes préliminaires qui nous permettront de démontrer le théorème précédent.
+
+\begin{lm}{}{}
+    \begin{enumerate}
+        \item[(i)] Soit $p$ un nombre premier impair. Pour tout $s \ge 0$ :
+        \[(1 + p)^{p^s} \equiv 1 + p^{s+1} \mod p^{s+2}.\]
+        \item[(ii)] Pour tout $s \ge 0$ :
+        \[5^{2^s} \equiv 1 + 2^{s+2} \mod 2^{s+3}.\]
+    \end{enumerate}
+\end{lm}
 \section{Divisibilité et arithmétique dans un anneau intègre}
 
 \section{Idéaux premiers et maximaux}
