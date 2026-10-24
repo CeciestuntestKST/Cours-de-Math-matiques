@@ -301,7 +301,7 @@ L'anneau $A/I$ est alors appelé le \textbf{quotient} de $A$ par $I$. Il possèd
 
 Par l'isomorphisme (1.2), la description du \gr $(\Z/n\Z)^{\times}$ se ramène au cas où $n$ est une puissance d'un nombre premier. Le théorème suivant achève donc la description du \gr des unités de $\Z/n\Z$ :
 
-\begin{tm}{}{}
+\begin{tm}{Isomorphismes de $\Z/p\Z$}{}
     Soit $r$ un entier strictement positif. Le \gr $(\Z/2^r\Z)^{\times}$ est trivial pour $r = 1$ et, pour $r \ge 2$, est isomorphe à :
     \[\Z/2\Z \times \Z/2^{r-2}\Z.\]
     Pour tout nombre premier impair $p$, le \gr $(\Z/p^r\Z)^{\times}$ est isomorphe à :
@@ -355,7 +355,7 @@ En particulier, on obtient que $(\Z/p\Z)^{\times} \cong \Z/(p-1)\Z$ pour tout no
     Bien sûr, on a $(gh)^{rs} = (g^r)^s (h^s)^r = 1$. Réciproquement, soit $n$ un entier tel que $(gh)^n = 1$ et montrons que $n$ est divisible par $rs$. Pour cela, observons que l'ordre de $g^n = h^{-n}$ divise $\pgcd(r, s) = 1$. Ainsi, $g^n = h^{-n} = 1$, et $n$ doit être divisible à la fois par $r$ et par $s$. En utilisant à nouveau le fait que $r$ et $s$ sont premiers entre eux, l'entier $n$ doit être divisible par $rs$.
 \end{proof}
 
-\begin{proof}[Démonstration du théorème]
+\begin{proof}{Isomorphismes de $\Z/p\Z$}{}
     (i) Le cas $r = 1$ est évident. Supposons $r \ge 2$. D'une part, d'après le lemme (i), on a :
     \[(1 + p)^{p^{r-2}} \not\equiv 1 \mod p^r, \qquad (1 + p)^{p^{r-1}} \equiv 1 \mod p^r.\]
     Ainsi, $1 + p$ est d'ordre $p^{r-1}$ dans $(\Z/p^r\Z)^{\times}$.
