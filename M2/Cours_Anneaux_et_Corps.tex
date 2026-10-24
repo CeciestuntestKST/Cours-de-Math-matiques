@@ -331,6 +331,23 @@ En particulier, on obtient que $(\Z/p\Z)^{\times} \cong \Z/(p-1)\Z$ pour tout no
         \[5^{2^s} \equiv 1 + 2^{s+2} \mod 2^{s+3}.\]
     \end{enumerate}
 \end{lm}
+
+\begin{proof}
+    (i) On procède par récurrence sur $s$. Pour $s = 0$, la congruence est évidente. Considérons maintenant un entier $s \ge 1$ et supposons que :
+    \[(1 + p)^{p^{s-1}} \equiv 1 + p^s \mod p^{s+1}.\]
+    Prenons $k \in \Z$ tel que :
+    \[(1 + p)^{p^{s-1}} = 1 + p^s + kp^{s+1}.\]
+    Alors, par la formule du binôme de Newton :
+    \[(1 + p)^{p^s} = (1 + p^s + kp^{s+1})^p \equiv (1 + p^s)^p \mod p^{s+2} \equiv 1 + p^{s+1} \mod p^{s+2}.\]
+    (ii) On procède à nouveau par récurrence sur $s$. Pour $s = 0$, la congruence est évidente. Considérons maintenant un entier $s \ge 1$ et supposons que :
+    \[5^{2^{s-1}} \equiv 1 + 2^{s+1} \mod 2^{s+2}.\]
+    Prenons $k \in \Z$ tel que :
+    \[5^{2^{s-1}} = 1 + 2^{s+1} + k 2^{s+2}.\]
+    Alors, par la formule du binôme de Newton :
+    \[5^{2^s} = (1 + 2^{s+1} + k2^{s+2})^2 \equiv 1 + 2^{s+2} \mod 2^{s+3}.\]
+\end{proof}
+
+
 \section{Divisibilité et arithmétique dans un anneau intègre}
 
 \section{Idéaux premiers et maximaux}
