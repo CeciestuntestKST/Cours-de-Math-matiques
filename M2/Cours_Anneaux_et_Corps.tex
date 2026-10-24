@@ -251,6 +251,19 @@ On suppose désormais, et ce jusqu'à la fin du cours, que tous les anneaux sont
     Soit $A$ un anneau (commutatif). Un idéal de $A$ est un sous-groupe $I$ de $(A, +)$ tel que :
     \[\forall a \in A, \; \forall i \in I, \quad ai \in I.\]
 \end{df}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item Les idéaux de $\Z$ sont les $n\Z$ pour $n \in \N$. En effet, soit $I$ un idéal non nul de $\Z$. On peut alors trouver $a \in I \setminus \{0\}$. Quitte à remplacer $a$ par $-a$, on peut supposer que $a > 0$. Ainsi $I \cap \N^* \neq \emptyset$. Prenons $b \in I \cap \N^*$ minimal. On a bien sûr $b\Z \subset I$. Réciproquement, si $c \in I$, on peut écrire la division euclidienne de $c$ par $b$ :
+        \[c = bq + r, \quad \text{avec } 0 \le r \le b - 1.\]
+        On a alors $r = c - bq \in I$. Par minimalité de $b$, on déduit que $r = 0$ et donc que $c \in b\Z$. On obtient ainsi l'égalité $I = b\Z$.
+        \item Le noyau d'un morphisme d'anneaux $f : A \rightarrow B$ est un idéal de $A$.
+        \item Une intersection quelconque d'idéaux est un idéal.
+        \item Soient $I$ et $J$ deux idéaux d'un anneau $A$. Soit $I + J$ la partie de $A$ constituée des éléments de la forme $x + y$ avec $x \in I$ et $y \in J$ et soit $IJ$ la partie de $A$ constituée des éléments de la forme $\sum_{k=1}^n x_k y_k$ pour un certain $n \in \N$, certains $x_1, \dots, x_n \in I$ et certains $y_1, \dots, y_n \in J$. Les ensembles $I + J$ et $IJ$ sont des idéaux de $A$. On les appelle respectivement la \textbf{somme} et le \textbf{produit} de $I$ et $J$.
+    \end{enumerate}
+\end{ex}
+
+
 \section{Divisibilité et arithmétique dans un anneau intègre}
 
 \section{Idéaux premiers et maximaux}
