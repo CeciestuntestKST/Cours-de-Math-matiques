@@ -437,6 +437,32 @@ Le lemme suivant justifie la terminologie employée.
     Pour la deuxième formulation, si $x$ est divisible par $a$ et par $b$, on écrit $x = bc$ (puisque $b$ divise $x$). Comme $a$ aussi divise $x$, il divise $c$ par la première formulation, donc $ab$ divise $x$.
 \end{proof}
 
+\begin{cor}{}{}
+    Soient $a$ et $b$ des éléments d'un anneau principal $A$. On a
+    \[(a \wedge b)(a \vee b) = ab.\]
+\end{cor}
+
+\begin{proof}
+    Le corollaire est évident si $a = b = 0$. Sinon, $a \wedge b \neq 0$ et il résulte de la proposition précédente que $\frac{a}{a \wedge b}$ et $\frac{b}{a \wedge b}$ sont premiers entre eux. Le lemme de Gauss entraîne donc $\frac{a}{a \wedge b} \vee \frac{b}{a \wedge b} = \left(\frac{a}{a \wedge b}\right)\left(\frac{b}{a \wedge b}\right)$. On applique alors la proposition précédente, qui donne $\frac{a}{a \wedge b} \vee \frac{b}{a \wedge b} = \frac{a \vee b}{a \wedge b}$, d'où $\left(\frac{a}{a \wedge b}\right)\left(\frac{b}{a \wedge b}\right) = \frac{a \vee b}{a \wedge b}$ et le résultat cherché en multipliant les deux membres de cette égalité par $(a \wedge b)^2$.
+\end{proof}
+
+\begin{prop}{}{}
+    Soit $A$ un anneau principal et soient $a, b_1, \dots, b_r$ des éléments de $A$.
+    \begin{enumerate}
+        \item Si $a$ est premier avec chacun des $b_i$, alors $a$ est premier avec $b_1 \cdots b_r$.
+        \item Si les $b_i$ sont premiers entre eux deux à deux et que $a$ est divisible par chacun des $b_i$, il est divisible par $b_1 \cdots b_r$.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    \begin{enumerate}
+        \item On écrit le théorème de Bézout pour chacune des paires $(a, b_i)$ : on a $x_i a + y_i b_i = 1$. En prenant le produit de toutes ces identités, on obtient
+        \[(x_1 a + y_1 b_1) \cdots (x_r a + y_r b_r) = 1.\]
+        Le membre de gauche s'écrit $xa + y_1 \cdots y_r b_1 \cdots b_r = 1$ pour un certain $x \in A$, ce qui montre que $a$ est premier avec $b_1 \cdots b_r$.
+        \item On procède par récurrence sur $r$, le cas $r = 1$ étant trivial. Supposons $r \ge 2$. Le point 1. nous dit que $b_1$ est premier avec $b_2 \cdots b_r$ et l'hypothèse de récurrence que $a$ est divisible par $b_2 \cdots b_r$ (et par $b_1$). La deuxième version du lemme de Gauss entraîne que $a$ est divisible par $b_1 \cdots b_r$.
+    \end{enumerate}
+\end{proof}
+
 \section{Idéaux premiers et maximaux}
 
 \section{Anneaux euclidiens}
