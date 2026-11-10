@@ -480,8 +480,25 @@ Le lemme suivant justifie la terminologie employée.
 \end{cor}
 
 \begin{re}{}{}
-    
+    $\Z\left[\frac{1+i\sqrt{19}}{2}\right]$ principal non euclidien.
 \end{re}
+
+\begin{tm}{Algorithme d'Euclide}{}
+    Soit $A$ un anneau euclidien. Soient $a$ et $b$ non nuls dans $A$. Pour calculer un pgcd de $a$ et $b$, on fait la division euclidienne $a = bq + r$ :
+    \begin{itemize}
+        \item si $r = 0$ (c'est-à-dire si $b$ divise $a$), on arrête : $a \wedge b = b$ ;
+        \item si $r \neq 0$, on remplace le couple $(a, b)$ par le couple $(b, r)$ puis on recommence.
+    \end{itemize}
+    Comme la suite des entiers naturels $f(b)$ est strictement décroissante, l'algorithme s'arrête en temps fini. À chaque étape, le pgcd de $a$ et $b$ ne change pas (puisqu'on remplace $(a, b)$ par $(b, a - bq)$) : on aboutit donc au couple $(a \wedge b, 0)$.
+
+    L'algorithme d'Euclide permet également de trouver des éléments $x$ et $y$ de $A$ tels que $xa + yb = a \wedge b$ : c'est l'algorithme d'Euclide étendu. Soient $A$ un anneau euclidien et $a$ et $b$ deux éléments non nuls de $A$. On pose $u_0 = 1$, $v_0 = 0$, $u_1 = 0$, $v_1 = 1$, $r_0 = a$, $r_1 = b$, et on définit par récurrence les suites $(r_i)_{i \ge 0}$, $(q_i)_{i \ge 2}$, $(u_i)_{i \ge 0}$ et $(v_i)_{i \ge 0}$ via
+    \begin{itemize}
+        \item[(i)] division euclidienne : $r_i = r_{i+1}q_{i+2} + r_{i+2}$ ;
+        \item[(ii)] $u_i = u_{i+1}q_{i+2} + u_{i+2}$ ;
+        \item[(iii)] $v_i = v_{i+1}q_{i+2} + v_{i+2}$.
+    \end{itemize}
+    On s'arrête au premier entier $n$ tel que $r_{n+1} = 0$. Une récurrence simple montre que $au_k + bv_k = r_k$ pour tout $k \le n$, et donc une relation de Bézout est donnée par $au_n + bv_n = r_n$.
+\end{tm}
 
 \section{Anneaux factoriels}
 
