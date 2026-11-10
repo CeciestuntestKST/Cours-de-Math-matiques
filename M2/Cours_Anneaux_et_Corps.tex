@@ -727,6 +727,34 @@ avec $\lambda \in \C^{\times}$, $n = \deg(P)$, et $z_1, \ldots, z_n \in \C$. En 
     \[\forall P, Q \in A[X], \quad (P \circ Q)' = (P' \circ Q) Q'.\]
 \end{df}
 
+\begin{prop}{Formule de Taylor}{}
+    Soit $A$ un anneau commutatif, soit $P \in A[X]$ un polynôme de degré inférieur ou égal à $n$, et soit $x \in A$.
+    \begin{enumerate}
+        \item Si $n! \cdot 1_A$ est inversible dans $A$, on a :
+        \[P(X) = P(x) + \frac{P'(x)}{1!}(X - x) + \dots + \frac{P^{(n)}(x)}{n!}(X - x)^n,\]
+        où $\frac{P^{(n)}(x)}{n!}$ signifie $P^{(n)}(x)(n! \cdot 1_A)^{-1}$.
+        \item Soit $m$ un entier positif. On a
+        \[x \text{ est racine de } P \text{ de multiplicité} > m \implies P(x) = \cdots = P^{(m)}(x) = 0.\]
+        La réciproque est vraie si $m! \cdot 1_A$ est inversible dans $A$.
+    \end{enumerate}
+    En particulier, dans tous les cas, $x$ est racine multiple (c'est-à-dire de multiplicité $> 1$) de $P$ si et seulement si $P(x) = P'(x) = 0$ (il suffit d'appliquer 2. avec $m = 1$).
+\end{prop}
+
+\begin{proof}
+    Il suffit de montrer la proposition pour $x = 0_A$ puis de l'appliquer au polynôme $Q(X) := P(X + x)$, en notant que $P^{(r)}(x) = Q^{(r)}(0)$ pour tout entier positif $r$. Le point 1. résulte alors du fait que, si $Q = a_n X^n + \cdots + a_0$, on a $Q^{(r)}(0) = r!a_r$. Quant au point 2., si $0_A$ est racine de $Q$ de multiplicité $> m$, on a $a_m = \cdots = a_0 = 0$ ; inversement, si $Q(0_A) = \cdots = Q^{(m)}(0_A) = 0$, on a $m!a_m = \cdots = 0!a_0 = 0$, d'où $a_m = \cdots = a_0 = 0$ si $m! \cdot 1_A$ est inversible dans $A$ (il en est alors de même de $r! \cdot 1_A$ pour tout $r \le m$).
+\end{proof}
+
+\begin{ex}{}{}
+    \begin{itemize}
+        \item Soit $p$ un nombre premier, de sorte que l'anneau $\Z/p\Z$ est intègre (c'est même un corps). Considérons le polynôme $P(X) = X^p - X \in (\Z/p\Z)[X]$. Comme $(\Z/p\Z)^{\times}$ est un \gr (multiplicatif) d'ordre $p - 1$, on a (théorème de Lagrange) $x^{p-1} = 1$ pour tout $x \in (\Z/p\Z)^{\times}$, donc $x^p = x$ pour tout $x \in \Z/p\Z$. Le polynôme $P$ a donc au moins $p$ racines distinctes. Comme il est de degré $p$, ce sont toutes ses racines, elles sont simples et
+    \[X^p - X = \prod_{x \in \Z/p\Z}(X - x) \in (\Z/p\Z)[X].\]
+    On vérifie dans ce cas la formule de Taylor : on a $P'(X) = -1$, donc $P'$ n'a aucune racine et toutes les racines de $P$ sont simples.
+        \item Soit $P \in \R[X]$ non nul. Si $z \in \C$ est une racine de multiplicité $m$, alors $P(z) = \cdots = P^{(m-1)}(z) = 0$ et $P^{(m)}(z) \neq 0$. On déduit que $P(\bar{z}) = \cdots = P^{(m-1)}(\bar{z}) = 0$ et $P^{(m)}(\bar{z}) \neq 0$, et donc que $\bar{z}$ est aussi racine de $P$ de multiplicité $m$. En utilisant le théorème de d'Alembert-Gauss, on peut donc écrire :
+    \[P = \lambda \prod_{i = 1}^{r}(X - x_i)^{\alpha_i} \cdot \prod_{j = 1}^{s}\big((X - z_j)(X - \bar{z}_j)\big)^{\beta_j}\]
+    où $\lambda \in \R$, les $x_i$ sont des nombres réels deux à deux distincts et les $z_j$ sont des nombres complexes non réels, deux à deux distincts et non conjugués. Du coup, $P = \lambda \prod_{i=1}^{r}(X - x_i)^{\alpha_i} \cdot \prod_{j=1}^{s}Q_j^{\beta_j}$ avec $Q_j := X^2 - 2\mathrm{Re}(z_j)X + |z_j|^2$ de degré 2 sans racines réelles. Cela prouve en particulier que les polynômes irréductibles dans $\R[X]$ sont ceux de degré 1 et ceux de degré 2 sans racine réelle, et que tout polynôme non constant de $\R[X]$ est produit de polynômes irréductibles.
+    \end{itemize}
+\end{ex}
+
 \subsection{Factoralité des anneaux de polynômes}
 
 \subsection{Polynômes symétriques}
