@@ -687,6 +687,20 @@ est un morphisme d'anneaux appelé évaluation en $x$.
     L'implication (ii) $\Rightarrow$ (i) est évidente.
 \end{proof}
 
+\begin{df}{Multiplicité d'une racine}{}
+    Soit $A$ un anneau commutatif, soit $P$ un élément non nul de $A[X]$ et soit $x$ un élément de $A$. On appelle multiplicité de $x$ comme racine de $P$ le plus grand entier $m$ tel que $P$ est divisible par $(X - x)^m$.
+
+    Cette définition a un sens même si $A$ n'est pas intègre : le polynôme $(X - x)^m$ étant unitaire, on a $m \le \deg(P)$ s'il divise $P$ ; la multiplicité de toute racine de $P$ est donc $\le \deg(P)$. On peut décider que la multiplicité de n'importe quel élément de $A$ comme racine du polynôme nul est infinie.
+\end{df}
+
+\begin{prop}{}{}
+    Soit $A$ un anneau intègre. Soit $P$ un élément non nul de $A[X]$ et soient $x_1, \ldots, x_r \in A$ des racines distinctes de $P$, de multiplicités respectives $m_1, \ldots, m_r$. Alors $P$ est divisible par le polynôme $(X - x_1)^{m_1} \cdots (X - x_r)^{m_r}$. En particulier, $\deg(P) \ge m_1 + \cdots + m_r$.
+\end{prop}
+
+\begin{proof}
+    Plaçons-nous dans l'anneau principal $K_A[X]$. Soit $i \ne j$ ; comme $X - x_i$ et $X - x_j$ sont premiers entre eux (une relation de Bézout est $\frac{1}{x_j - x_i}\big((X - x_i) - (X - x_j)\big) = 1$), il en est de même de $(X - x_i)^{m_i}$ et $(X - x_j)^{m_j}$, par deux applications de la proposition sur les éléments premiers entre eux. Comme $P$ est divisible par chaque $(X - x_i)^{m_i}$, il est divisible par leur produit, dans l'anneau $K_A[X]$. Mais le quotient de $P$ par $\prod_i (X - x_i)^{m_i}$ est en fait dans $A[X]$, puisque $\prod_i (X - x_i)^{m_i}$ est un polynôme unitaire (division euclidienne des polynômes).
+\end{proof}
+
 \subsection{Factoralité des anneaux de polynômes}
 
 \subsection{Polynômes symétriques}
