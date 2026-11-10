@@ -637,6 +637,18 @@ L'intérêt pour les anneaux euclidiens vient du résultat suivant :
     Enfin, supposons l'anneau $A$ factoriel et que $a$ divise $bc$, avec $a$ premier avec $b$. Si $c = 0$, alors $a$ divise $c$. Supposons donc $c \neq 0$. Si $b = 0$, alors $a$ divise $a$ et $b$, donc $a$ est une unité : il divise bien $c$. On peut donc supposer aussi $b \neq 0$, soit $bc \neq 0$. Comme $a$ divise $bc$, on a aussi $a \neq 0$. On a alors $v_p(a) \le v_p(b) + v_p(c)$ pour tout $p \in \Par$. Comme $a$ est premier avec $b$, on a, pour tout $p$, soit $v_p(a) = 0$, soit $v_p(b) = 0$. Dans les deux cas, on obtient $v_p(a) \le v_p(c)$, c'est-à-dire $a \mid c$. D'où (iii).
 \end{proof}
 
+\begin{tm}{}{}
+    Un anneau principal est un anneau factoriel.
+\end{tm}
+
+\begin{proof}
+    Soit $A$ un anneau principal, et prenons un élément non nul $a \in A$. Supposons que $a$ ne peut pas s'écrire sous la forme (1.3). Alors $a$ n'est ni une unité ni un élément irréductible. On peut donc écrire $a = a_1 b_1$, avec $a_1$ et $b_1$ dans $A \setminus A^{\times}$. Bien sûr, au moins l'un des éléments $a_1$ et $b_1$ ne peut pas s'écrire sous la forme (1.3). Ainsi, en répétant cet argument, on peut construire une suite infinie $a_0 = a, a_1, a_2, \ldots$ telle que, pour tout $i$, on ait $a_{i+1} \mid a_i$, mais $a_i$ et $a_{i+1}$ ne soient pas associés. Soit $I$ l'idéal engendré par tous les $a_i$. Comme $A$ est un anneau principal, on peut trouver $c \in A$ tel que $I = (c)$. Mais $I = \bigcup_i (a_i)$. Ainsi, $c \in (a_n)$ pour un certain $n \ge 0$, de sorte que $a_n \mid c \mid a_{n+1}$ : cela contredit le fait que $a_n$ et $a_{n+1}$ ne sont pas associés ! On en déduit que $a$ peut s'écrire sous la forme (1.3).
+
+    Considérons maintenant deux unités $u, v \in A^{\times}$, des éléments irréductibles deux à deux non associés $p_1, \ldots, p_r$, et des entiers positifs ou nuls $\alpha_1, \ldots, \alpha_r, \beta_1, \ldots, \beta_r$ tels que :
+    \[a = u \, p_1^{\alpha_1} \cdots p_r^{\alpha_r} = v \, p_1^{\beta_1} \cdots p_r^{\beta_r}.\]
+    Supposons par l'absurde que $\alpha_1 > \beta_1$. Alors $p_1$ devrait diviser $v \, p_2^{\beta_2} \cdots p_r^{\beta_r}$. Mais comme $A$ est un anneau principal, l'idéal $(p_1)$ est premier, et donc $p_1$ devrait diviser $v$ ou l'un des $p_i$ avec $i \ne 1$ : contradiction ! On en déduit que $\alpha_1 \le \beta_1$, et par symétrie que $\alpha_1 = \beta_1$. Le même argument permet de montrer que $\alpha_i = \beta_i$ pour tout $i$.
+\end{proof}
+
 \section{Retour aux anneaux de polynômes}
 
 \subsection{Racines d'un polynôme à une variable}
