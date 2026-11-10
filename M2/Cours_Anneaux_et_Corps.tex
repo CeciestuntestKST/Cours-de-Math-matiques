@@ -620,6 +620,23 @@ L'intérêt pour les anneaux euclidiens vient du résultat suivant :
     \end{enumerate}
 \end{ex}
 
+\begin{prop}{}{}
+    Soit $A$ un anneau intègre tel que tout élément $a \in A \setminus \{0\}$ peut s'écrire sous la forme (1.3). Les propriétés suivantes sont équivalentes :
+    \begin{itemize}
+        \item[(i)] l'anneau $A$ est factoriel ;
+        \item[(ii)] pour tout élément irréductible $p$ de $A$, l'idéal $(p)$ est premier ;
+        \item[(iii)] le lemme de Gauss est vrai dans $A$ : si $a$, $b$ et $c$ sont des éléments de $A$ tels que $a$ divise $bc$ mais est premier avec $b$, alors $a$ divise $c$.
+    \end{itemize}
+\end{prop}
+
+\begin{proof}{}{}
+    Supposons (iii). Soit $p$ un élément irréductible de $A$. L'idéal $(p)$ est strict. Si $p \mid ab$ et $p \nmid a$, alors $p$ et $a$ sont premiers entre eux. Par (iii), on déduit que $p \mid b$. Ainsi l'idéal $(p)$ est premier.
+
+    Supposons (ii). Pour montrer que $A$ est factoriel, il suffit de comparer des décompositions $a = u \prod_{p \in \Par} p^{v_p} = v \prod_{p \in \Par} p^{w_p}$. Si $w_{p_0} \neq v_{p_0}$ pour un $p_0 \in \Par$, on a par exemple $w_{p_0} > v_{p_0}$ et $p_0$ divise $\prod_{p \in \Par, p \neq p_0} p^{v_p}$. Comme l'idéal $(p_0)$ est premier, $p_0$ divise un $p \neq p_0$. Ces deux éléments irréductibles sont alors associés, ce qui contredit le choix de $\Par$. On a donc une contradiction, de sorte que $w_{p_0} = v_{p_0}$ pour tout $p_0 \in \Par$, ce qui montre (i).
+
+    Enfin, supposons l'anneau $A$ factoriel et que $a$ divise $bc$, avec $a$ premier avec $b$. Si $c = 0$, alors $a$ divise $c$. Supposons donc $c \neq 0$. Si $b = 0$, alors $a$ divise $a$ et $b$, donc $a$ est une unité : il divise bien $c$. On peut donc supposer aussi $b \neq 0$, soit $bc \neq 0$. Comme $a$ divise $bc$, on a aussi $a \neq 0$. On a alors $v_p(a) \le v_p(b) + v_p(c)$ pour tout $p \in \Par$. Comme $a$ est premier avec $b$, on a, pour tout $p$, soit $v_p(a) = 0$, soit $v_p(b) = 0$. Dans les deux cas, on obtient $v_p(a) \le v_p(c)$, c'est-à-dire $a \mid c$. D'où (iii).
+\end{proof}
+
 \section{Retour aux anneaux de polynômes}
 
 \subsection{Racines d'un polynôme à une variable}
