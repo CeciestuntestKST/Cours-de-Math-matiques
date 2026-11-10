@@ -708,6 +708,25 @@ est un morphisme d'anneaux appelé évaluation en $x$.
     \end{enumerate}
 \end{re}
 
+\begin{tm}{Théorème de d'Alembert-Gauss}{}
+    Tout polynôme non constant à coefficients dans $\C$ admet une racine complexe.
+\end{tm}
+
+Ainsi, si $P \in \C[X]$ est non constant, il se factorise sous la forme :
+\[P = \lambda (X - z_1) \dots (X - z_n)\]
+avec $\lambda \in \C^{\times}$, $n = \deg(P)$, et $z_1, \ldots, z_n \in \C$. En particulier, les polynômes irréductibles dans $\C[X]$ sont ceux de degré 1 et tout polynôme non constant de $\C[X]$ est produit de polynômes irréductibles.
+
+\subsubsection{Comment calculer la multiplicité d'une racine ?}
+
+\begin{df}{Polynôme dérivé}{}
+    Soit $A$ un anneau commutatif et soit $P = a_n X^n + \cdots + a_0 \in A[X]$. On appelle polynôme dérivé de $P$ le polynôme
+    \[P'(X) := n a_n X^{n-1} + \dots + a_1.\]
+    Il est clair que la dérivation est linéaire (c'est un morphisme de \grs abéliens de $A[X]$ dans $A[X]$) : on a $(P + Q)' = P' + Q'$. On vérifie par un calcul direct la formule de Leibniz
+    \[\forall P, Q \in A[X], \quad (PQ)' = P'Q + PQ',\]
+    ainsi que
+    \[\forall P, Q \in A[X], \quad (P \circ Q)' = (P' \circ Q) Q'.\]
+\end{df}
+
 \subsection{Factoralité des anneaux de polynômes}
 
 \subsection{Polynômes symétriques}
