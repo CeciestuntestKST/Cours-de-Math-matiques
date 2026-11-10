@@ -649,9 +649,43 @@ L'intérêt pour les anneaux euclidiens vient du résultat suivant :
     Supposons par l'absurde que $\alpha_1 > \beta_1$. Alors $p_1$ devrait diviser $v \, p_2^{\beta_2} \cdots p_r^{\beta_r}$. Mais comme $A$ est un anneau principal, l'idéal $(p_1)$ est premier, et donc $p_1$ devrait diviser $v$ ou l'un des $p_i$ avec $i \ne 1$ : contradiction ! On en déduit que $\alpha_1 \le \beta_1$, et par symétrie que $\alpha_1 = \beta_1$. Le même argument permet de montrer que $\alpha_i = \beta_i$ pour tout $i$.
 \end{proof}
 
+\begin{cor}{}{}
+    Les anneaux $\Z[i]$ et $K[X]$ (avec $K$ corps) sont factoriels.
+\end{cor}
+
 \section{Retour aux anneaux de polynômes}
 
 \subsection{Racines d'un polynôme à une variable}
+
+\subsubsection{Notion de racine}
+
+Soit $A$ un anneau commutatif et soit $P(X) = a_n X^n + \cdots + a_0 \in A[X]$. Soit $x$ un élément de $A$. On pose
+\[P(x) := a_n x^n + \dots + a_0 \in A.\]
+L'application
+\[\fundfto{\mathrm{ev}_x}{A[X]}{A}{P}{P(x)}\]
+est un morphisme d'anneaux appelé évaluation en $x$.
+
+\begin{df}{Racines d'un polynôme}{}
+    Soient $P \in A[X]$ et $x \in A$. On dit que $x$ est une racine de $P$ si $P(x) = 0_A$.
+\end{df}
+
+\begin{prop}{}{}
+    Soit $A$ un anneau commutatif, soit $P$ un élément de $A[X]$ et soit $x$ un élément de $A$. On a équivalence entre
+    \begin{itemize}
+        \item[(i)] $x$ est racine de $P$, c'est-à-dire $P(x) = 0_A$ ;
+        \item[(ii)] le polynôme $P$ est divisible par $X - x$ dans $A[X]$.
+    \end{itemize}
+\end{prop}
+
+\begin{proof}{}{}
+    Supposons que $P(x) = 0_A$. On a pour tout entier $m \ge 1$ l'identité remarquable
+    \[X^m - x^m = (X - x)\left(\sum_{i = 0}^{m - 1} x^i X^{m - 1 - i}\right).\]
+    En particulier, le polynôme $X^m - x^m$ est divisible par $X - x$. Il s'ensuit que le polynôme
+    \[P(X) = P(X) - P(x) = \left(a_n X^n + \dots + a_0\right) - \left(a_n x^n + \dots + a_0\right) = a_n(X^n - x^n) + \dots + a_1(X - x)\]
+    est aussi divisible par $X - x$.
+
+    L'implication (ii) $\Rightarrow$ (i) est évidente.
+\end{proof}
 
 \subsection{Factoralité des anneaux de polynômes}
 
