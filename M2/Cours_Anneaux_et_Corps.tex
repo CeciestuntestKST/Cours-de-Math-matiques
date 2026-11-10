@@ -465,7 +465,110 @@ Le lemme suivant justifie la terminologie employée.
 
 \section{Idéaux premiers et maximaux}
 
+\begin{df}{}{}
+    Soit $A$ un anneau.
+    \begin{enumerate}
+        \item[(i)] Un idéal \textbf{maximal} de $A$ est un idéal $\mathfrak{m}$ de $A$ qui est maximal parmi les idéaux stricts de $A$. De manière équivalente, c'est un idéal tel que le quotient $A/\mathfrak{m}$ soit un corps.
+        \item[(ii)] Un idéal \textbf{premier} de $A$ est un idéal $\mathfrak{p}$ tel que le quotient $A/\mathfrak{p}$ soit intègre. De manière équivalente, c'est un idéal strict $\mathfrak{p} \neq A$ tel que :
+        \[\forall (a, b) \in A^2, \; ab \in \mathfrak{p} \Rightarrow (a \in \mathfrak{p} \text{ ou } b \in \mathfrak{p}).\]
+    \end{enumerate}
+    En particulier, tout idéal maximal est un idéal premier.
+\end{df}
+
+\begin{proof}{Démonstration des équivalences}
+    (i) Supposons que $\mathfrak{m}$ est un idéal maximal de $A$ et soit $\pi : A \to A/\mathfrak{m}$ la projection naturelle. Prenons un élément non nul quelconque $\overline{a} \in A/\mathfrak{m}$. On peut alors trouver $a \in A \setminus \mathfrak{m}$ tel que $\overline{a} = \pi(a)$. Par maximalité de $\mathfrak{m}$, on a $\mathfrak{m} + (a) = A$. On peut donc trouver $b \in \mathfrak{m}$ et $c \in A$ tels que $b + ac = 1$. En appliquant $\pi$, on obtient $\overline{a} \, \pi(c) = \pi(a)\pi(c) = 1$. Ainsi, $\overline{a} \in (A/\mathfrak{m})^{\times}$, et $A/\mathfrak{m}$ est bien un corps.
+
+    Réciproquement, supposons que $A/\mathfrak{m}$ est un corps et soit $I$ un idéal de $A$ qui contient strictement $\mathfrak{m}$. Prenons $a \in I \setminus \mathfrak{m}$. Comme $A/\mathfrak{m}$ est un corps, $\pi(a) \in (A/\mathfrak{m})^{\times}$, et on peut donc trouver $b \in A$ tel que $\pi(a)\pi(b) = 1$. Autrement dit, $ab - 1 \in \mathfrak{m}$, de sorte que $1 \in I$ et $I = A$.
+
+    (ii) Supposons que $A/\mathfrak{p}$ est intègre et prenons $(a, b) \in A^2$ tel que $ab \in \mathfrak{p}$. Si $\pi : A \to A/\mathfrak{p}$ est la projection naturelle, alors $\pi(a)\pi(b) = 0$, et donc $\pi(a) = 0$ ou $\pi(b) = 0$ puisque $A/\mathfrak{p}$ est intègre. On en déduit que $a \in \mathfrak{p}$ ou $b \in \mathfrak{p}$.
+
+    Réciproquement, supposons que $\mathfrak{p} \neq A$ (donc $A/\mathfrak{p}$ est non nul) et que :
+    \[\forall (a, b) \in A^2, \quad ab \in \mathfrak{p} \Rightarrow (a \in \mathfrak{p} \text{ ou } b \in \mathfrak{p}).\]
+    Prenons $\overline{a}$ et $\overline{b}$ dans $A/\mathfrak{p}$ tels que $\overline{a}\overline{b} = 0$. On peut trouver $a$ et $b$ dans $A$ tels que $\pi(a) = \overline{a}$ et $\pi(b) = \overline{b}$. On obtient $\pi(ab) = \pi(a)\pi(b) = 0$. Ainsi, $ab \in \mathfrak{p}$. Par hypothèse, on en déduit que $a \in \mathfrak{p}$ ou $b \in \mathfrak{p}$, de sorte que $\overline{a} = 0$ ou $\overline{b} = 0$. L'anneau $A/\mathfrak{p}$ est donc intègre.
+\end{proof}
+
+\begin{prop}{}{}
+    Soit $A$ un anneau intègre et soit $a \in A \setminus \{0\}$. Considérons les assertions suivantes :
+    \begin{itemize}
+        \item[(i)] l'élément $a$ est irréductible dans $A$ ;
+        \item[(ii)] l'idéal $(a)$ est premier ;
+        \item[(iii)] l'idéal $(a)$ est maximal.
+    \end{itemize}
+    On a $(iii) \Rightarrow (ii) \Rightarrow (i)$. De plus, si $A$ est un anneau principal, alors $(i) \Rightarrow (iii)$.
+\end{prop}
+
+\begin{proof}
+    Les implications $(iii) \Rightarrow (ii) \Rightarrow (i)$ découlent immédiatement des définitions.
+
+    Supposons maintenant que $A$ est un anneau principal et que $a$ est irréductible. Nous allons montrer que $(a)$ est un idéal maximal de $A$. Pour cela, soit $I$ un idéal contenant strictement $(a)$, et prenons $b \in I \setminus (a)$. Comme $A$ est un anneau principal, on peut trouver $c \in A$ tel que $(a, b) = (c)$. Mais $a$ est irréductible. Ainsi, soit $c$ est une unité, soit $c$ est associé à $a$. Ce second cas est impossible car $b \notin (a)$. Ainsi, $c$ est une unité et $I \supseteq (c) = A$. Cela établit la maximalité de $(a)$.
+\end{proof}
+
+\begin{re}{}{}
+    Les implications $(i) \Rightarrow (iii)$ et $(ii) \Rightarrow (iii)$ sont fausses en général : par exemple, l'idéal $(X)$ est un idéal premier de $\C[X, Y]$, mais il n'est pas maximal.
+\end{re}
+
+\begin{tm}{Théorème de Krull}{}
+    Soit $A$ un anneau. Pour tout idéal strict $I$ de $A$, il existe un idéal maximal de $A$ contenant $I$.
+\end{tm}
+
+\begin{proof}
+    Soit $\Er$ la famille des idéaux stricts de $A$ contenant $I$. Munissons $\Er$ de l'ordre donné par l'inclusion. La famille $\Er$ n'est pas vide puisqu'elle contient $I$, et si $(I_j)_{j \in J}$ est une famille non vide totalement ordonnée d'éléments de $\Er$, alors $\bigcup_{j \in J} I_j \in \Er$. Par le lemme de Zorn, on en déduit que $\Er$ possède un élément maximal.
+\end{proof}
+
+En particulier, tout anneau non nul possède un idéal maximal.
+
 \section{Anneaux euclidiens}
+
+Rappelons que la principalité de $\Z$ et de $K[X]$ découle de l'existence d'une division euclidienne dans ces anneaux. C'est la méthode la plus courante pour montrer qu'un anneau est principal. Pour formaliser cela, nous introduisons la définition suivante :
+
+\begin{df}{}{}
+    \begin{enumerate}
+        \item Soit $A$ un anneau intègre. Un \textbf{stathme euclidien} (ou une division euclidienne) sur $A$ est une application $f : A \setminus \{0\} \to \N$ vérifiant la propriété suivante : pour tous $a$ et $b$ dans $A$ avec $b \neq 0$, on peut écrire $a = bq + r$ avec $r = 0$ ou $r \neq 0$ et $f(r) < f(b)$.
+        \item Un \textbf{anneau euclidien} est un anneau intègre qui possède un stathme euclidien.
+    \end{enumerate}
+\end{df}
+
+\begin{ex}{}{}
+    \begin{enumerate}
+        \item L'anneau intègre $\Z$ est euclidien pour le stathme euclidien $f(n) = |n|$.
+        \item Considérons l'anneau intègre $A = \Z[i]$ et définissons l'application :
+        \[\fundfto{f}{A}{\N}{z}{|z|^2}.\]
+        Prenons $a$ et $b$ dans $A$ avec $b \neq 0$, et écrivons $\frac{a}{b} = x + iy$ avec $x, y \in \Q$. On peut trouver $x', y' \in \Z$ tels que $|x - x'| \le \frac{1}{2}$ et $|y - y'| \le \frac{1}{2}$. Ainsi :
+        \[\left| \frac{a}{b} - x' - iy' \right|^2 = (x - x')^2 + (y - y')^2 \le \left(\frac{1}{2}\right)^2 + \left(\frac{1}{2}\right)^2 < 1.\]
+        Donc :
+        \[f(a - b(x' + iy')) < f(b),\]
+        et $A$ est un anneau euclidien.
+        \item Si $K$ est un corps, l'anneau $K[X]$ est euclidien pour le stathme euclidien $f(P) = \deg P$, comme le démontre le théorème suivant.
+    \end{enumerate}
+\end{ex}
+
+\begin{tm}{Division euclidienne des polynômes}{}
+    Soit $A$ un anneau intègre. Soient $P, Q \in A[X]$, où $Q$ est un polynôme non nul dont le coefficient dominant est une unité de $A$. Alors, il existe un unique couple $B, R \in A[X]$ tel que $P = BQ + R$ et $\deg(R) < \deg(Q)$.
+\end{tm}
+
+\begin{proof}{}{}
+    Montrons l'existence. On procède par récurrence sur $\deg(P)$, en commençant par le cas $\deg(P) = -\infty$, c'est-à-dire $P = 0$ : on prend alors $B = R = 0$. Si $P \neq 0$, on écrit $P(X) = a_d X^d + \cdots + a_1 X + a_0$, avec $a_d \neq 0_A$ et $d = \deg(P)$, et $Q(X) = b_e X^e + \cdots + b_1 X + b_0$, avec $b_e \in A^{\times}$ et $e = \deg(Q)$. Si $d < e$, on prend $B = 0$ et $R = P$. Si $d \ge e$, le polynôme
+    \begin{align*}
+    P_1(X) & := P(X) - a_d b_e^{-1} X^{d-e} Q(X)\\
+    & = a_d X^d + \dots + a_1 X + a_0 - a_d b_e^{-1} X^{d-e} (b_e X^e + \dots + b_1 X + b_0)\\
+    & = (a_{d-1} - a_d b_e^{-1} b_{e-1}) X^{d-1} + \dots,
+    \end{align*}
+    est de degré $< d$. On peut donc lui appliquer l'hypothèse de récurrence : il existe $B_1, R_1 \in A[X]$ tels que $P_1 = B_1 Q + R_1$ et $\deg(R_1) < \deg(Q)$. On a ainsi
+    \begin{align*}
+    P(X) & = P_1(X) + a_d b_e^{-1} X^{d-e} Q(X)\\
+    & = B_1(X) Q(X) + R_1(X) + a_d b_e^{-1} X^{d-e} Q(X)\\
+    & = (B_1(X) + a_d b_e^{-1} X^{d-e}) Q(X) + R_1(X),
+    \end{align*}
+    ce qui montre ce que l'on voulait.
+
+    Montrons l'unicité. Si $P = BQ + R = B'Q + R'$, on a $(B - B')Q = R - R'$. Si $B \neq B'$, on a $R \neq R'$ et, en prenant les degrés et en utilisant la proposition sur les degrés,
+    \[\deg(R - R') = \deg(B - B') + \deg(Q) \ge \deg(Q).\]
+    Mais cela contredit l'inégalité $\deg(P + Q) \le \max\{\deg(P), \deg(Q)\}$, puisque $\max\{\deg(R), \deg(R')\} < \deg(Q)$.
+
+    On a ainsi $B = B'$, donc $R = R'$.
+\end{proof}
+
+L'intérêt pour les anneaux euclidiens vient du résultat suivant :
 
 \begin{tm}{}{}
     Tout anneau euclidien est principal
